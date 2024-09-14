@@ -1,15 +1,26 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
 
+#region ConnectionString
+
 string connectionString = "Data Source=.;Initial Catalog=DotNetTrainingBatch5;User ID=sa;Password=sasa@123;";
 //Console.WriteLine ($"Connection String : + { connectionString}");
 Console.WriteLine("Connection String :" + connectionString);
 
+#endregion
+
+
 SqlConnection connection = new SqlConnection(connectionString);
+
+#region ConnectionOpen
 
 Console.WriteLine("Connection Opening");
 connection.Open();
 Console.WriteLine("Connection Opened");
+
+#endregion
+
+#region query
 
 string query = @"SELECT [BlogId]
       ,[BlogTitle]
@@ -17,6 +28,10 @@ string query = @"SELECT [BlogId]
       ,[BlogContent]
       ,[DeleteFlag]
   FROM [dbo].[Tbl_Blog] where DeleteFlag = 0;";
+
+#endregion
+
+#region Executing
 
 SqlCommand cmd = new SqlCommand(query, connection);
 //SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -31,9 +46,16 @@ while (reader.Read())
     Console.WriteLine(reader["BlogAuthor"]);
     Console.WriteLine(reader["BlogContent"]);
 }
+
+#endregion
+
+#region ConnectionClose
+
 Console.WriteLine("Connection Closing");
 connection.Close();
 Console.WriteLine("Connection Closed");
+
+#endregion
 
 //foreach (DataRow dr in dt.Rows)
 //{
