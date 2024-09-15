@@ -14,6 +14,7 @@ namespace MTKDotNetCore.ConsoleApp
     {
         private readonly string _connectionString = "Data Source=.;Initial Catalog=DotNetTrainingBatch5;User ID=sa;Password=sasa@123;";
 
+        #region Read
         public void Read()
         {
             Console.WriteLine("Connection String :" + _connectionString);
@@ -43,6 +44,11 @@ namespace MTKDotNetCore.ConsoleApp
             connection.Close();
             Console.WriteLine("Connection Closed");
         }
+
+        #endregion
+
+        #region Create
+
         public void Create()
         {
             Console.WriteLine("Blog Title :");
@@ -77,6 +83,11 @@ namespace MTKDotNetCore.ConsoleApp
 
             Console.WriteLine(result == 1 ? "Saving Successful" : "Saving Failed");
         }
+
+        #endregion
+
+        #region Edit
+
         public void Edit()
         {
             Console.WriteLine("BlogId :");
@@ -109,7 +120,9 @@ namespace MTKDotNetCore.ConsoleApp
             Console.WriteLine(dr["BlogAuthor"]);
             Console.WriteLine(dr["BlogContent"]);
         }
+        #endregion
 
+        #region Update
         public void Update()
         {
             Console.WriteLine("Blog Id:");
@@ -146,6 +159,9 @@ WHERE BlogId = @BlogId";
 
             Console.WriteLine(result == 1 ? "Updating Successful." : "Updating Failed.");
         }
+        #endregion
+
+        #region Delete
 
         public void Delete()
         {
@@ -166,6 +182,7 @@ WHERE BlogId = @BlogId";
 
             Console.WriteLine(result == 1 ? "Deleting Successful." : "Deleting Failed.");
         }
+        #endregion
 
     }
 }

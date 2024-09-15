@@ -73,9 +73,13 @@ using System.Data.SqlClient;
 
 #endregion
 
+#region Day3
+
 AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
 //adoDotNetExample.Read();
 //adoDotNetExample.Create();
 //adoDotNetExample.Update();
 //adoDotNetExample.Edit();
 adoDotNetExample.Delete();
+
+#endregion
