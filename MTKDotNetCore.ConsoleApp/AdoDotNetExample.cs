@@ -110,5 +110,42 @@ namespace MTKDotNetCore.ConsoleApp
             Console.WriteLine(dr["BlogContent"]);
         }
 
+        public void Update()
+        {
+            Console.WriteLine("Blog Id:");
+            string id = Console.ReadLine();
+
+            Console.WriteLine("Blog Title:");
+            string title = Console.ReadLine();
+
+            Console.WriteLine("Blog Author:");
+            string author = Console.ReadLine();
+
+            Console.WriteLine("Blog Content:");
+            string content = Console.ReadLine();
+
+            SqlConnection connection = new SqlConnection(_connectionString);
+            connection.Open();
+
+            string query = $@"UPDATE [dbo].[Tbl_Blog]
+  SET [BlogTitle] = @BlogTitle
+     ,[BlogAuthor] = @BlogAuthor
+     ,[BlogContent] = @BlogContent
+     ,[DeleteFlag] = 0
+WHERE BlogId = @BlogId";
+
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@BlogId", id);
+            cmd.Parameters.AddWithValue("@BlogTitle", title);
+            cmd.Parameters.AddWithValue("@BlogAuthor", author);
+            cmd.Parameters.AddWithValue("@BlogContent", content);
+
+            int result = cmd.ExecuteNonQuery();
+
+            connection.Close();
+
+            Console.WriteLine(result == 1 ? "Updating Successful." : "Updating Failed.");
+        }
+
     }
 }
