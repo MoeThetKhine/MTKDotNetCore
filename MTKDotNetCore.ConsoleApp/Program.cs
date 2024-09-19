@@ -85,4 +85,5 @@ AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
 #endregion
 
 DapperExample dapperExample = new DapperExample();
-dapperExample.Read();
+//dapperExample.Read();
+dapperExample.Create("title1","author1","content1");

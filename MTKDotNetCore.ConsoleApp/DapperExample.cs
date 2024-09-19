@@ -35,6 +35,34 @@ namespace MTKDotNetCore.ConsoleApp
 
         #endregion
 
+        #region Crate
+
+        public void Create(string title,string author, string content)
+        {
+            string query = $@"INSERT INTO [dbo].[Tbl_Blog]
+           ([BlogTitle]
+           ,[BlogAuthor]
+           ,[BlogContent]
+           ,[DeleteFlag])
+     VALUES
+           (@BlogTitle
+           ,@BlogAuthor
+           ,@BlogContent
+           ,0);";
+
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                int result = db.Execute(query, new BlogDapperDataModel
+                {
+                    BlogTitle = title,
+                    BlogAuthor = author,
+                    BlogContent = content,
+                });
+                Console.WriteLine(result == 1 ? "Saving Successful." : "Saving Fail.");
+            }
+        }
+
+        #endregion
 
 
     }
