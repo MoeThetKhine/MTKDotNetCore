@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace MTKDotNetCore.ConsoleApp.Models
 {
+    #region BlogDapperDataModel
+
     public class BlogDapperDataModel
     {
         public int BlogId {  get; set; }
@@ -13,4 +15,6 @@ namespace MTKDotNetCore.ConsoleApp.Models
         public string BlogAuthor {  get; set; }
         public string BlogContent {  get; set; }
     }
+
+    #endregion
 }
