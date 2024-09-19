@@ -25,6 +25,8 @@ public class EFCoreExample
 
     #endregion
 
+    #region Create
+
     public void Create(string title,string author,string content)
     {
         BlogDataModel blog = new BlogDataModel()
@@ -38,4 +40,26 @@ public class EFCoreExample
         var result = db.SaveChanges();
         Console.WriteLine(result == 1 ? "Saving Successful." : "Saving Fail.");
     }
+
+    #endregion
+
+    #region Edit
+
+    public void Edit(int id)
+    {
+        AppDbContext db = new AppDbContext();
+      //  db.Blogs.Where(x => x.BlogId == id).FirstOrDefaultAsync();
+      var item = db.Blogs.FirstOrDefault(x => x.BlogId == id);
+        if (item == null)
+        {
+            Console.WriteLine("No Data Found");
+            return;
+        }
+        Console.WriteLine("Blog Id : " + item.BlogId);
+        Console.WriteLine("Blog Title : " + item.BlogTitle);
+        Console.WriteLine("Blog Author : " + item.BlogAuthor);
+        Console.WriteLine("Blog Content : " + item.BlogContent);
+    }
+
+    #endregion
 }
