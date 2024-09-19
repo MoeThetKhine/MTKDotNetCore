@@ -90,5 +90,32 @@ namespace MTKDotNetCore.ConsoleApp
 
         #endregion
 
+        public void Update(int id, string title, string author,string content)
+        {
+            string query = $@"UPDATE [dbo].[Tbl_Blog]
+   SET [BlogTitle] = @BlogTitle
+      ,[BlogAuthor] = @BlogAuthor
+      ,[BlogContent] = @BlogContent
+      ,[DeleteFlag] = 0
+ WHERE BlogId = @BlogId;";
+
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                int result = db.Execute(query, new BlogDapperDataModel
+                {
+                    BlogId = id,
+                    BlogTitle = title,
+                    BlogAuthor = author,
+                    BlogContent = content,
+                });
+
+                //if (result == 0 )
+                //{
+                //    Console.WriteLine("No Data Found.");
+                //}
+                Console.WriteLine(result == 1 ? "Updating Successful." : "Updating Fail.");
+            }
+        }
+
     }
 }
