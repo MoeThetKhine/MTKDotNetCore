@@ -73,7 +73,7 @@ using System.Data.SqlClient;
 
 #endregion
 
-#region Day3
+#region Day3 AdoDotNet
 
 AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
 //adoDotNetExample.Read();
@@ -84,6 +84,16 @@ AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
 
 #endregion
 
+#region Day4 Dapper and EFCore
+
+#region Dapper
+
 DapperExample dapperExample = new DapperExample();
 //dapperExample.Read();
-dapperExample.Create("title1","author1","content1");
+//dapperExample.Create("title1","author1","content1");
+//dapperExample.Edit(20);
+//dapperExample.Edit(16);
+
+#endregion
+
+#endregion
