@@ -1,6 +1,4 @@
 ﻿using MTKDotNetCore.ConsoleApp;
-using System.Data;
-using System.Data.SqlClient;
 
 #region Day2
 
@@ -101,6 +99,8 @@ using System.Data.SqlClient;
 
 #endregion
 
+#region EFCore
+
 EFCoreExample eFCoreExample = new EFCoreExample();
 //eFCoreExample.Read();
 //eFCoreExample.Create("title2", "author2", "content2");
@@ -109,6 +109,8 @@ EFCoreExample eFCoreExample = new EFCoreExample();
 //eFCoreExample.Update(16,"title2", "author2", "content2");
 //eFCoreExample.HardDelete(12);
 eFCoreExample.SoftDelete(1);
+
+#endregion
 
 #endregion
 
