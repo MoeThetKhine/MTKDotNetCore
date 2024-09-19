@@ -93,8 +93,11 @@ DapperExample dapperExample = new DapperExample();
 //dapperExample.Create("title1","author1","content1");
 //dapperExample.Edit(20);
 //dapperExample.Edit(16);
-dapperExample.Update(16, "a", "b", "c");
-dapperExample.Update(20, "a", "b", "c");
+//dapperExample.Update(16, "a", "b", "c");
+//dapperExample.Update(20, "a", "b", "c");
+dapperExample.Delete(16);
+dapperExample.Delete(30);
+
 
 #endregion
 

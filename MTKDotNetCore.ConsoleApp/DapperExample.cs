@@ -90,6 +90,8 @@ namespace MTKDotNetCore.ConsoleApp
 
         #endregion
 
+        #region Update
+
         public void Update(int id, string title, string author,string content)
         {
             string query = $@"UPDATE [dbo].[Tbl_Blog]
@@ -116,6 +118,20 @@ namespace MTKDotNetCore.ConsoleApp
                 Console.WriteLine(result == 1 ? "Updating Successful." : "Updating Fail.");
             }
         }
+        #endregion
 
+        public void Delete(int id)
+        {
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                string query = $@"UPDATE [dbo].[Tbl_Blog]
+               SET [DeleteFlag] = 1  WHERE BlogId = @BlogId";
+                int result = db.Execute(query, new BlogDapperDataModel
+                {
+                    BlogId = id,
+                });
+                Console.WriteLine(result == 1 ? "Deleting Successful." : "Deleting Fail.");
+            }
+        }
     }
 }
