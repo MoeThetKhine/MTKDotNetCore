@@ -16,6 +16,7 @@ namespace MTKDotNetCore.ConsoleApp.Models
         public string BlogTitle {  get; set; }
         public string BlogAuthor {  get; set; }
         public string BlogContent {  get; set; }
+        public bool DeleteFlag {  get; set; }
     }
 
     #endregion
@@ -27,7 +28,7 @@ namespace MTKDotNetCore.ConsoleApp.Models
     {
         [Key]
         [Column("BlogId")]
-        public int BlogId { get; set; }
+        public long BlogId { get; set; }
 
         [Column("BlogTitle")]
         public string BlogTitle { get; set; }
@@ -37,6 +38,9 @@ namespace MTKDotNetCore.ConsoleApp.Models
 
         [Column("BlogContent")]
         public string BlogContent { get; set; }
+
+        [Column("DeleteFlag")]
+        public bool DeleteFlag { get; set; }
     }
 
     #endregion

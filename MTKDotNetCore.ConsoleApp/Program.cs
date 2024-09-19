@@ -75,7 +75,7 @@ using System.Data.SqlClient;
 
 #region Day3 AdoDotNet
 
-AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
+//AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
 //adoDotNetExample.Read();
 //adoDotNetExample.Create();
 //adoDotNetExample.Update();
@@ -88,7 +88,7 @@ AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
 
 #region Dapper
 
-DapperExample dapperExample = new DapperExample();
+//DapperExample dapperExample = new DapperExample();
 //dapperExample.Read();
 //dapperExample.Create("title1","author1","content1");
 //dapperExample.Edit(20);
@@ -101,4 +101,9 @@ DapperExample dapperExample = new DapperExample();
 
 #endregion
 
+EFCoreExample eFCoreExample = new EFCoreExample();
+eFCoreExample.Read();
+
 #endregion
+
+Console.ReadKey();
