@@ -112,4 +112,26 @@ public class EFCoreExample
     }
 
     #endregion
+
+    #region SoftDelete
+
+    public void SoftDelete(int id)
+    {
+        AppDbContext db = new AppDbContext();
+        var item = db.Blogs.AsNoTracking().FirstOrDefault(x => x.BlogId == id);
+
+        if (item is null)
+        {
+            Console.WriteLine("No Data Found");
+            return;
+        }
+
+        item.DeleteFlag = true;
+        db.Entry(item).State = EntityState.Modified;
+        var result = db.SaveChanges();
+        Console.WriteLine(result == 1 ? "Deleting Successful." : "Deleting Fail.");
+    }
+
+    #endregion
+
 }
