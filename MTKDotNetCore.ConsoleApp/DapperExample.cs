@@ -120,6 +120,8 @@ namespace MTKDotNetCore.ConsoleApp
         }
         #endregion
 
+        #region Delete
+
         public void Delete(int id)
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
@@ -133,5 +135,7 @@ namespace MTKDotNetCore.ConsoleApp
                 Console.WriteLine(result == 1 ? "Deleting Successful." : "Deleting Fail.");
             }
         }
+
+        #endregion
     }
 }
