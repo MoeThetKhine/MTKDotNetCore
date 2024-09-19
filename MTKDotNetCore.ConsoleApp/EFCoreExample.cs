@@ -48,8 +48,7 @@ public class EFCoreExample
     public void Edit(int id)
     {
         AppDbContext db = new AppDbContext();
-      //  db.Blogs.Where(x => x.BlogId == id).FirstOrDefaultAsync();
-      var item = db.Blogs.FirstOrDefault(x => x.BlogId == id);
+      var item = db.Blogs.AsNoTracking().FirstOrDefault(x => x.BlogId == id);
         if (item == null)
         {
             Console.WriteLine("No Data Found");
@@ -62,4 +61,37 @@ public class EFCoreExample
     }
 
     #endregion
+
+    #region Update
+
+    public void Update(int id,string title,string author,string content)
+    {
+        AppDbContext db = new AppDbContext();
+        var item = db.Blogs.AsNoTracking().FirstOrDefault(x => x.BlogId == id);
+        if (item == null)
+        {
+            Console.WriteLine("No Data Found");
+            return;
+        }
+
+        if(!string.IsNullOrEmpty(title))
+        {
+            item.BlogTitle = title;
+        }
+        if(!string.IsNullOrEmpty (author))
+        {
+            item.BlogAuthor = author;
+        }
+        if(!string.IsNullOrEmpty (content))
+        {
+            item.BlogContent = content;
+        }
+        db.Entry(item).State = EntityState.Modified;
+        var result = db.SaveChanges();
+        Console.WriteLine(result == 1 ? "Updaing Successful." : "Updating Fail.");
+    }
+
+    #endregion
+
+  
 }
