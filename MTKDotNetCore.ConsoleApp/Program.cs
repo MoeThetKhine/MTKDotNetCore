@@ -80,6 +80,9 @@ AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
 //adoDotNetExample.Create();
 //adoDotNetExample.Update();
 //adoDotNetExample.Edit();
-adoDotNetExample.Delete();
+//adoDotNetExample.Delete();
 
 #endregion
+
+DapperExample dapperExample = new DapperExample();
+dapperExample.Read();
