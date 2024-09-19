@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MTKDotNetCore.ConsoleApp.Models;
+using System;
 
 namespace MTKDotNetCore.ConsoleApp;
 
@@ -27,7 +28,7 @@ public class EFCoreExample
 
     #region Create
 
-    public void Create(string title,string author,string content)
+    public void Create(string title, string author, string content)
     {
         BlogDataModel blog = new BlogDataModel()
         {
@@ -48,7 +49,7 @@ public class EFCoreExample
     public void Edit(int id)
     {
         AppDbContext db = new AppDbContext();
-      var item = db.Blogs.AsNoTracking().FirstOrDefault(x => x.BlogId == id);
+        var item = db.Blogs.AsNoTracking().FirstOrDefault(x => x.BlogId == id);
         if (item == null)
         {
             Console.WriteLine("No Data Found");
@@ -64,7 +65,7 @@ public class EFCoreExample
 
     #region Update
 
-    public void Update(int id,string title,string author,string content)
+    public void Update(int id, string title, string author, string content)
     {
         AppDbContext db = new AppDbContext();
         var item = db.Blogs.AsNoTracking().FirstOrDefault(x => x.BlogId == id);
@@ -74,15 +75,15 @@ public class EFCoreExample
             return;
         }
 
-        if(!string.IsNullOrEmpty(title))
+        if (!string.IsNullOrEmpty(title))
         {
             item.BlogTitle = title;
         }
-        if(!string.IsNullOrEmpty (author))
+        if (!string.IsNullOrEmpty(author))
         {
             item.BlogAuthor = author;
         }
-        if(!string.IsNullOrEmpty (content))
+        if (!string.IsNullOrEmpty(content))
         {
             item.BlogContent = content;
         }
@@ -93,5 +94,22 @@ public class EFCoreExample
 
     #endregion
 
-  
+    #region HardDelete
+
+    public void HardDelete(int id)
+    {
+        AppDbContext db = new AppDbContext();
+        var item = db.Blogs.AsNoTracking().FirstOrDefault(x => x.BlogId == id);
+
+        if(item is null)
+        {
+            Console.WriteLine("No Data Found");
+            return;
+        }
+        db.Entry(item).State = EntityState.Deleted;
+        var result = db.SaveChanges();
+        Console.WriteLine(result == 1 ? "Deleting Successful." : "Deleting Fail.");
+    }
+
+    #endregion
 }

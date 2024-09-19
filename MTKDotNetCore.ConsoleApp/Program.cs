@@ -106,7 +106,8 @@ EFCoreExample eFCoreExample = new EFCoreExample();
 //eFCoreExample.Create("title2", "author2", "content2");
 //eFCoreExample.Edit(20);
 //eFCoreExample.Edit(16);
-eFCoreExample.Update(16,"title2", "author2", "content2");
+//eFCoreExample.Update(16,"title2", "author2", "content2");
+//eFCoreExample.HardDelete(12);
 
 #endregion
 
