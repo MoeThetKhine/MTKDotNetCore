@@ -102,7 +102,8 @@ using System.Data.SqlClient;
 #endregion
 
 EFCoreExample eFCoreExample = new EFCoreExample();
-eFCoreExample.Read();
+//eFCoreExample.Read();
+eFCoreExample.Create("title2", "author2", "content2");
 
 #endregion
 

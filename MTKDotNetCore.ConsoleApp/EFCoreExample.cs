@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MTKDotNetCore.ConsoleApp.Models;
 
 namespace MTKDotNetCore.ConsoleApp;
 
@@ -24,5 +25,17 @@ public class EFCoreExample
 
     #endregion
 
-   
+    public void Create(string title,string author,string content)
+    {
+        BlogDataModel blog = new BlogDataModel()
+        {
+            BlogTitle = title,
+            BlogAuthor = author,
+            BlogContent = content
+        };
+        AppDbContext db = new AppDbContext();
+        db.Blogs.Add(blog);
+        var result = db.SaveChanges();
+        Console.WriteLine(result == 1 ? "Saving Successful." : "Saving Fail.");
+    }
 }
