@@ -50,3 +50,5 @@ delete from Tbl_Blog where BlogId = 1
 -- Product Apple 1000, Orange 1000
 -- Staff Apple 2, Orange 1
 -- 3000, 2000, 1000
+
+dotnet ef dbcontext scaffold "Server=.;Database=DotNetTrainingBatch5;User Id=sa;Password=sasa@123;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models -c AppDbContext -f

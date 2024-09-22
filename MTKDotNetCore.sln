@@ -10,6 +10,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTKDotNetCore.Database", "MTKDotNetCore.Database\MTKDotNetCore.Database.csproj", "{7063FBC7-C8B4-4E33-A40A-A5EFE523646A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTKDotNetCore.ConsoleApp2", "MTKDotNetCore.ConsoleApp2\MTKDotNetCore.ConsoleApp2.csproj", "{D474B475-B6C6-41CE-93EE-66B79E255D93}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +24,14 @@ Global
 		{56FD9D93-C620-4A9E-8600-1DAAC289C812}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56FD9D93-C620-4A9E-8600-1DAAC289C812}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56FD9D93-C620-4A9E-8600-1DAAC289C812}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7063FBC7-C8B4-4E33-A40A-A5EFE523646A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7063FBC7-C8B4-4E33-A40A-A5EFE523646A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7063FBC7-C8B4-4E33-A40A-A5EFE523646A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7063FBC7-C8B4-4E33-A40A-A5EFE523646A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D474B475-B6C6-41CE-93EE-66B79E255D93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D474B475-B6C6-41CE-93EE-66B79E255D93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D474B475-B6C6-41CE-93EE-66B79E255D93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D474B475-B6C6-41CE-93EE-66B79E255D93}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
