@@ -10,9 +10,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTKDotNetCore.Database", "MTKDotNetCore.Database\MTKDotNetCore.Database.csproj", "{7063FBC7-C8B4-4E33-A40A-A5EFE523646A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MTKDotNetCore.Database", "MTKDotNetCore.Database\MTKDotNetCore.Database.csproj", "{7063FBC7-C8B4-4E33-A40A-A5EFE523646A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTKDotNetCore.ConsoleApp2", "MTKDotNetCore.ConsoleApp2\MTKDotNetCore.ConsoleApp2.csproj", "{D474B475-B6C6-41CE-93EE-66B79E255D93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MTKDotNetCore.ConsoleApp2", "MTKDotNetCore.ConsoleApp2\MTKDotNetCore.ConsoleApp2.csproj", "{D474B475-B6C6-41CE-93EE-66B79E255D93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTKDotNetCore.RestApi", "MTKDotNetCore.RestApi\MTKDotNetCore.RestApi.csproj", "{6A157A8B-0614-4DCA-8EAD-298DFB233036}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +34,10 @@ Global
 		{D474B475-B6C6-41CE-93EE-66B79E255D93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D474B475-B6C6-41CE-93EE-66B79E255D93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D474B475-B6C6-41CE-93EE-66B79E255D93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A157A8B-0614-4DCA-8EAD-298DFB233036}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A157A8B-0614-4DCA-8EAD-298DFB233036}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A157A8B-0614-4DCA-8EAD-298DFB233036}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A157A8B-0614-4DCA-8EAD-298DFB233036}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
