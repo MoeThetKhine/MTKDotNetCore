@@ -19,5 +19,19 @@ namespace MTKDotNetCore.RestApi.Controllers
                 .ToList ();
             return Ok (lst);
         }
+
+        [HttpGet("{id}")]
+        public IActionResult GetBlog(int id)
+        {
+
+            var item = _db.TblBlogs
+                .AsNoTracking()
+                .FirstOrDefault(x => x.BlogId == id);
+            if(item is null)
+            {
+                return NotFound();
+            }
+            return Ok (item);
+        }
     }
 }
