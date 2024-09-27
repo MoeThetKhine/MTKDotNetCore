@@ -30,13 +30,11 @@ public partial class AppDbContext : DbContext
     {
         modelBuilder.Entity<TblBlog>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("Tbl_Blog");
+            entity.HasKey(e => e.BlogId);
+
+            entity.ToTable("Tbl_Blog");
 
             entity.Property(e => e.BlogAuthor).HasMaxLength(50);
-            entity.Property(e => e.BlogContent).HasMaxLength(50);
-            entity.Property(e => e.BlogId).ValueGeneratedOnAdd();
             entity.Property(e => e.BlogTitle).HasMaxLength(50);
         });
 

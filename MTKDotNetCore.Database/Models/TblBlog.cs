@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace MTKDotNetCore.Database.Models;
 
 public partial class TblBlog
 {
-    public long BlogId { get; set; }
+    [Key] 
+    public int BlogId { get; set; }
 
     public string BlogTitle { get; set; } = null!;
 

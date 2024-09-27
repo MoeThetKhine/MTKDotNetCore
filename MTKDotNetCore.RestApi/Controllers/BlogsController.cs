@@ -33,5 +33,32 @@ namespace MTKDotNetCore.RestApi.Controllers
             }
             return Ok (item);
         }
+        [HttpPost]
+        public IActionResult CreateBlog(TblBlog blog)
+        {
+            _db.TblBlogs.Add(blog);
+            _db.SaveChanges();
+            return Ok(blog);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult UpdateBlog(int id, TblBlog blog)
+        {
+            var item = _db.TblBlogs.AsNoTracking()
+                .FirstOrDefault(x => x.BlogId == id);
+            if(item is null)
+            {
+                return NotFound();
+            }
+            item.BlogTitle = blog.BlogTitle;
+            item.BlogAuthor = blog.BlogAuthor;
+            item.BlogContent = blog.BlogContent;
+
+            _db.Entry(item).State = EntityState.Modified;
+            _db.SaveChanges();
+            return Ok(item);
+        }
+
+
     }
 }
