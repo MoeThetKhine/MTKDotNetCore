@@ -59,6 +59,28 @@ namespace MTKDotNetCore.RestApi.Controllers
             return Ok(item);
         }
 
+        [HttpPatch("{id}")]
+        public IActionResult PatchBlog(int id,TblBlog blog)
+        {
+            var item = _db.TblBlogs.AsNoTracking()
+                .FirstOrDefault (x => x.BlogId == id);
+            if(item is null)
+            {
+                return NotFound();
+            }
+            if(!string.IsNullOrEmpty(blog.BlogTitle))
+            {
+                item.BlogTitle = blog.BlogTitle;
+            }
+            if (!string.IsNullOrEmpty(blog.BlogAuthor))
+            {
+                item.BlogAuthor = blog.BlogAuthor;
+            }
+            _db.Entry (item).State = EntityState.Modified;
+            _db.SaveChanges();
+            return Ok(item);
+        }
+
 
     }
 }
