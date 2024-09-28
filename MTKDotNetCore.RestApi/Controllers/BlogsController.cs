@@ -102,6 +102,8 @@ namespace MTKDotNetCore.RestApi.Controllers
 
         #endregion
 
+        #region Delete Blog
+
         [HttpDelete("{id}")]
         public IActionResult DeleteBlog(int id)
         {
@@ -116,5 +118,7 @@ namespace MTKDotNetCore.RestApi.Controllers
             _db.SaveChanges();
             return Ok();
         }
+
+        #endregion
     }
 }
