@@ -10,6 +10,8 @@ namespace MTKDotNetCore.RestApi.Controllers
     {
         private readonly AppDbContext _db = new AppDbContext();
 
+        #region GetBlogs
+
         [HttpGet]
         public IActionResult GetBlogs()
         {
@@ -19,6 +21,8 @@ namespace MTKDotNetCore.RestApi.Controllers
                 .ToList ();
             return Ok (lst);
         }
+
+        #endregion
 
         [HttpGet("{id}")]
         public IActionResult GetBlog(int id)
