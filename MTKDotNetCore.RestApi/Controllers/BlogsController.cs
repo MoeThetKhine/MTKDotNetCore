@@ -42,6 +42,7 @@ namespace MTKDotNetCore.RestApi.Controllers
 
         #endregion
 
+        #region CreateBlog
 
         [HttpPost]
         public IActionResult CreateBlog(TblBlog blog)
@@ -50,6 +51,8 @@ namespace MTKDotNetCore.RestApi.Controllers
             _db.SaveChanges();
             return Ok(blog);
         }
+
+        #endregion
 
         [HttpPut("{id}")]
         public IActionResult UpdateBlog(int id, TblBlog blog)
