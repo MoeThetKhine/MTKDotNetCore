@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using MTKDotNetCore.RestApi.DataModels;
+using MTKDotNetCore.RestApi.ViewModels;
 using System.Data;
 
 namespace MTKDotNetCore.RestApi.Controllers
@@ -86,6 +87,40 @@ namespace MTKDotNetCore.RestApi.Controllers
       ,[BlogContent] = @BlogContent
       ,[DeleteFlag] = 0
  WHERE BlogId = @BlogId;";
+
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                int result = db.Execute(query, blog);
+                return Ok(result == 1 ? "Updating Successful." : "Updating Failed.");
+            }
+        }
+
+        [HttpPatch("{id}")]
+        public IActionResult PatchBlog(int id, BlogViewModel blog)
+        {
+            string conditions = "";
+            if (!string.IsNullOrEmpty(blog.BlogTitle))
+            {
+                conditions += "[BlogTitle] = @BlogTitle, ";
+            }
+            if (!string.IsNullOrEmpty(blog.BlogAuthor))
+            {
+                conditions += "[BlogAuthor] = @BlogAuthor, ";
+            }
+            if (!string.IsNullOrEmpty(blog.BlogAuthor))
+            {
+                conditions += "[BlogAuthor] = @BlogAuthor, ";
+            }
+            if (conditions.Length == 0)
+            {
+                return BadRequest("Invalid Parameters!");
+            }
+            conditions = conditions.Substring(0, conditions.Length - 2);
+
+            blog.BlogId = id;
+
+            string query = $@"Update [dbo].[Tbl_Blog]
+SET {conditions} WHERE BlogId = @BlogId";
 
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
