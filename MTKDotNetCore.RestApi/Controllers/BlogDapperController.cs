@@ -63,5 +63,19 @@ namespace MTKDotNetCore.RestApi.Controllers
                 return Ok(result == 1 ? "Saving Successful" : "Saving Failed");
             }
         }
+        [HttpDelete("{id}")]
+        public IActionResult DeleteBlog(int id)
+        {
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                string query = $@"UPDATE [dbo].[Tbl_Blog]
+               SET [DeleteFlag] = 1  WHERE BlogId = @BlogId";
+                int result = db.Execute(query, new BlogDataModel
+                {
+                    BlogId = id,
+                });
+                return Ok(result == 1 ? "Deleting Successful." : "Deleting Failed.");
+            }
+        }
     }
 }
