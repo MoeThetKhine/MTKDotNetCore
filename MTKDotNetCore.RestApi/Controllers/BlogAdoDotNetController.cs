@@ -108,5 +108,24 @@ SET {conditions} WHERE BlogId = @BlogId";
 
             return Ok(result == 1 ? "Saving Successful" : "Saving Failed");
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteBlog(int id)
+        {
+            SqlConnection connection = new SqlConnection(_connectionString);
+            connection.Open();
+            string query = $@"UPDATE [dbo].[Tbl_Blog]
+               SET [DeleteFlag] = 1  WHERE BlogId = @BlogId";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@BlogId", id);
+            cmd.Parameters.AddWithValue("@DeleteFlag", 1);
+
+            int result = cmd.ExecuteNonQuery();
+
+            connection.Close();
+
+            return Ok(result == 1 ? "Deleting Successful." : "Deleting Failed.");
+        }
+
     }
 }
