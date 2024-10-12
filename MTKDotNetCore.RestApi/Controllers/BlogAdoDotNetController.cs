@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using MTKDotNetCore.RestApi.DataModels;
 using MTKDotNetCore.RestApi.ViewModels;
 
 namespace MTKDotNetCore.RestApi.Controllers
@@ -81,7 +82,31 @@ SET {conditions} WHERE BlogId = @BlogId";
             }
             int result = cmd.ExecuteNonQuery();
             return Ok(result > 0 ? "Updating Successful." : "Updating Failed.");
+        }
 
+        [HttpPost]
+        public IActionResult CreateBlog(BlogDataModel blog)
+        {
+            string query = $@"INSERT INTO [dbo].[Tbl_Blog]
+          ([BlogTitle]
+          ,[BlogAuthor]
+          ,[BlogContent]
+          ,[DeleteFlag])
+    VALUES
+          (@BlogTitle
+          ,@BlogAuthor
+          ,@BlogContent
+          ,0)";
+            SqlConnection connection = new SqlConnection(_connectionString);
+            connection.Open();
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@BlogTitle", blog.BlogTitle );
+            cmd.Parameters.AddWithValue("@BlogAuthor", blog.BlogAuthor);
+            cmd.Parameters.AddWithValue("@BlogContent", blog.BlogContent);
+            int result = cmd.ExecuteNonQuery();
+            connection.Close();
+
+            return Ok(result == 1 ? "Saving Successful" : "Saving Failed");
         }
     }
 }
