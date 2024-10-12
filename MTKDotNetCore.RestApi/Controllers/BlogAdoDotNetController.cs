@@ -127,5 +127,31 @@ SET {conditions} WHERE BlogId = @BlogId";
             return Ok(result == 1 ? "Deleting Successful." : "Deleting Failed.");
         }
 
+        [HttpPut("{id}")]
+        public IActionResult UpdateBlog(int id, BlogDataModel blog)
+        {
+            SqlConnection connection = new SqlConnection(_connectionString);
+            connection.Open();
+
+            string query = $@"UPDATE [dbo].[Tbl_Blog]
+  SET [BlogTitle] = @BlogTitle
+     ,[BlogAuthor] = @BlogAuthor
+     ,[BlogContent] = @BlogContent
+     ,[DeleteFlag] = 0
+WHERE BlogId = @BlogId";
+
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@BlogId", id);
+            cmd.Parameters.AddWithValue("@BlogTitle", blog.BlogTitle);
+            cmd.Parameters.AddWithValue("@BlogAuthor", blog.BlogAuthor);    
+            cmd.Parameters.AddWithValue("@BlogContent", blog.BlogContent);
+
+            int result = cmd.ExecuteNonQuery();
+
+            connection.Close();
+
+            return Ok(result == 1 ? "Updating Successful." : "Updating Failed.");
+        }
+
     }
 }
