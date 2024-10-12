@@ -42,5 +42,26 @@ namespace MTKDotNetCore.RestApi.Controllers
                 return Ok(item);
             }
         }
+        [HttpPost]
+        public IActionResult CreateBlog(BlogDataModel blog)
+        {
+            string query = $@"INSERT INTO [dbo].[Tbl_Blog]
+           ([BlogTitle]
+           ,[BlogAuthor]
+           ,[BlogContent]
+           ,[DeleteFlag])
+     VALUES
+           (@BlogTitle
+           ,@BlogAuthor
+           ,@BlogContent
+           ,0);";
+
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                int result = db.Execute(query, blog);
+
+                return Ok(result == 1 ? "Saving Successful" : "Saving Failed");
+            }
+        }
     }
 }
