@@ -23,5 +23,24 @@ namespace MTKDotNetCore.RestApi.Controllers
                 return Ok(lst);
             }
         }
+
+        [HttpGet("{id}")]
+        public IActionResult Edit(int id)
+        {
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                string query = "select * from tbl_blog where DeleteFlag = 0 and BlogId = @BlogId;";
+                var item = db.Query<BlogDataModel>(query, new BlogDataModel
+                {
+                    BlogId = id,
+                }).FirstOrDefault();
+
+               if(item is null)
+                {
+                    return NotFound("No data found");
+                }
+                return Ok(item);
+            }
+        }
     }
 }
