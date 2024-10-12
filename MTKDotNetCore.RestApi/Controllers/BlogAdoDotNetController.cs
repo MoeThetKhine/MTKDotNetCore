@@ -44,5 +44,44 @@ namespace MTKDotNetCore.RestApi.Controllers
             connection.Close();
             return Ok(lst);
         }
+
+        [HttpPatch("{id}")]
+        public IActionResult PatchBlog(int id,BlogViewModel blog)
+        {
+            string conditions = "";
+            if (!string.IsNullOrEmpty(blog.BlogTitle))
+            {
+                conditions += "[BlogTitle] = @BlogTitle, ";
+            }
+            if (!string.IsNullOrEmpty(blog.BlogAuthor))
+            {
+                conditions += "[BlogAuthor] = @BlogAuthor, ";
+            }
+            if (!string.IsNullOrEmpty(blog.BlogAuthor))
+            {
+                conditions += "[BlogAuthor] = @BlogAuthor, ";
+            }
+            if(conditions.Length == 0)
+            {
+                return BadRequest("Invalid Parameters!");
+            }
+            conditions = conditions.Substring(0,conditions.Length-2);
+
+            SqlConnection connection = new SqlConnection(_connectionString);
+            connection.Open();
+            string query = $@"Update [dbo].[Tbl_Blog]
+SET {conditions} WHERE BlogId = @BlogId";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@BlogId", id);
+            if(!string.IsNullOrEmpty(blog.BlogTitle))
+            {
+                cmd.Parameters.AddWithValue("@BlogTitle", blog.BlogTitle);
+                cmd.Parameters.AddWithValue("@BlogAuthor", blog.BlogAuthor);
+                cmd.Parameters.AddWithValue("@BlogContent", blog.BlogContent);
+            }
+            int result = cmd.ExecuteNonQuery();
+            return Ok(result > 0 ? "Updating Successful." : "Updating Failed.");
+
+        }
     }
 }
