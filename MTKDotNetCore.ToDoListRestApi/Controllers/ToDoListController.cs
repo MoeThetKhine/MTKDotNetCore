@@ -153,63 +153,69 @@ namespace MTKDotNetCore.ToDoListRestApi.Controllers
 
         #region PatchToDoList
 
-        //[HttpPatch("{id}")]
-        //public IActionResult PatchToDoList(int id, ToDoListDataModel viewModel)
-        //{
-        //    string conditions = "";
+        [HttpPatch("{id}")]
+        public IActionResult PatchToDoList(int id, ToDoListDataModel viewModel)
+        {
+            if (viewModel.PriorityLevel.HasValue && 
+              (viewModel.PriorityLevel < 1 || viewModel.PriorityLevel > 5))
+            {
+                return BadRequest("PriorityLevel must be between 1 and 5.");
+            }
 
-        //    if (!string.IsNullOrEmpty(viewModel.TaskTitle))
-        //    {
-        //        conditions += "[TaskTitle] = @TaskTitle, ";
-        //    }
-        //    if (!string.IsNullOrEmpty(viewModel.TaskDescription))
-        //    {
-        //        conditions += "[TaskDescription] = @TaskDescription, ";
-        //    }
-        //    if (viewModel.CategoryId.HasValue)
-        //    {
-        //        conditions += "[CategoryID] = @CategoryID, ";
-        //    }
-        //    if (viewModel.PriorityLevel.HasValue)
-        //    {
-        //        conditions += "[PriorityLevel] = @PriorityLevel, ";
-        //    }
-        //    if (!string.IsNullOrEmpty(viewModel.Status))
-        //    {
-        //        conditions += "[Status] = @Status, ";
-        //    }
-        //    if (viewModel.DueDate.HasValue)
-        //    {
-        //        conditions += "[DueDate] = @DueDate, ";
-        //    }
-        //    if (viewModel.CompletedDate.HasValue)
-        //    {
-        //        conditions += "[CompletedDate] = @CompletedDate, ";
-        //    }
+            string conditions = "";
 
-        //    if (conditions.Length == 0)
-        //    {
-        //        return BadRequest("No fields to update.");
-        //    }
+            if (!string.IsNullOrEmpty(viewModel.TaskTitle))
+            {
+                conditions += "[TaskTitle] = @TaskTitle, ";
+            }
+            if (!string.IsNullOrEmpty(viewModel.TaskDescription))
+            {
+                conditions += "[TaskDescription] = @TaskDescription, ";
+            }
+            if (viewModel.CategoryId.HasValue)
+            {
+                conditions += "[CategoryID] = @CategoryID, ";
+            }
+            if (viewModel.PriorityLevel.HasValue)
+            {
+                conditions += "[PriorityLevel] = @PriorityLevel, ";
+            }
+            if (!string.IsNullOrEmpty(viewModel.Status))
+            {
+                conditions += "[Status] = @Status, ";
+            }
+            if (viewModel.DueDate.HasValue)
+            {
+                conditions += "[DueDate] = @DueDate, ";
+            }
+            if (viewModel.CompletedDate.HasValue)
+            {
+                conditions += "[CompletedDate] = @CompletedDate, ";
+            }
 
-        //    conditions = conditions.Substring(0, conditions.Length - 2);
+            if (conditions.Length == 0)
+            {
+                return BadRequest("No fields to update.");
+            }
 
-        //    viewModel.TaskID = id;
+            conditions = conditions.Substring(0, conditions.Length - 2);
 
-        //    string query = $@"UPDATE [dbo].[ToDoList]
-        //      SET {conditions} 
-        //      WHERE TaskID = @TaskID";
+            viewModel.TaskID = id;
 
-        //    using (IDbConnection db = new SqlConnection(_connectionString))
-        //    {
-        //        int result = db.Execute(query, viewModel);
-        //        if (result == 0)
-        //        {
-        //            return NotFound("No task found with the given TaskID.");
-        //        }
-        //        return Ok("Updating Successful.");
-        //    }
-        //}
+            string query = $@"UPDATE [dbo].[ToDoList]
+              SET {conditions} 
+              WHERE TaskID = @TaskID";
+
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                int result = db.Execute(query, viewModel);
+                if (result == 0)
+                {
+                    return NotFound("No task found with the given TaskID.");
+                }
+                return Ok("Updating Successful.");
+            }
+        }
 
         #endregion
 
