@@ -14,7 +14,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MTKDotNetCore.Database", "M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MTKDotNetCore.ConsoleApp2", "MTKDotNetCore.ConsoleApp2\MTKDotNetCore.ConsoleApp2.csproj", "{D474B475-B6C6-41CE-93EE-66B79E255D93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTKDotNetCore.RestApi", "MTKDotNetCore.RestApi\MTKDotNetCore.RestApi.csproj", "{6A157A8B-0614-4DCA-8EAD-298DFB233036}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MTKDotNetCore.RestApi", "MTKDotNetCore.RestApi\MTKDotNetCore.RestApi.csproj", "{6A157A8B-0614-4DCA-8EAD-298DFB233036}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTKDotNetCore.ToDoListRestApi", "MTKDotNetCore.ToDoListRestApi\MTKDotNetCore.ToDoListRestApi.csproj", "{0365B58C-DC96-46C6-B6E3-1319A4D8A9DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +40,10 @@ Global
 		{6A157A8B-0614-4DCA-8EAD-298DFB233036}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A157A8B-0614-4DCA-8EAD-298DFB233036}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A157A8B-0614-4DCA-8EAD-298DFB233036}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0365B58C-DC96-46C6-B6E3-1319A4D8A9DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0365B58C-DC96-46C6-B6E3-1319A4D8A9DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0365B58C-DC96-46C6-B6E3-1319A4D8A9DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0365B58C-DC96-46C6-B6E3-1319A4D8A9DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
