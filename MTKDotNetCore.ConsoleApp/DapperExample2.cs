@@ -2,6 +2,7 @@
 using MTKDotNetCore.Shared;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,6 +35,34 @@ namespace MTKDotNetCore.ConsoleApp
             }
         }
 
+        #endregion
+
+        #region Create
+
+        public void Create(string title, string author, string content)
+        {
+            string query = $@"INSERT INTO [dbo].[Tbl_Blog]
+           ([BlogTitle]
+           ,[BlogAuthor]
+           ,[BlogContent]
+           ,[DeleteFlag])
+     VALUES
+           (@BlogTitle
+           ,@BlogAuthor
+           ,@BlogContent
+           ,0);";
+
+           int result = _dapperService.Execute(query, new BlogDapperDataModel
+           {
+               BlogTitle = title,
+               BlogAuthor = author,
+               BlogContent = content,
+           });
+           Console.WriteLine(result == 1 ? "Saving Successful." : "Saving Fail.");
+        }
+
         #endregion 
+
+
     }
 }
