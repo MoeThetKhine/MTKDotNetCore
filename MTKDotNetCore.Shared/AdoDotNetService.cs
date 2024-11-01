@@ -15,16 +15,19 @@ namespace MTKDotNetCore.Shared
         #region DataTable Query
 
         //Read & GetById(Edit)
-        public DataTable Query(string query, SqlParameterModel[] sqlParameters)
+        public DataTable Query(string query, SqlParameterModel[] sqlParameters = null)
         {
             SqlConnection connection = new SqlConnection(_connectionString);
             connection.Open();
 
             SqlCommand cmd = new SqlCommand(query, connection);
 
-            foreach (var sqlParameter in sqlParameters)
+            if(sqlParameters is not null)
             {
-                cmd.Parameters.AddWithValue(sqlParameter.Name, sqlParameter.Value);
+                foreach (var sqlParameter in sqlParameters)
+                {
+                    cmd.Parameters.AddWithValue(sqlParameter.Name, sqlParameter.Value);
+                }
             }
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();

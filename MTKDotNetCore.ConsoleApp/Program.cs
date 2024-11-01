@@ -108,10 +108,16 @@ EFCoreExample eFCoreExample = new EFCoreExample();
 //eFCoreExample.Edit(16);
 //eFCoreExample.Update(16,"title2", "author2", "content2");
 //eFCoreExample.HardDelete(12);
-eFCoreExample.SoftDelete(1);
+//eFCoreExample.SoftDelete(1);
 
 #endregion
 
+#endregion
+
+#region AdoDotNetExample2
+
+AdoDotNetExampe2 adoDotNetExampe2 = new AdoDotNetExampe2();
+adoDotNetExampe2.Read();
 #endregion
 
 Console.ReadKey();
