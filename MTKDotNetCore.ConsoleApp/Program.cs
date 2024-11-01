@@ -120,6 +120,7 @@ AdoDotNetExampe2 adoDotNetExampe2 = new AdoDotNetExampe2();
 //adoDotNetExampe2.Read();
 //adoDotNetExampe2.Edit();
 //adoDotNetExampe2.Delete();
+//adoDotNetExampe2.Update();
 
 
 #endregion
