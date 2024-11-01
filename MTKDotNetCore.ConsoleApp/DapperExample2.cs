@@ -1,4 +1,5 @@
-﻿using MTKDotNetCore.ConsoleApp.Models;
+﻿using Dapper;
+using MTKDotNetCore.ConsoleApp.Models;
 using MTKDotNetCore.Shared;
 using System.Data;
 
@@ -94,6 +95,28 @@ namespace MTKDotNetCore.ConsoleApp
             Console.WriteLine(result == 1 ? "Deleting Successful." : "Deleting Fail.");
         }
 
+        #endregion
+
+        #region Update
+
+        public void Update(int id, string title, string author, string content)
+        {
+            string query = $@"UPDATE [dbo].[Tbl_Blog]
+   SET [BlogTitle] = @BlogTitle
+      ,[BlogAuthor] = @BlogAuthor
+      ,[BlogContent] = @BlogContent
+      ,[DeleteFlag] = 0
+ WHERE BlogId = @BlogId;";
+
+            int result = _dapperService.Execute(query, new BlogDapperDataModel
+            {
+                BlogId = id,
+                BlogTitle = title,
+                BlogAuthor = author,
+                BlogContent = content,
+            });
+            Console.WriteLine(result == 1 ? "Updating Successful." : "Updating Fail.");
+        }
         #endregion
     }
 }
