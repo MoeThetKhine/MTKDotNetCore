@@ -23,5 +23,13 @@ namespace MTKDotNetCore.Shared
             var lst = db.Query<T>(query,param).ToList();
             return lst;
         }
+
+        public int Execute(string query, object? param = null)
+        {
+            using IDbConnection db = new SqlConnection(_connectionString);
+            var result = db.Execute(query, param);
+            return result;
+
+        }
     }
 }
