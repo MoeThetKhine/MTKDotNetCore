@@ -117,7 +117,8 @@ EFCoreExample eFCoreExample = new EFCoreExample();
 #region AdoDotNetExample2
 
 AdoDotNetExampe2 adoDotNetExampe2 = new AdoDotNetExampe2();
-adoDotNetExampe2.Read();
+//adoDotNetExampe2.Read();
+adoDotNetExampe2.Edit();
 #endregion
 
 Console.ReadKey();

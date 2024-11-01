@@ -18,6 +18,9 @@ namespace MTKDotNetCore.ConsoleApp
         {
             _adoDotNetService = new AdoDotNetService(_connectionString);
         }
+
+        #region Read
+
         public void Read()
         {
             string query = @"SELECT [BlogId]
@@ -35,5 +38,34 @@ namespace MTKDotNetCore.ConsoleApp
                 Console.WriteLine(dr["BlogContent"]);
             }
         }
+
+        #endregion
+
+        #region Edit
+
+        public void Edit() 
+        {
+            Console.Write("Blog Id: ");
+            string id = Console.ReadLine();
+
+            string query = @"SELECT [BlogId]
+      ,[BlogTitle]
+      ,[BlogAuthor]
+      ,[BlogContent]
+      ,[DeleteFlag]
+  FROM [dbo].[Tbl_Blog] where BlogId = @BlogId";
+            var dt = _adoDotNetService.Query(query, new SqlParameterModel
+            {
+                Name = "@BlogId",
+                Value = id
+            });
+            DataRow dr = dt.Rows[0];
+            Console.WriteLine(dr["BlogId"]);
+            Console.WriteLine(dr["BlogTitle"]);
+            Console.WriteLine(dr["BlogAuthor"]);
+            Console.WriteLine(dr["BlogContent"]);
+        }
+
+        #endregion
     }
 }
