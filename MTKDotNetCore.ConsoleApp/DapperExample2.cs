@@ -1,4 +1,5 @@
-﻿using MTKDotNetCore.ConsoleApp.Models;
+﻿using Dapper;
+using MTKDotNetCore.ConsoleApp.Models;
 using MTKDotNetCore.Shared;
 using System;
 using System.Collections.Generic;
@@ -63,6 +64,27 @@ namespace MTKDotNetCore.ConsoleApp
 
         #endregion 
 
+        #region Edit
 
+        public void Edit(int id)
+        {
+            string query = "select * from tbl_blog where DeleteFlag = 0 and BlogId = @BlogId;";
+            var item = _dapperService.QueryFirstOrDefault<BlogDapperDataModel>(query, new BlogDapperDataModel
+            {
+                BlogId = id,
+            });
+
+            if (item is null)
+            {
+                Console.WriteLine("No Data Found");
+                return;
+            }
+            Console.WriteLine(item.BlogId);
+            Console.WriteLine(item.BlogTitle);
+            Console.WriteLine(item.BlogAuthor);
+            Console.WriteLine(item.BlogContent);
+        }
+
+        #endregion
     }
 }
