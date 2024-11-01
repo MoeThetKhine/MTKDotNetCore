@@ -12,7 +12,30 @@ namespace MTKDotNetCore.Shared
             _connectionString = connectionString;
         }
 
-       
+        #region DataTable Query
+
+        //Read & GetById(Edit)
+        public DataTable Query(string query, SqlParameterModel[] sqlParameters)
+        {
+            SqlConnection connection = new SqlConnection(_connectionString);
+            connection.Open();
+
+            SqlCommand cmd = new SqlCommand(query, connection);
+
+            foreach (var sqlParameter in sqlParameters)
+            {
+                cmd.Parameters.AddWithValue(sqlParameter.Name, sqlParameter.Value);
+            }
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+
+            connection.Close();
+
+            return dt;
+        }
+
+        #endregion
     }
 
     #region SqlParameterModel
