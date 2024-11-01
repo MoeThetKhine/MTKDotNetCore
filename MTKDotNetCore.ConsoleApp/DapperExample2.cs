@@ -1,12 +1,6 @@
-﻿using Dapper;
-using MTKDotNetCore.ConsoleApp.Models;
+﻿using MTKDotNetCore.ConsoleApp.Models;
 using MTKDotNetCore.Shared;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MTKDotNetCore.ConsoleApp
 {
@@ -83,6 +77,21 @@ namespace MTKDotNetCore.ConsoleApp
             Console.WriteLine(item.BlogTitle);
             Console.WriteLine(item.BlogAuthor);
             Console.WriteLine(item.BlogContent);
+        }
+
+        #endregion
+
+        #region Delete
+
+        public void Delete(int id)
+        {
+            string query = $@"UPDATE [dbo].[Tbl_Blog]
+            SET [DeleteFlag] = 1  WHERE BlogId = @BlogId";
+            int result = _dapperService.Execute(query, new BlogDapperDataModel
+            {
+                BlogId = id,
+            });
+            Console.WriteLine(result == 1 ? "Deleting Successful." : "Deleting Fail.");
         }
 
         #endregion
