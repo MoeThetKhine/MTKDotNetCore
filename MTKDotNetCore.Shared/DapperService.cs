@@ -1,11 +1,6 @@
 ﻿using Dapper;
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MTKDotNetCore.Shared
 {
@@ -17,12 +12,19 @@ namespace MTKDotNetCore.Shared
         {
             _connectionString = connectionString;
         }
+
+        #region Query
+
         public List<T> Query<T>(string query, object? param = null)
         {
             using IDbConnection db = new SqlConnection(_connectionString);
             var lst = db.Query<T>(query,param).ToList();
             return lst;
         }
+
+        #endregion
+
+        #region Execute
 
         public int Execute(string query, object? param = null)
         {
@@ -31,5 +33,8 @@ namespace MTKDotNetCore.Shared
             return result;
 
         }
+
+        #endregion
+
     }
 }
