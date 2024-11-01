@@ -54,11 +54,9 @@ namespace MTKDotNetCore.ConsoleApp
       ,[BlogContent]
       ,[DeleteFlag]
   FROM [dbo].[Tbl_Blog] where BlogId = @BlogId";
-            var dt = _adoDotNetService.Query(query, new SqlParameterModel
-            {
-                Name = "@BlogId",
-                Value = id
-            });
+            var dt = _adoDotNetService.Query(query,
+                new SqlParameterModel("@BlogId", id));
+            
             DataRow dr = dt.Rows[0];
             Console.WriteLine(dr["BlogId"]);
             Console.WriteLine(dr["BlogTitle"]);
@@ -67,5 +65,39 @@ namespace MTKDotNetCore.ConsoleApp
         }
 
         #endregion
+
+        public void Create()
+        {
+            Console.WriteLine("Blog Title: ");
+            string title = Console.ReadLine();
+
+            Console.WriteLine("Blog Author: ");
+            string author = Console.ReadLine();
+
+            Console.WriteLine("Blog Content: ");
+            string content = Console.ReadLine();
+
+
+            string query = $@"INSERT INTO [dbo].[Tbl_Blog]
+          ([BlogTitle]
+          ,[BlogAuthor]
+          ,[BlogContent]
+          ,[DeleteFlag])
+    VALUES
+          (@BlogTitle
+          ,@BlogAuthor
+          ,@BlogContent
+          ,0)";
+
+
+            int result = _adoDotNetService.Execute(query,
+
+                new SqlParameterModel("@BlogTitle", title),
+                new SqlParameterModel("@BlogAuthor", author),
+                new SqlParameterModel("@BlogContent", content));
+
+            Console.WriteLine(result == 1 ? "Creating Successful." : "Creating Failed.");
+
+        }
     }
 }
