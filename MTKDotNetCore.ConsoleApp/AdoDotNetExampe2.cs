@@ -1,10 +1,5 @@
 ﻿using MTKDotNetCore.Shared;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MTKDotNetCore.ConsoleApp
 {
@@ -66,6 +61,8 @@ namespace MTKDotNetCore.ConsoleApp
 
         #endregion
 
+        #region Create
+
         public void Create()
         {
             Console.WriteLine("Blog Title: ");
@@ -88,16 +85,37 @@ namespace MTKDotNetCore.ConsoleApp
           ,@BlogAuthor
           ,@BlogContent
           ,0)";
-
-
+           
             int result = _adoDotNetService.Execute(query,
 
-                new SqlParameterModel("@BlogTitle", title),
-                new SqlParameterModel("@BlogAuthor", author),
-                new SqlParameterModel("@BlogContent", content));
+            new SqlParameterModel("@BlogTitle", title),
+            new SqlParameterModel("@BlogAuthor", author),
+            new SqlParameterModel("@BlogContent", content));
 
             Console.WriteLine(result == 1 ? "Creating Successful." : "Creating Failed.");
-
         }
+
+        #endregion
+
+        #region Delete
+
+        public void Delete()
+        {
+            Console.WriteLine("Blog Id:");
+            string id = Console.ReadLine();
+
+            string query = @"UPDATE [dbo].[Tbl_Blog]
+                     SET [DeleteFlag] = 1
+                     WHERE BlogId = @BlogId";
+
+            int result = _adoDotNetService.Execute(query, new SqlParameterModel("@BlogId", id));
+
+            Console.WriteLine(result == 1 ? "Deleting Successful." : "Deleting Failed.");
+        }
+
+        #endregion
+
+       
+
     }
 }

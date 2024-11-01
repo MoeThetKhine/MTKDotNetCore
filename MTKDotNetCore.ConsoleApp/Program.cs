@@ -116,19 +116,21 @@ EFCoreExample eFCoreExample = new EFCoreExample();
 
 #region AdoDotNetExample2
 
-//AdoDotNetExampe2 adoDotNetExampe2 = new AdoDotNetExampe2();
+AdoDotNetExampe2 adoDotNetExampe2 = new AdoDotNetExampe2();
 //adoDotNetExampe2.Read();
 //adoDotNetExampe2.Edit();
+//adoDotNetExampe2.Delete();
+
 
 #endregion
 
 #region DapperExample2
 
-DapperExample2 dapperExample2 = new DapperExample2();
+//DapperExample2 dapperExample2 = new DapperExample2();
 //dapperExample2.Read();
 //dapperExample2.Edit(2);
 //dapperExample2.Create("title1", "author1", "content1");
-dapperExample2.Update(18, "title2", "author2", "content2");
+//dapperExample2.Update(18, "title2", "author2", "content2");
 //dapperExample2.Delete(30);
 
 
