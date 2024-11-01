@@ -24,6 +24,17 @@ namespace MTKDotNetCore.Shared
 
         #endregion
 
+        #region QueryFirstOrDefault
+
+        public T QueryFirstOrDefault<T>(string query,object? param = null)
+        {
+            using IDbConnection db = new SqlConnection(_connectionString);
+            var item = db.QueryFirstOrDefault<T>(query, param);
+            return item;
+        }
+
+        #endregion
+
         #region Execute
 
         public int Execute(string query, object? param = null)
