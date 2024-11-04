@@ -1,7 +1,4 @@
-﻿using MTKDotNetCore.Shared;
-using System.Data;
-
-namespace MTKDotNetCore.ConsoleApp;
+﻿namespace MTKDotNetCore.ConsoleApp;
 
 public class AdoDotNetExampe2
 {
