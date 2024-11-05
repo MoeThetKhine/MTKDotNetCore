@@ -21,6 +21,20 @@ namespace MTKDotNetCore.MinimalApi.Endpoints.Blog
 
             #endregion
 
+            #region CreateBlog
+
+            app.MapPost("/blogs", (TblBlog blog) =>
+            {
+                AppDbContext db = new AppDbContext();
+                db.TblBlogs.Add(blog);
+                db.SaveChanges();
+                return Results.Ok(blog);
+
+            }).WithName("CreateBlog")
+            .WithOpenApi();
+
+            #endregion
+
 
         }
     }
