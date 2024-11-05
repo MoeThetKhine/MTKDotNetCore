@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MTKDotNetCore.Database.Models;
-
-namespace MTKDotNetCore.RestApi.Controllers;
+﻿namespace MTKDotNetCore.RestApi.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
