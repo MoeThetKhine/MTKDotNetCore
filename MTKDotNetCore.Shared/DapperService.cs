@@ -1,51 +1,46 @@
-﻿using Dapper;
-using System.Data;
-using System.Data.SqlClient;
+﻿namespace MTKDotNetCore.Shared;
 
-namespace MTKDotNetCore.Shared
+public class DapperService
 {
-    public class DapperService
+    private readonly string _connectionString;
+
+    public DapperService(string connectionString)
     {
-        private readonly string _connectionString;
+        _connectionString = connectionString;
+    }
 
-        public DapperService(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
+    #region Query
 
-        #region Query
+    public List<T> Query<T>(string query, object? param = null)
+    {
+        using IDbConnection db = new SqlConnection(_connectionString);
+        var lst = db.Query<T>(query,param).ToList();
+        return lst;
+    }
 
-        public List<T> Query<T>(string query, object? param = null)
-        {
-            using IDbConnection db = new SqlConnection(_connectionString);
-            var lst = db.Query<T>(query,param).ToList();
-            return lst;
-        }
+    #endregion
 
-        #endregion
+    #region QueryFirstOrDefault
 
-        #region QueryFirstOrDefault
+    public T QueryFirstOrDefault<T>(string query,object? param = null)
+    {
+        using IDbConnection db = new SqlConnection(_connectionString);
+        var item = db.QueryFirstOrDefault<T>(query, param);
+        return item;
+    }
 
-        public T QueryFirstOrDefault<T>(string query,object? param = null)
-        {
-            using IDbConnection db = new SqlConnection(_connectionString);
-            var item = db.QueryFirstOrDefault<T>(query, param);
-            return item;
-        }
+    #endregion
 
-        #endregion
+    #region Execute
 
-        #region Execute
-
-        public int Execute(string query, object? param = null)
-        {
-            using IDbConnection db = new SqlConnection(_connectionString);
-            var result = db.Execute(query, param);
-            return result;
-
-        }
-
-        #endregion
+    public int Execute(string query, object? param = null)
+    {
+        using IDbConnection db = new SqlConnection(_connectionString);
+        var result = db.Execute(query, param);
+        return result;
 
     }
+
+    #endregion
+
 }
