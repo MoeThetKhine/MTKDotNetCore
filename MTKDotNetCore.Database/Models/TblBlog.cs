@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace MTKDotNetCore.Database.Models;
+﻿namespace MTKDotNetCore.Database.Models;
 
 public partial class TblBlog
 {

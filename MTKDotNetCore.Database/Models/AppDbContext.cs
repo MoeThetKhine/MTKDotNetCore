@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-namespace MTKDotNetCore.Database.Models;
+﻿namespace MTKDotNetCore.Database.Models;
 
 public partial class AppDbContext : DbContext
 {
@@ -14,8 +12,6 @@ public partial class AppDbContext : DbContext
     }
 
     public virtual DbSet<TblBlog> TblBlogs { get; set; }
-    //public virtual DbSet<TaskCategory> TaskCategories { get; set; }
-    //public virtual DbSet<ToDoList> ToDoList { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
