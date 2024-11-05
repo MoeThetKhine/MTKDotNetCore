@@ -80,6 +80,27 @@ namespace MTKDotNetCore.MinimalApi.Endpoints.Blog
 
             #endregion
 
+            #region EditBlog 
+
+            app.MapGet("/blogs/{id}", (int id) =>
+            {
+                AppDbContext db = new AppDbContext();
+                var item = db.TblBlogs
+                    .AsNoTracking()
+                    .FirstOrDefault(x => x.BlogId == id);
+                if (item is null)
+                {
+                    return Results.BadRequest("No data found.");
+                }
+
+                return Results.Ok(item);
+            })
+        .WithName("GetBlogs")
+        .WithOpenApi();
+
+            #endregion
+
+
 
 
 
