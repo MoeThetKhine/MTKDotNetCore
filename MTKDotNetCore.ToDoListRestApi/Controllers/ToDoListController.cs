@@ -1,25 +1,18 @@
-﻿using Dapper;
-using Microsoft.AspNetCore.Mvc;
-using MTKDotNetCore.ToDoListRestApi.DataModels;
-using MTKDotNetCore.ToDoListRestApi.ViewModels;
-using System.Data;
-using System.Data.SqlClient;
+﻿namespace MTKDotNetCore.ToDoListRestApi.Controllers;
 
-namespace MTKDotNetCore.ToDoListRestApi.Controllers
+[Route("api/[controller]")]
+[ApiController]
+public class ToDoListController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ToDoListController : ControllerBase
+    private readonly string _connectionString = "Data Source=.;Initial Catalog=DotNetTrainingBatch5;User ID=sa;Password=sasa@123;TrustServerCertificate=True;";
+
+    #region GetToDoList
+
+    [HttpGet]
+    public IActionResult GetToDoList()
     {
-        private readonly string _connectionString = "Data Source=.;Initial Catalog=DotNetTrainingBatch5;User ID=sa;Password=sasa@123;TrustServerCertificate=True;";
-
-        #region GetToDoList
-
-        [HttpGet]
-        public IActionResult GetToDoList()
-        {
-            using IDbConnection db = new SqlConnection(_connectionString);
-            string query = @"SELECT [TaskID]
+        using IDbConnection db = new SqlConnection(_connectionString);
+        string query = @"SELECT [TaskID]
       ,[TaskTitle]
       ,[TaskDescription]
       ,[CategoryID]
@@ -29,19 +22,19 @@ namespace MTKDotNetCore.ToDoListRestApi.Controllers
       ,[CreatedDate]
       ,[CompletedDate]
   FROM [dbo].[ToDoList]";
-            List<ToDoListDataModel> lst = db.Query<ToDoListDataModel>(query).ToList();
-            return Ok(lst);
-        }
+        List<ToDoListDataModel> lst = db.Query<ToDoListDataModel>(query).ToList();
+        return Ok(lst);
+    }
 
-        #endregion
+    #endregion
 
-        #region  GetToDoList By CreatedDate
+    #region  GetToDoList By CreatedDate
 
-        [HttpGet("{createdDate}")]
-        public IActionResult GetToDoList(DateTime createdDate)
-        {
-            using IDbConnection db = new SqlConnection(_connectionString);
-            string query = @"SELECT [TaskID]
+    [HttpGet("{createdDate}")]
+    public IActionResult GetToDoList(DateTime createdDate)
+    {
+        using IDbConnection db = new SqlConnection(_connectionString);
+        string query = @"SELECT [TaskID]
                           ,[TaskTitle]
                           ,[TaskDescription]
                           ,[CategoryID]
@@ -53,25 +46,25 @@ namespace MTKDotNetCore.ToDoListRestApi.Controllers
                      FROM [dbo].[ToDoList]
                      WHERE CAST(CreatedDate AS DATE) = @CreatedDate";
 
-            var lst = db.Query<ToDoListDataModel>(query, new { CreatedDate = createdDate.Date }).ToList();
-            return Ok(lst);
+        var lst = db.Query<ToDoListDataModel>(query, new { CreatedDate = createdDate.Date }).ToList();
+        return Ok(lst);
+    }
+
+    #endregion
+
+    #region CreateToDoList
+
+    [HttpPost]
+    public IActionResult CreateToDoList(ToDoListViewModel viewModel)
+    {
+        var category = FindByCategoryId(viewModel.CategoryId ?? 0);
+
+        if (category is null)
+        {
+            return BadRequest("Category does not exist.");
         }
 
-        #endregion
-
-        #region CreateToDoList
-
-        [HttpPost]
-        public IActionResult CreateToDoList(ToDoListViewModel viewModel)
-        {
-            var category = FindByCategoryId(viewModel.CategoryId ?? 0);
-
-            if (category is null)
-            {
-                return BadRequest("Category does not exist.");
-            }
-
-            string query = @"INSERT INTO [dbo].[ToDoList]
+        string query = @"INSERT INTO [dbo].[ToDoList]
            ([TaskTitle]
            ,[TaskDescription]
            ,[CategoryID]
@@ -88,27 +81,27 @@ namespace MTKDotNetCore.ToDoListRestApi.Controllers
            ,@DueDate
            ,@CompletedDate)";
 
-            using (IDbConnection db = new SqlConnection(_connectionString))
-            {
-                int result = db.Execute(query, viewModel);
-                return Ok(result == 1 ? "Creating Successful." : "Creating Fail.");
-            }
-        }
-
-        #endregion
-
-        #region UpdateToDoList
-
-        [HttpPut("{id}")]
-        public IActionResult UpdateToDoList(int id, ToDoListViewModel viewModel)
+        using (IDbConnection db = new SqlConnection(_connectionString))
         {
-            var item = FindById(id);
+            int result = db.Execute(query, viewModel);
+            return Ok(result == 1 ? "Creating Successful." : "Creating Fail.");
+        }
+    }
 
-            if (item is null)
-            {
-                return NotFound("No Data Found");
-            }
-            string query = @"UPDATE [dbo].[ToDoList]
+    #endregion
+
+    #region UpdateToDoList
+
+    [HttpPut("{id}")]
+    public IActionResult UpdateToDoList(int id, ToDoListViewModel viewModel)
+    {
+        var item = FindById(id);
+
+        if (item is null)
+        {
+            return NotFound("No Data Found");
+        }
+        string query = @"UPDATE [dbo].[ToDoList]
                        SET [TaskTitle] = @TaskTitle
                           ,[TaskDescription] = @TaskDescription
                           ,[CategoryID] = @CategoryID
@@ -116,114 +109,114 @@ namespace MTKDotNetCore.ToDoListRestApi.Controllers
                           ,[Status] = @Status
                           ,[DueDate] = @DueDate
                           ,[CompletedDate] = @CompletedDate;";
-            using (IDbConnection db = new SqlConnection(_connectionString))
-            {
-                int result = db.Execute(query, viewModel);
-                return Ok(result == 1 ? "Updating Successful." : "Updating Failed.");
-            }
-
+        using (IDbConnection db = new SqlConnection(_connectionString))
+        {
+            int result = db.Execute(query, viewModel);
+            return Ok(result == 1 ? "Updating Successful." : "Updating Failed.");
         }
 
-        #endregion
+    }
 
-        #region DeleteToDoList
+    #endregion
 
-        [HttpDelete("{id}")]
-        public IActionResult DeleteToDoList(int id)
+    #region DeleteToDoList
+
+    [HttpDelete("{id}")]
+    public IActionResult DeleteToDoList(int id)
+    {
+        using (IDbConnection db = new SqlConnection(_connectionString))
         {
-            using (IDbConnection db = new SqlConnection(_connectionString))
+            var item = FindById(id);
+            if (item is null)
             {
-                var item = FindById(id);
-                if (item is null)
-                {
-                    return NotFound("No Data Found");
-                }
+                return NotFound("No Data Found");
+            }
 
-                string query = $@"DELETE FROM [dbo].[ToDoList]
+            string query = $@"DELETE FROM [dbo].[ToDoList]
       WHERE TaskID = @TaskID";
-                int result = db.Execute(query, new ToDoListDataModel
-                {
-                    TaskID = id,
-                });
-                return Ok(result == 1 ? "Deleting Successful." : "Deleting Failed.");
-            }
+            int result = db.Execute(query, new ToDoListDataModel
+            {
+                TaskID = id,
+            });
+            return Ok(result == 1 ? "Deleting Successful." : "Deleting Failed.");
+        }
+    }
+
+    #endregion
+
+    #region PatchToDoList
+
+    [HttpPatch("{id}")]
+    public IActionResult PatchToDoList(int id, ToDoListDataModel viewModel)
+    {
+        if (viewModel.PriorityLevel.HasValue && 
+          (viewModel.PriorityLevel < 1 || viewModel.PriorityLevel > 5))
+        {
+            return BadRequest("PriorityLevel must be between 1 and 5.");
         }
 
-        #endregion
+        string conditions = "";
 
-        #region PatchToDoList
-
-        [HttpPatch("{id}")]
-        public IActionResult PatchToDoList(int id, ToDoListDataModel viewModel)
+        if (!string.IsNullOrEmpty(viewModel.TaskTitle))
         {
-            if (viewModel.PriorityLevel.HasValue && 
-              (viewModel.PriorityLevel < 1 || viewModel.PriorityLevel > 5))
-            {
-                return BadRequest("PriorityLevel must be between 1 and 5.");
-            }
+            conditions += "[TaskTitle] = @TaskTitle, ";
+        }
+        if (!string.IsNullOrEmpty(viewModel.TaskDescription))
+        {
+            conditions += "[TaskDescription] = @TaskDescription, ";
+        }
+        if (viewModel.CategoryId.HasValue)
+        {
+            conditions += "[CategoryID] = @CategoryID, ";
+        }
+        if (viewModel.PriorityLevel.HasValue)
+        {
+            conditions += "[PriorityLevel] = @PriorityLevel, ";
+        }
+        if (!string.IsNullOrEmpty(viewModel.Status))
+        {
+            conditions += "[Status] = @Status, ";
+        }
+        if (viewModel.DueDate.HasValue)
+        {
+            conditions += "[DueDate] = @DueDate, ";
+        }
+        if (viewModel.CompletedDate.HasValue)
+        {
+            conditions += "[CompletedDate] = @CompletedDate, ";
+        }
 
-            string conditions = "";
+        if (conditions.Length == 0)
+        {
+            return BadRequest("No fields to update.");
+        }
 
-            if (!string.IsNullOrEmpty(viewModel.TaskTitle))
-            {
-                conditions += "[TaskTitle] = @TaskTitle, ";
-            }
-            if (!string.IsNullOrEmpty(viewModel.TaskDescription))
-            {
-                conditions += "[TaskDescription] = @TaskDescription, ";
-            }
-            if (viewModel.CategoryId.HasValue)
-            {
-                conditions += "[CategoryID] = @CategoryID, ";
-            }
-            if (viewModel.PriorityLevel.HasValue)
-            {
-                conditions += "[PriorityLevel] = @PriorityLevel, ";
-            }
-            if (!string.IsNullOrEmpty(viewModel.Status))
-            {
-                conditions += "[Status] = @Status, ";
-            }
-            if (viewModel.DueDate.HasValue)
-            {
-                conditions += "[DueDate] = @DueDate, ";
-            }
-            if (viewModel.CompletedDate.HasValue)
-            {
-                conditions += "[CompletedDate] = @CompletedDate, ";
-            }
+        conditions = conditions.Substring(0, conditions.Length - 2);
 
-            if (conditions.Length == 0)
-            {
-                return BadRequest("No fields to update.");
-            }
+        viewModel.TaskID = id;
 
-            conditions = conditions.Substring(0, conditions.Length - 2);
-
-            viewModel.TaskID = id;
-
-            string query = $@"UPDATE [dbo].[ToDoList]
+        string query = $@"UPDATE [dbo].[ToDoList]
               SET {conditions} 
               WHERE TaskID = @TaskID";
 
-            using (IDbConnection db = new SqlConnection(_connectionString))
-            {
-                int result = db.Execute(query, viewModel);
-                if (result == 0)
-                {
-                    return NotFound("No task found with the given TaskID.");
-                }
-                return Ok("Updating Successful.");
-            }
-        }
-
-        #endregion
-
-        #region FindById
-
-        private ToDoListDataModel? FindById(int id)
+        using (IDbConnection db = new SqlConnection(_connectionString))
         {
-            string query = @"SELECT [TaskID]
+            int result = db.Execute(query, viewModel);
+            if (result == 0)
+            {
+                return NotFound("No task found with the given TaskID.");
+            }
+            return Ok("Updating Successful.");
+        }
+    }
+
+    #endregion
+
+    #region FindById
+
+    private ToDoListDataModel? FindById(int id)
+    {
+        string query = @"SELECT [TaskID]
       ,[TaskTitle]
       ,[TaskDescription]
       ,[CategoryID]
@@ -235,32 +228,31 @@ namespace MTKDotNetCore.ToDoListRestApi.Controllers
   FROM[dbo].[ToDoList]
         WHERE TaskID = @TaskID";
 
-            using (IDbConnection db = new SqlConnection(_connectionString))
-            {
-                var result = db.Query<ToDoListDataModel>(query, new { TaskID = id }).FirstOrDefault();
-                return result;
-            }
-        }
-
-        #endregion
-
-        #region FindByCategoryId
-
-        private CategoryDataModel? FindByCategoryId(int id)
+        using (IDbConnection db = new SqlConnection(_connectionString))
         {
-            string query = @"SELECT [CategoryID]
+            var result = db.Query<ToDoListDataModel>(query, new { TaskID = id }).FirstOrDefault();
+            return result;
+        }
+    }
+
+    #endregion
+
+    #region FindByCategoryId
+
+    private CategoryDataModel? FindByCategoryId(int id)
+    {
+        string query = @"SELECT [CategoryID]
                           ,[CategoryName]
                           ,[IsDelete]
                      FROM [dbo].[TaskCategory] 
                      WHERE CategoryID = @CategoryID AND IsDelete = 0;";
 
-            using (IDbConnection db = new SqlConnection(_connectionString))
-            {
-                var result = db.Query<CategoryDataModel>(query, new { CategoryID = id }).FirstOrDefault();
-                return result;
-            }
+        using (IDbConnection db = new SqlConnection(_connectionString))
+        {
+            var result = db.Query<CategoryDataModel>(query, new { CategoryID = id }).FirstOrDefault();
+            return result;
         }
-
-        #endregion
     }
+
+    #endregion
 }
