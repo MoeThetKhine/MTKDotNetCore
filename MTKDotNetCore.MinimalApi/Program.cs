@@ -1,5 +1,3 @@
-using MTKDotNetCore.MinimalApi.Endpoints.Blog;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
