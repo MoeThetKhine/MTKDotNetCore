@@ -35,6 +35,34 @@ namespace MTKDotNetCore.MinimalApi.Endpoints.Blog
 
             #endregion
 
+            #region UpdateBlog
+
+            app.MapPut("/blogs/{id}", (int id ,TblBlog blog) =>
+            {
+                AppDbContext db = new AppDbContext();
+               var item = db.TblBlogs.AsNoTracking()
+                                     .FirstOrDefault(x => x.BlogId == id);
+
+                if(item is null)
+                {
+                    return Results.BadRequest("No Data Found");
+                }
+
+                item.BlogTitle = blog.BlogTitle;
+                item.BlogAuthor = blog.BlogAuthor;
+                item.BlogContent = blog.BlogContent;
+
+                db.Entry(item).State = EntityState.Modified;
+                db.SaveChanges();
+                return Results.Ok(blog);
+
+            }).WithName("UpdateBlog")
+            .WithOpenApi();
+
+            #endregion
+
+
+
 
         }
     }
