@@ -1,7 +1,4 @@
-﻿using System.Data;
-using System.Data.SqlClient;
-
-namespace MTKDotNetCore.ConsoleApp
+﻿namespace MTKDotNetCore.ConsoleApp
 {
     public class AdoDotNetExample
     {

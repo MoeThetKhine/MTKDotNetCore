@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MTKDotNetCore.ConsoleApp.Models;
-
-namespace MTKDotNetCore.ConsoleApp;
+﻿namespace MTKDotNetCore.ConsoleApp;
 
 public class AppDbContext: DbContext
 {
