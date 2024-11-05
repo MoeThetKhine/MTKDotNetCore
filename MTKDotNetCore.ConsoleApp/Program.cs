@@ -1,6 +1,4 @@
-﻿using MTKDotNetCore.ConsoleApp;
-
-#region Day2
+﻿#region Day2
 
 #region ConnectionString
 
