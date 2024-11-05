@@ -1,8 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MTKDotNetCore.ConsoleApp.Models;
-using System;
-
-namespace MTKDotNetCore.ConsoleApp;
+﻿namespace MTKDotNetCore.ConsoleApp;
 
 public class EFCoreExample
 {
