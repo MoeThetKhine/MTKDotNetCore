@@ -22,7 +22,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MTKDotNetCore.Shared", "MTK
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MTKDotNetCore.MinimalApi", "MTKDotNetCore.MinimalApi\MTKDotNetCore.MinimalApi.csproj", "{E8CD635F-A04D-4F25-BC98-5848F447CBA3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTKDotNetCore.BirdMiniApi", "MTKDotNetCore.BirdMiniApi\MTKDotNetCore.BirdMiniApi.csproj", "{FBE5CA3D-ABC5-435F-A350-CF0F494EF46C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MTKDotNetCore.BirdMiniApi", "MTKDotNetCore.BirdMiniApi\MTKDotNetCore.BirdMiniApi.csproj", "{FBE5CA3D-ABC5-435F-A350-CF0F494EF46C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTKDotNetCore.DreamDictionaryMinimalApi", "MTKDotNetCore.DreamDictionaryMinimalApi\MTKDotNetCore.DreamDictionaryMinimalApi.csproj", "{5B816868-BD89-4007-8252-A2D5BFAA8152}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,6 +64,10 @@ Global
 		{FBE5CA3D-ABC5-435F-A350-CF0F494EF46C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBE5CA3D-ABC5-435F-A350-CF0F494EF46C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBE5CA3D-ABC5-435F-A350-CF0F494EF46C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B816868-BD89-4007-8252-A2D5BFAA8152}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B816868-BD89-4007-8252-A2D5BFAA8152}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B816868-BD89-4007-8252-A2D5BFAA8152}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B816868-BD89-4007-8252-A2D5BFAA8152}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
