@@ -1,7 +1,4 @@
-﻿using MTKDotNetCore.Database.Models;
-using Newtonsoft.Json;
-
-AppDbContext db = new AppDbContext();
+﻿AppDbContext db = new AppDbContext();
 
 var blog = new BlogModel
 {
