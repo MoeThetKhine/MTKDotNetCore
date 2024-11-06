@@ -1,11 +1,10 @@
-﻿namespace MTKDotNetCore.BirdMiniApi.Models
+﻿namespace MTKDotNetCore.BirdMiniApi.Models;
+
+public class BirdModel
 {
-    public class BirdModel
-    {
-        public int Id { get; set; }
-        public string BirdMyanmarName { get; set; }
-        public string BirdEnglishName { get; set; }
-        public string Description { get; set; }
-        public string ImagePath { get; set; }
-    }
+    public int Id { get; set; }
+    public string BirdMyanmarName { get; set; }
+    public string BirdEnglishName { get; set; }
+    public string Description { get; set; }
+    public string ImagePath { get; set; }
 }

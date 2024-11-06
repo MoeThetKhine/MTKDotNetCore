@@ -1,7 +1,6 @@
-﻿namespace MTKDotNetCore.BirdMiniApi.Models
+﻿namespace MTKDotNetCore.BirdMiniApi.Models;
+
+public class BirdResponseModel
 {
-    public class BirdResponseModel
-    {
-        public BirdModel[] Tbl_Bird { get; set; }
-    }
+    public BirdModel[] Tbl_Bird { get; set; }
 }
