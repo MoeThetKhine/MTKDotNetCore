@@ -44,7 +44,21 @@ namespace MTKDotNetCore.DreamDictionaryMinimalApi.Endpoint.Dreams
 
             #endregion
 
-            
+            #region Get Dreams Answer
+
+            app.MapGet("/dreams_answer", () =>
+            {
+                string folderPath = "Data/dreams.json";
+
+                var jsonStr = File.ReadAllText(folderPath);
+                var result = JsonConvert.DeserializeObject<DreamsResponseModel>(jsonStr)!;
+
+                return Results.Ok(result.BlogDetail);
+
+            }).WithName("GetDreamsAnswer")
+            .WithOpenApi();
+
+            #endregion
 
 
 
