@@ -4,6 +4,7 @@ public static class DreamsEndpoint
 {
     public static void MapDreamsEndpoint(this IEndpointRouteBuilder app)
     {
+
         #region Get Dream Title
 
         app.MapGet("/dreams", () =>
@@ -98,5 +99,6 @@ public static class DreamsEndpoint
     .WithOpenApi();
 
         #endregion
+
     }
 }
