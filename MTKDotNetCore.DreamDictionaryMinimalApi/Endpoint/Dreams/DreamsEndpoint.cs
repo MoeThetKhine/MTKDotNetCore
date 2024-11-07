@@ -60,6 +60,27 @@ namespace MTKDotNetCore.DreamDictionaryMinimalApi.Endpoint.Dreams
 
             #endregion
 
+            #region Get Dream Answer By Id
+
+            app.MapGet("/dreams_answer/{id}", (int id) =>
+            {
+                string folderPath = "Data/dreams.json";
+
+                var jsonStr = File.ReadAllText(folderPath);
+                var result = JsonConvert.DeserializeObject<DreamsResponseModel>(jsonStr)!;
+
+                var item = result.BlogDetail.FirstOrDefault(x => x.BlogId == id);
+
+                if (item is null)
+                {
+                    return Results.BadRequest("No Data Found");
+                }
+                return Results.Ok(item);
+            }).WithName("EditDreamsAnswer")
+        .WithOpenApi();
+
+            #endregion
+
 
 
 
