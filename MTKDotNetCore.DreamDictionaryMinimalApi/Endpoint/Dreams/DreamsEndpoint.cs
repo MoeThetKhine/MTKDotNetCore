@@ -69,7 +69,7 @@ namespace MTKDotNetCore.DreamDictionaryMinimalApi.Endpoint.Dreams
                 var jsonStr = File.ReadAllText(folderPath);
                 var result = JsonConvert.DeserializeObject<DreamsResponseModel>(jsonStr)!;
 
-                var item = result.BlogDetail.FirstOrDefault(x => x.BlogId == id);
+                var item = result.BlogDetail.FirstOrDefault(x => x.BlogDetailId == id);
 
                 if (item is null)
                 {
@@ -81,9 +81,26 @@ namespace MTKDotNetCore.DreamDictionaryMinimalApi.Endpoint.Dreams
 
             #endregion
 
+            #region Get Dream Answer By Tile_Id
 
+            app.MapGet("/answer/{title_id}", (int title_id) =>
+            {
+                string folderPath = "Data/dreams.json";
 
+                var jsonStr = File.ReadAllText(folderPath);
+                var result = JsonConvert.DeserializeObject<DreamsResponseModel>(jsonStr)!;
 
+                var item = result.BlogDetail.Where(x => x.BlogId == title_id).ToList();
+
+                if (item is null)
+                {
+                    return Results.BadRequest("No Data Found");
+                }
+                return Results.Ok(item);
+            }).WithName("EditDreamsAnswerBy_TitleId")
+        .WithOpenApi();
+
+            #endregion
         }
     }
 }
