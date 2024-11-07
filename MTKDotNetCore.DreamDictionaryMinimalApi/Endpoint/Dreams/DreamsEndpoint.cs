@@ -18,10 +18,37 @@ namespace MTKDotNetCore.DreamDictionaryMinimalApi.Endpoint.Dreams
 
                 return Results.Ok(result.BlogHeader);
 
-            }).WithName("GetBirds")
+            }).WithName("GetDreams")
             .WithOpenApi();
 
             #endregion
+
+            #region Get Dream Title By Id
+
+            app.MapGet("/dreams/{id}", (int id) =>
+            {
+                string folderPath = "Data/dreams.json";
+
+                var jsonStr = File.ReadAllText(folderPath);
+                var result = JsonConvert.DeserializeObject<DreamsResponseModel>(jsonStr)!;
+
+                var item = result.BlogHeader.FirstOrDefault(x => x.BlogId == id);
+
+                if (item is null)
+                {
+                    return Results.BadRequest("No Data Found");
+                }
+                return Results.Ok(item);
+            }).WithName("EditDreams")
+        .WithOpenApi();
+
+            #endregion
+
+            
+
+
+
+
         }
     }
 }
