@@ -1,106 +1,102 @@
-﻿using MTKDotNetCore.DreamDictionaryMinimalApi.Models;
-using Newtonsoft.Json;
+﻿namespace MTKDotNetCore.DreamDictionaryMinimalApi.Endpoint.Dreams;
 
-namespace MTKDotNetCore.DreamDictionaryMinimalApi.Endpoint.Dreams
+public static class DreamsEndpoint
 {
-    public static class DreamsEndpoint
+    public static void MapDreamsEndpoint(this IEndpointRouteBuilder app)
     {
-        public static void MapDreamsEndpoint(this IEndpointRouteBuilder app)
+        #region Get Dream Title
+
+        app.MapGet("/dreams", () =>
         {
-            #region Get Dream Title
+            string folderPath = "Data/dreams.json";
 
-            app.MapGet("/dreams", () =>
-            {
-                string folderPath = "Data/dreams.json";
+            var jsonStr = File.ReadAllText(folderPath);
+            var result = JsonConvert.DeserializeObject<DreamsResponseModel>(jsonStr)!;
 
-                var jsonStr = File.ReadAllText(folderPath);
-                var result = JsonConvert.DeserializeObject<DreamsResponseModel>(jsonStr)!;
+            return Results.Ok(result.BlogHeader);
 
-                return Results.Ok(result.BlogHeader);
-
-            }).WithName("GetDreams")
-            .WithOpenApi();
-
-            #endregion
-
-            #region Get Dream Title By Id
-
-            app.MapGet("/dreams/{id}", (int id) =>
-            {
-                string folderPath = "Data/dreams.json";
-
-                var jsonStr = File.ReadAllText(folderPath);
-                var result = JsonConvert.DeserializeObject<DreamsResponseModel>(jsonStr)!;
-
-                var item = result.BlogHeader.FirstOrDefault(x => x.BlogId == id);
-
-                if (item is null)
-                {
-                    return Results.BadRequest("No Data Found");
-                }
-                return Results.Ok(item);
-            }).WithName("EditDreams")
+        }).WithName("GetDreams")
         .WithOpenApi();
 
-            #endregion
+        #endregion
 
-            #region Get Dreams Answer
+        #region Get Dream Title By Id
 
-            app.MapGet("/dreams_answer", () =>
+        app.MapGet("/dreams/{id}", (int id) =>
+        {
+            string folderPath = "Data/dreams.json";
+
+            var jsonStr = File.ReadAllText(folderPath);
+            var result = JsonConvert.DeserializeObject<DreamsResponseModel>(jsonStr)!;
+
+            var item = result.BlogHeader.FirstOrDefault(x => x.BlogId == id);
+
+            if (item is null)
             {
-                string folderPath = "Data/dreams.json";
+                return Results.BadRequest("No Data Found");
+            }
+            return Results.Ok(item);
+        }).WithName("EditDreams")
+    .WithOpenApi();
 
-                var jsonStr = File.ReadAllText(folderPath);
-                var result = JsonConvert.DeserializeObject<DreamsResponseModel>(jsonStr)!;
+        #endregion
 
-                return Results.Ok(result.BlogDetail);
+        #region Get Dreams Answer
 
-            }).WithName("GetDreamsAnswer")
-            .WithOpenApi();
+        app.MapGet("/dreams_answer", () =>
+        {
+            string folderPath = "Data/dreams.json";
 
-            #endregion
+            var jsonStr = File.ReadAllText(folderPath);
+            var result = JsonConvert.DeserializeObject<DreamsResponseModel>(jsonStr)!;
 
-            #region Get Dream Answer By Id
+            return Results.Ok(result.BlogDetail);
 
-            app.MapGet("/dreams_answer/{id}", (int id) =>
-            {
-                string folderPath = "Data/dreams.json";
-
-                var jsonStr = File.ReadAllText(folderPath);
-                var result = JsonConvert.DeserializeObject<DreamsResponseModel>(jsonStr)!;
-
-                var item = result.BlogDetail.FirstOrDefault(x => x.BlogDetailId == id);
-
-                if (item is null)
-                {
-                    return Results.BadRequest("No Data Found");
-                }
-                return Results.Ok(item);
-            }).WithName("EditDreamsAnswer")
+        }).WithName("GetDreamsAnswer")
         .WithOpenApi();
 
-            #endregion
+        #endregion
 
-            #region Get Dream Answer By Tile_Id
+        #region Get Dream Answer By Id
 
-            app.MapGet("/answer/{title_id}", (int title_id) =>
+        app.MapGet("/dreams_answer/{id}", (int id) =>
+        {
+            string folderPath = "Data/dreams.json";
+
+            var jsonStr = File.ReadAllText(folderPath);
+            var result = JsonConvert.DeserializeObject<DreamsResponseModel>(jsonStr)!;
+
+            var item = result.BlogDetail.FirstOrDefault(x => x.BlogDetailId == id);
+
+            if (item is null)
             {
-                string folderPath = "Data/dreams.json";
+                return Results.BadRequest("No Data Found");
+            }
+            return Results.Ok(item);
+        }).WithName("EditDreamsAnswer")
+    .WithOpenApi();
 
-                var jsonStr = File.ReadAllText(folderPath);
-                var result = JsonConvert.DeserializeObject<DreamsResponseModel>(jsonStr)!;
+        #endregion
 
-                var item = result.BlogDetail.Where(x => x.BlogId == title_id).ToList();
+        #region Get Dream Answer By Tile_Id
 
-                if (item is null)
-                {
-                    return Results.BadRequest("No Data Found");
-                }
-                return Results.Ok(item);
-            }).WithName("EditDreamsAnswerBy_TitleId")
-        .WithOpenApi();
+        app.MapGet("/answer/{title_id}", (int title_id) =>
+        {
+            string folderPath = "Data/dreams.json";
 
-            #endregion
-        }
+            var jsonStr = File.ReadAllText(folderPath);
+            var result = JsonConvert.DeserializeObject<DreamsResponseModel>(jsonStr)!;
+
+            var item = result.BlogDetail.Where(x => x.BlogId == title_id).ToList();
+
+            if (item is null)
+            {
+                return Results.BadRequest("No Data Found");
+            }
+            return Results.Ok(item);
+        }).WithName("EditDreamsAnswerBy_TitleId")
+    .WithOpenApi();
+
+        #endregion
     }
 }

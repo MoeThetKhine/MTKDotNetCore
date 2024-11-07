@@ -1,8 +1,7 @@
-﻿namespace MTKDotNetCore.DreamDictionaryMinimalApi.Models
+﻿namespace MTKDotNetCore.DreamDictionaryMinimalApi.Models;
+
+public class DreamTitle
 {
-    public class DreamTitle
-    {
-        public int BlogId { get; set; }
-        public string BlogTitle { get; set; }
-    }
+    public int BlogId { get; set; }
+    public string BlogTitle { get; set; }
 }

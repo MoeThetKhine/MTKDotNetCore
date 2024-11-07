@@ -1,5 +1,3 @@
-using MTKDotNetCore.DreamDictionaryMinimalApi.Endpoint.Dreams;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
