@@ -35,4 +35,28 @@ public class BlogService
 
     #endregion
 
+    #region UpdateBlog
+
+    public TblBlog UpdateBlog(int id, TblBlog blog)
+    {
+        var item = _db.TblBlogs
+            .AsNoTracking()
+            .FirstOrDefault(x => x.BlogId == id);
+
+        if (item is null)
+        {
+            return null;
+        }
+        item.BlogTitle = blog.BlogTitle;
+        item.BlogAuthor = blog.BlogAuthor;
+        item.BlogContent = blog.BlogContent;
+
+        _db.Entry(item).State = EntityState.Modified;
+        _db.SaveChanges();
+        return item;
+    }
+
+    #endregion
+
+
 }
