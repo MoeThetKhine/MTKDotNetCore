@@ -58,5 +58,36 @@ public class BlogService
 
     #endregion
 
+    #region PatchBlog
+
+    public TblBlog PatchBlog(int id, TblBlog blog)
+    {
+        var item = _db.TblBlogs.AsNoTracking()
+            .FirstOrDefault(x => x.BlogId == id);
+
+        if (item is null)
+        {
+            return null;
+        }
+
+        if (!string.IsNullOrEmpty(blog.BlogTitle))
+        {
+            item.BlogTitle = blog.BlogTitle;
+        }
+        if (!string.IsNullOrEmpty(blog.BlogAuthor))
+        {
+            item.BlogAuthor = blog.BlogAuthor;
+        }
+        if (!string.IsNullOrEmpty(blog.BlogContent))
+        {
+            item.BlogContent = blog.BlogContent;
+        }
+        _db.Entry(item).State = EntityState.Modified;
+        _db.SaveChanges();
+        return item;
+    }
+
+    #endregion
+
 
 }
