@@ -92,6 +92,32 @@ public static class BirdsEndpoint
 
         #endregion
 
+        #region Delete Bird
+
+        app.MapDelete("/birds/{id}", (int id) =>
+        {
+            string folderPath = "Data/Birds.json";
+
+            var jsonStr = File.ReadAllText(folderPath);
+            var result = JsonConvert.DeserializeObject<BirdResponseModel>(jsonStr)!;
+
+            var birds = result.Tbl_Bird.FirstOrDefault (x => x.Id == id);
+
+            if(birds is null)
+            {
+                return Results.BadRequest("Bird Not Found");
+            }
+
+            result.Tbl_Bird.Remove(birds);
+
+            var jsonStrToWrite = JsonConvert.SerializeObject(result);
+            File.WriteAllText(folderPath, jsonStrToWrite);
+
+            return Results.Ok("Bird deleted successfully.");
+        }).WithName("DeleteBird")
+        .WithOpenApi();
+
+        #endregion
 
 
     }
