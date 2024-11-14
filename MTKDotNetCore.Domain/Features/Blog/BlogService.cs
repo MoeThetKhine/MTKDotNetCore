@@ -89,5 +89,24 @@ public class BlogService
 
     #endregion
 
+    #region DeleteBlog
+
+    public bool? DelteBlog(int id)
+    {
+        var item = _db.TblBlogs
+            .AsNoTracking()
+            .FirstOrDefault(x => x.BlogId == id);
+
+        if (item is null)
+        {
+            return null;
+        }
+        _db.Entry(item).State = EntityState.Deleted;
+        int result = _db.SaveChanges();
+        return result > 0;
+    }
+
+    #endregion
+
 
 }
