@@ -57,10 +57,41 @@ public static class BirdsEndpoint
             File.WriteAllText(folderPath, jsonStrToWrite);
 
             return Results.Ok(requestModel);
-        }).WithName("GetBird")
+        }).WithName("CreateBird")
         .WithOpenApi();
 
         #endregion
+
+        #region Update Bird
+
+        app.MapPut("/birds/{id}",(int id,BirdModel bird) =>
+        {
+            string folderPath = "Data/Birds.json";
+            var jsonStr = File.ReadAllText(folderPath);
+            var result = JsonConvert.DeserializeObject<BirdResponseModel> (jsonStr)!;
+
+            var birds = result.Tbl_Bird.FirstOrDefault(x => x.Id == id);
+
+            if(birds is null)
+            {
+                return Results.BadRequest("Bird Not Found.");
+            }
+
+            birds.BirdMyanmarName = bird.BirdMyanmarName;
+            birds.BirdEnglishName = bird.BirdEnglishName;
+            birds.Description = bird.Description;
+            birds.ImagePath = bird.ImagePath;
+
+            var jsonStrToWrite = JsonConvert.SerializeObject (birds);
+            File.WriteAllText(folderPath , jsonStrToWrite);
+
+            return Results.Ok(birds);
+
+        }).WithName("UpdateBlog")
+        .WithOpenApi();
+
+        #endregion
+
 
 
     }
