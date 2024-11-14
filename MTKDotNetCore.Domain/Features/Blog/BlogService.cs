@@ -24,4 +24,15 @@ public class BlogService
 
     #endregion
 
+    #region CreateBlog
+
+    public TblBlog CreateBlog(TblBlog blog)
+    {
+        _db.TblBlogs.Add(blog);
+        _db.SaveChanges();
+        return blog;
+    }
+
+    #endregion
+
 }
