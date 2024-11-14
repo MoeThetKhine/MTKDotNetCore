@@ -2,5 +2,5 @@
 
 public class BirdResponseModel
 {
-    public BirdModel[] Tbl_Bird { get; set; }
+    public List<BirdModel> Tbl_Bird { get; set; }
 }
