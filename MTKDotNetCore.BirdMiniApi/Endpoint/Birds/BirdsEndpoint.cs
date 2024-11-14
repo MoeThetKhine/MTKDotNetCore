@@ -41,5 +41,28 @@ public static class BirdsEndpoint
         .WithOpenApi();
 
         #endregion
+
+        #region Create Birds
+
+        app.MapPost("/birds", (BirdModel requestModel) =>
+        {
+            string folderPath = "Data/Birds.json";
+            var jsonStr = File.ReadAllText(folderPath);
+            var result = JsonConvert.DeserializeObject<BirdResponseModel>(jsonStr)!;
+
+            requestModel.Id = result.Tbl_Bird.Count == 0 ? 1 : result.Tbl_Bird.Max(x => x.Id) + 1;
+            result.Tbl_Bird.Add(requestModel);
+
+            var jsonStrToWrite = JsonConvert.SerializeObject(result);
+            File.WriteAllText(folderPath, jsonStrToWrite);
+
+            return Results.Ok(requestModel);
+        }).WithName("GetBird")
+        .WithOpenApi();
+
+        #endregion
+
+
     }
+
 }
