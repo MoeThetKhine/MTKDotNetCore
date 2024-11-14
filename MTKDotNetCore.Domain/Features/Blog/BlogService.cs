@@ -13,5 +13,15 @@ public class BlogService
     }
 
     #endregion
-    
+
+    #region Edit Blog
+
+    public TblBlog GetBlog(int id)
+    {
+        var item = _db.TblBlogs.AsNoTracking().FirstOrDefault(x => x.BlogId == id);
+        return item;
+    }
+
+    #endregion
+
 }
