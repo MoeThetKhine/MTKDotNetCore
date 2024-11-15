@@ -24,5 +24,21 @@ namespace MTKDotNetCore.RestApi.Controllers
 
         #endregion
 
+        #region Edit Blog
+
+        [HttpGet("{id}")]
+        public IActionResult GetBlog(int id)
+        {
+            var item = _service.GetBlog(id);
+
+            if (item is null)
+            {
+                return NotFound();
+            }
+
+            return Ok(item);
+        }
+
+        #endregion
     }
 }
