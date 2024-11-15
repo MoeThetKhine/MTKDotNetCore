@@ -40,5 +40,18 @@ namespace MTKDotNetCore.RestApi.Controllers
         }
 
         #endregion
+
+        #region Create Blog
+
+        [HttpPost]
+        public IActionResult CreateBlog(TblBlog blog)
+        {
+            var model = _service.CreateBlog(blog);
+            return Ok(model);
+        }
+
+        #endregion
+
+
     }
 }
