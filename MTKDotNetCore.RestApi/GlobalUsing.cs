@@ -6,3 +6,5 @@ global using Microsoft.Data.SqlClient;
 global using MTKDotNetCore.RestApi.DataModels;
 global using MTKDotNetCore.RestApi.ViewModels;
 global using System.Data;
+global using MTKDotNetCore.Domain.Features.Blog;
+
