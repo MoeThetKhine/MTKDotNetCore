@@ -82,6 +82,20 @@ namespace MTKDotNetCore.RestApi.Controllers
 
         #endregion
 
+        #region Delete Blog
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteBlog(int id)
+        {
+            var item = _service.DelteBlog(id);
+            if (item is null)
+            {
+                return NotFound();
+            }
+            return Ok();
+        }
+        #endregion
+
 
     }
 }
