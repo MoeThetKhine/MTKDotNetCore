@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MTKDotNetCore.Database\MTKDotNetCore.Database.csproj" />
+    <ProjectReference Include="..\MTKDotNetCore.Domain\MTKDotNetCore.Domain.csproj" />
   </ItemGroup>
 
 </Project>
