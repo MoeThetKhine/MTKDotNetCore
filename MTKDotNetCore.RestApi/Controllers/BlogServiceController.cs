@@ -67,6 +67,21 @@ namespace MTKDotNetCore.RestApi.Controllers
 
         #endregion
 
+        #region Patch Blog
+
+        [HttpPatch("{id}")]
+        public IActionResult PatchBlog(int id, TblBlog blog)
+        {
+            var item = _service.PatchBlog(id, blog);
+            if (item is null)
+            {
+                return NotFound();
+            }
+            return Ok(item);
+        }
+
+        #endregion
+
 
     }
 }
