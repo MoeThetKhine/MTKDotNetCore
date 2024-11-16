@@ -1,4 +1,6 @@
-﻿namespace MTKDotNetCore.MiniKpayDapperApi.Controllers;
+﻿using MTKDotNetCore.MiniKpayDapperApi.Models.User;
+
+namespace MTKDotNetCore.MiniKpayDapperApi.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -119,5 +121,49 @@ public class UserController : ControllerBase
     }
 
     #endregion
+
+    #region UpdateUser
+
+    [HttpPut("{id}")]
+    public IActionResult UpdateUser(int id, UserRequestModel user)
+    {
+        string checkUserQuery = "SELECT * FROM Tbl_User WHERE User_Id = @UserId AND DeleteFlag = 0;";
+        var userExists = _dapperService.QueryFirstOrDefault<int>(checkUserQuery, new { UserId = id });
+
+        if (userExists == 0)
+        {
+            return NotFound("User not found.");
+        }
+
+        string phoneCheckQuery = "SELECT * FROM Tbl_User WHERE PhoneNumber = @PhoneNumber AND User_Id != @UserId AND DeleteFlag = 0;";
+        var phoneExists = _dapperService.QueryFirstOrDefault<int>(phoneCheckQuery, new { PhoneNumber = user.PhoneNumber, UserId = id });
+
+        if (phoneExists > 0)
+        {
+            return BadRequest("The phone number is already in use by another user.");
+        }
+
+        string updateQuery = @"
+        UPDATE [dbo].[Tbl_User]
+        SET FullName = @FullName,
+            Pin = @Pin,
+            PhoneNumber = @PhoneNumber,
+            DeleteFlag = 0
+        WHERE User_Id = @UserId;";
+
+        int result = _dapperService.Execute(updateQuery, new
+        {
+            UserId = id,
+            FullName = user.FullName,
+            PhoneNumber = user.PhoneNumber,
+            Pin = user.Pin
+        });
+
+        return Ok(result == 1 ? "Updating Successful." : "Updating Failed.");
+    }
+
+    #endregion
+
+
 
 }
