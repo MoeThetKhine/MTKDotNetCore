@@ -161,4 +161,26 @@ public class UserController : ControllerBase
     }
 
     #endregion
+
+    #region Soft Delete User
+
+    [HttpDelete("{id}")]
+    public IActionResult DeleteUser(int id)
+    {
+        string checkUserQuery = "SELECT * FROM Tbl_User WHERE User_Id = @UserId AND DeleteFlag = 0;";
+        var user = _dapperService.QueryFirstOrDefault<int>(checkUserQuery, new { UserId = id });
+
+        if (user == 0)
+        {
+            return NotFound("User not found.");
+        }
+
+        string query = "UPDATE [dbo].[Tbl_User] SET DeleteFlag = 1 WHERE User_Id = @UserId;";
+        int result = _dapperService.Execute(query, new { UserId = id });
+
+        return Ok(result == 1 ? "Logout successfully." : "Logout Failed");
+    }
+
+    #endregion
+
 }
