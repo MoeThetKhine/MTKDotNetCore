@@ -6,7 +6,6 @@
         public string ToPhoneNumber { get; set; }
         public decimal Amount { get; set; }
         public string Pin { get; set; }
-        public bool DeleteFlag { get; set; }
         public DateTime Created_Date { get; set; }
     }
 }
