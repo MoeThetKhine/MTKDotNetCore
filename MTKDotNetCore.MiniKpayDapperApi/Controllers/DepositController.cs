@@ -25,5 +25,24 @@ namespace MTKDotNetCore.MiniKpayDapperApi.Controllers
         }
 
         #endregion
+
+        #region Get Deposit By PhoneNumber
+
+        [HttpGet("{phoneNumber}")]
+        public IActionResult GetDepositByPhoneNumber(string phoneNumber)
+        {
+            string query = "SELECT * FROM Tbl_Deposit WHERE PhoneNumber = @PhoneNumber AND DeleteFlag = 0;";
+
+            var deposits = _dapperService.Query<DepositModel>(query, new { PhoneNumber = phoneNumber });
+
+            if (deposits is null)
+            {
+                return NotFound("No deposits found for the given phone number.");
+            }
+            return Ok(deposits);
+        }
+
+        #endregion 
+
     }
 }
