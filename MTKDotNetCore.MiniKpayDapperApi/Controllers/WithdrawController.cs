@@ -28,5 +28,24 @@ namespace MTKDotNetCore.MiniKpayDapperApi.Controllers
 
         #endregion
 
+        #region Get Withdraw By PhoneNumber
+
+        [HttpGet("{phoneNumber}")]
+        public IActionResult GetWithdrawByPhoneNumber(string phoneNumber)
+        {
+            string query = "SELECT * FROM Tbl_Withdraw WHERE PhoneNumber = @PhoneNumber AND DeleteFlag = 0;";
+
+            var withdraws = _dapperService.Query<WithdrawModel>(query, new { PhoneNumber = phoneNumber });
+
+            if (withdraws is null)
+            {
+                return NotFound("No withdraws found for the given phone number.");
+            }
+            return Ok(withdraws);
+        }
+
+        #endregion 
+
+
     }
 }
