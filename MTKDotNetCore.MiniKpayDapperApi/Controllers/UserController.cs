@@ -4,11 +4,10 @@ using MTKDotNetCore.MiniKpayDapperApi.Models.User;
 
 namespace MTKDotNetCore.MiniKpayDapperApi.Controllers
 {
-    [Route("api/[user]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly string _connectionString = "Data Source=.;Initial Catalog=MiniKpay;User ID=sa;Password=sasa@123;TrustServerCertificate=True;";
         private readonly DapperService _dapperService;
 
         public UserController(DapperService dapperService)
@@ -49,6 +48,65 @@ namespace MTKDotNetCore.MiniKpayDapperApi.Controllers
             return Ok(user);
         }
 
-        #endregion 
+        #endregion
+
+        #region Create User(Register)
+
+        [HttpPost]
+        public IActionResult CreateUser(UserResponseModel responseModel)
+        {
+
+            #region Validation For User Registration
+
+            string checkPhoneNumberQuery = "SELECT * FROM Tbl_User WHERE PhoneNumber = @PhoneNumber AND DeleteFlag = 0;";
+            var phoneExists = _dapperService.QueryFirstOrDefault<int>(checkPhoneNumberQuery, new { PhoneNumber = responseModel.PhoneNumber });
+
+            if (phoneExists > 0)
+            {
+                return BadRequest("Phone number already exists. Please use a different phone number.");
+            }
+            if (responseModel.PhoneNumber.Length > 10)
+            {
+                return BadRequest("Phone number must be only 10 numbers.");
+            }
+
+            if (responseModel.Pin.Length != 8)
+            {
+                return BadRequest("Pin must be exactly 8 characters long.");
+            }
+
+            if (responseModel.Balance < 0)
+            {
+                return BadRequest("Balance must be greater than or equal to 0.");
+            }
+            if(responseModel.Balance < 10000)
+            {
+                return BadRequest("Balance must be at least 10000 Kyats");
+            }
+
+            #endregion 
+
+            string query = @"INSERT INTO [dbo].[Tbl_User]
+           ([FullName]
+           ,[Password]
+           ,[Pin]
+           ,[PhoneNumber]
+           ,[Balance]
+           ,[DeleteFlag])
+     VALUES
+           (@FullName
+           ,@Password
+           ,@Pin
+           ,@PhoneNumber
+           ,@Balance
+           ,0)";
+
+            int result = _dapperService.Execute(query, responseModel);
+
+            return Ok(result == 1 ? "User registration successful." : "User registration failed.");
+        }
+
+        #endregion
+
     }
 }
