@@ -56,8 +56,6 @@ namespace MTKDotNetCore.MiniKpayDapperApi.Controllers
         public IActionResult CreateUser(UserResponseModel responseModel)
         {
 
-            #region Validation For User Registration
-
             #region duplicate Phone Number
 
             string checkPhoneNumberQuery = "SELECT * FROM Tbl_User WHERE PhoneNumber = @PhoneNumber AND DeleteFlag = 0;";
@@ -72,7 +70,8 @@ namespace MTKDotNetCore.MiniKpayDapperApi.Controllers
 
             #endregion
 
-           
+            #region Validation For User Registration
+
             if (phoneExists > 0)
             {
                 return BadRequest("Phone number already exists. Please use a different phone number.");
@@ -100,7 +99,6 @@ namespace MTKDotNetCore.MiniKpayDapperApi.Controllers
             {
                 return BadRequest("This Pin is already used by another user. Please choose a different Pin.");
             }
-
 
             #endregion 
 
