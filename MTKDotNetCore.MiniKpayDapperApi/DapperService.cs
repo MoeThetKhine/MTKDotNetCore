@@ -1,8 +1,4 @@
-﻿using Dapper;
-using System.Data;
-using System.Data.SqlClient;
-
-namespace MTKDotNetCore.MiniKpayDapperApi
+﻿namespace MTKDotNetCore.MiniKpayDapperApi
 {
     public class DapperService
     {
