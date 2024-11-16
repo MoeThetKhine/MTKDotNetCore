@@ -1,104 +1,104 @@
-﻿namespace MTKDotNetCore.MiniKpayDapperApi.Controllers
+﻿namespace MTKDotNetCore.MiniKpayDapperApi.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class UserController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class UserController : ControllerBase
+    private readonly DapperService _dapperService;
+
+    public UserController(DapperService dapperService)
     {
-        private readonly DapperService _dapperService;
+        _dapperService = dapperService;
+    }
 
-        public UserController(DapperService dapperService)
+    #region GetUserList
+
+    [HttpGet]
+    public IActionResult GetUserList()
+    {
+        string query = "SELECT * FROM Tbl_User WHERE DeleteFlag = 0;";
+        var users = _dapperService.Query<UserModel>(query);
+
+        if (users is null)
         {
-            _dapperService = dapperService;
+            return NotFound("No active users found.");
         }
+        return Ok(users);
+    }
 
-        #region GetUserList
+    #endregion
 
-        [HttpGet]
-        public IActionResult GetUserList()
+    #region Get User By Id
+
+    [HttpGet("{userid}")]
+    public IActionResult GetUser(int userid)
+    {
+        string query = "SELECT * FROM Tbl_User WHERE User_Id = @User_Id AND DeleteFlag = 0;";
+
+        var user = _dapperService.QueryFirstOrDefault<UserModel>(query, new { User_Id = userid });
+
+        if (user is null)
         {
-            string query = "SELECT * FROM Tbl_User WHERE DeleteFlag = 0;";
-            var users = _dapperService.Query<UserModel>(query);
-
-            if (users is null)
-            {
-                return NotFound("No active users found.");
-            }
-            return Ok(users);
+            return NotFound("No Data Found.");
         }
+        return Ok(user);
+    }
+
+    #endregion
+
+    #region Create User(Register)
+
+    [HttpPost]
+    public IActionResult CreateUser(UserResponseModel responseModel)
+    {
+
+        #region duplicate Phone Number
+
+        string checkPhoneNumberQuery = "SELECT * FROM Tbl_User WHERE PhoneNumber = @PhoneNumber AND DeleteFlag = 0;";
+        var phoneExists = _dapperService.QueryFirstOrDefault<int>(checkPhoneNumberQuery, new { PhoneNumber = responseModel.PhoneNumber });
 
         #endregion
 
-        #region Get User By Id
+        #region Duplicate Pin
 
-        [HttpGet("{userid}")]
-        public IActionResult GetUser(int userid)
-        {
-            string query = "SELECT * FROM Tbl_User WHERE User_Id = @User_Id AND DeleteFlag = 0;";
-
-            var user = _dapperService.QueryFirstOrDefault<UserModel>(query, new { User_Id = userid });
-
-            if (user is null)
-            {
-                return NotFound("No Data Found.");
-            }
-            return Ok(user);
-        }
+        string pinCheckQuery = "SELECT FROM Tbl_User WHERE Pin = @Pin AND DeleteFlag = 0;";
+        var isPinExists = _dapperService.QueryFirstOrDefault<int>(pinCheckQuery, new { responseModel.Pin });
 
         #endregion
 
-        #region Create User(Register)
+        #region Validation For User Registration
 
-        [HttpPost]
-        public IActionResult CreateUser(UserResponseModel responseModel)
+        if (phoneExists > 0)
         {
+            return BadRequest("Phone number already exists. Please use a different phone number.");
+        }
+        if (responseModel.PhoneNumber.Length > 10)
+        {
+            return BadRequest("Phone number must be only 10 numbers.");
+        }
 
-            #region duplicate Phone Number
+        if (responseModel.Pin.Length != 8)
+        {
+            return BadRequest("Pin must be exactly 8 characters long.");
+        }
 
-            string checkPhoneNumberQuery = "SELECT * FROM Tbl_User WHERE PhoneNumber = @PhoneNumber AND DeleteFlag = 0;";
-            var phoneExists = _dapperService.QueryFirstOrDefault<int>(checkPhoneNumberQuery, new { PhoneNumber = responseModel.PhoneNumber });
+        if (responseModel.Balance < 0)
+        {
+            return BadRequest("Balance must be greater than or equal to 0.");
+        }
+        if(responseModel.Balance < 10000)
+        {
+            return BadRequest("Balance must be at least 10000 Kyats");
+        }
 
-            #endregion
+        if (isPinExists > 0)
+        {
+            return BadRequest("This Pin is already used by another user. Please choose a different Pin.");
+        }
 
-            #region Duplicate Pin
+        #endregion 
 
-            string pinCheckQuery = "SELECT FROM Tbl_User WHERE Pin = @Pin AND DeleteFlag = 0;";
-            var isPinExists = _dapperService.QueryFirstOrDefault<int>(pinCheckQuery, new { responseModel.Pin });
-
-            #endregion
-
-            #region Validation For User Registration
-
-            if (phoneExists > 0)
-            {
-                return BadRequest("Phone number already exists. Please use a different phone number.");
-            }
-            if (responseModel.PhoneNumber.Length > 10)
-            {
-                return BadRequest("Phone number must be only 10 numbers.");
-            }
-
-            if (responseModel.Pin.Length != 8)
-            {
-                return BadRequest("Pin must be exactly 8 characters long.");
-            }
-
-            if (responseModel.Balance < 0)
-            {
-                return BadRequest("Balance must be greater than or equal to 0.");
-            }
-            if(responseModel.Balance < 10000)
-            {
-                return BadRequest("Balance must be at least 10000 Kyats");
-            }
-
-            if (isPinExists > 0)
-            {
-                return BadRequest("This Pin is already used by another user. Please choose a different Pin.");
-            }
-
-            #endregion 
-
-            string query = @"INSERT INTO [dbo].[Tbl_User]
+        string query = @"INSERT INTO [dbo].[Tbl_User]
            ([FullName]
            ,[Password]
            ,[Pin]
@@ -113,12 +113,11 @@
            ,@Balance
            ,0)";
 
-            int result = _dapperService.Execute(query, responseModel);
+        int result = _dapperService.Execute(query, responseModel);
 
-            return Ok(result == 1 ? "User registration successful." : "User registration failed.");
-        }
-
-        #endregion
-
+        return Ok(result == 1 ? "User registration successful." : "User registration failed.");
     }
+
+    #endregion
+
 }
