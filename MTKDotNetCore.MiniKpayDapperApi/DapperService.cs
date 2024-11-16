@@ -12,6 +12,7 @@ namespace MTKDotNetCore.MiniKpayDapperApi
         {
             _connectionString = conectionString;
         }
+
         #region Query
 
         public List<T> Query<T>(string query, object? param = null)
