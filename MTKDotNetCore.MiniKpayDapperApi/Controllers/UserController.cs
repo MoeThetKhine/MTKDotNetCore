@@ -32,5 +32,23 @@ namespace MTKDotNetCore.MiniKpayDapperApi.Controllers
         }
 
         #endregion
+
+        #region Get User By Id
+
+        [HttpGet("{userid}")]
+        public IActionResult GetUser(int userid)
+        {
+            string query = "SELECT * FROM Tbl_User WHERE User_Id = @User_Id AND DeleteFlag = 0;";
+
+            var user = _dapperService.QueryFirstOrDefault<UserModel>(query, new { User_Id = userid });
+
+            if (user is null)
+            {
+                return NotFound("No Data Found.");
+            }
+            return Ok(user);
+        }
+
+        #endregion 
     }
 }
