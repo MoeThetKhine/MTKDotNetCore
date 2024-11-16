@@ -26,7 +26,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MTKDotNetCore.BirdMiniApi",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MTKDotNetCore.DreamDictionaryMinimalApi", "MTKDotNetCore.DreamDictionaryMinimalApi\MTKDotNetCore.DreamDictionaryMinimalApi.csproj", "{5B816868-BD89-4007-8252-A2D5BFAA8152}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTKDotNetCore.Domain", "MTKDotNetCore.Domain\MTKDotNetCore.Domain.csproj", "{48477208-8700-416B-BAE2-3E345CD26CDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MTKDotNetCore.Domain", "MTKDotNetCore.Domain\MTKDotNetCore.Domain.csproj", "{48477208-8700-416B-BAE2-3E345CD26CDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTKDotNetCore.MiniKpayDapperApi", "MTKDotNetCore.MiniKpayDapperApi\MTKDotNetCore.MiniKpayDapperApi.csproj", "{ACEDFF9D-4F42-4891-A512-D7B0D0DE17D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -74,6 +76,10 @@ Global
 		{48477208-8700-416B-BAE2-3E345CD26CDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48477208-8700-416B-BAE2-3E345CD26CDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48477208-8700-416B-BAE2-3E345CD26CDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACEDFF9D-4F42-4891-A512-D7B0D0DE17D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACEDFF9D-4F42-4891-A512-D7B0D0DE17D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACEDFF9D-4F42-4891-A512-D7B0D0DE17D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACEDFF9D-4F42-4891-A512-D7B0D0DE17D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
