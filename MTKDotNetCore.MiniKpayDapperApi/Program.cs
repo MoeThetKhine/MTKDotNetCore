@@ -4,7 +4,6 @@ var connectionString = builder.Configuration.GetConnectionString("DbConnection")
 
 builder.Services.AddSingleton<DapperService>(sp => new DapperService(connectionString));
 
-
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
