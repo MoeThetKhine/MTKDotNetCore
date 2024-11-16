@@ -1,6 +1,4 @@
-﻿using MTKDotNetCore.MiniKpayDapperApi.Models.User;
-
-namespace MTKDotNetCore.MiniKpayDapperApi.Controllers;
+﻿namespace MTKDotNetCore.MiniKpayDapperApi.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -163,7 +161,4 @@ public class UserController : ControllerBase
     }
 
     #endregion
-
-
-
 }
