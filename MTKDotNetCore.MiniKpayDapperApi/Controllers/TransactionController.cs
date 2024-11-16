@@ -1,11 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using MTKDotNetCore.MiniKpayDapperApi.Models.Transaction;
-using MTKDotNetCore.MiniKpayDapperApi.Models.User;
-using MTKDotNetCore.MiniKpayDapperApi.Models.Withdraw;
-using System.Transactions;
-
-namespace MTKDotNetCore.MiniKpayDapperApi.Controllers
+﻿namespace MTKDotNetCore.MiniKpayDapperApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
