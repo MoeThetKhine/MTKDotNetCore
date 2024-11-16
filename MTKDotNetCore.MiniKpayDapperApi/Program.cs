@@ -1,4 +1,11 @@
+using MTKDotNetCore.MiniKpayDapperApi;
+
 var builder = WebApplication.CreateBuilder(args);
+
+var connectionString = builder.Configuration.GetConnectionString("DbConnection");
+
+// Register DapperService
+builder.Services.AddSingleton<DapperService>(sp => new DapperService(connectionString));
 
 
 builder.Services.AddControllers();
