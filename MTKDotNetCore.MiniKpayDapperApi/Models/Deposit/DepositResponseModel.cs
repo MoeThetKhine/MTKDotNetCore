@@ -4,6 +4,5 @@
     {
         public string PhoneNumber { get; set; }
         public decimal Balance { get; set; }
-        public bool DeleteFlag { get; set; }
     }
 }
