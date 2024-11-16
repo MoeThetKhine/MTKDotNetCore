@@ -1,8 +1,7 @@
-﻿namespace MTKDotNetCore.MiniKpayDapperApi.Models.Deposit
+﻿namespace MTKDotNetCore.MiniKpayDapperApi.Models.Deposit;
+
+public class DepositResponseModel
 {
-    public class DepositResponseModel
-    {
-        public string PhoneNumber { get; set; }
-        public decimal Balance { get; set; }
-    }
+    public string PhoneNumber { get; set; }
+    public decimal Balance { get; set; }
 }
