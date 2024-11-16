@@ -58,9 +58,21 @@ namespace MTKDotNetCore.MiniKpayDapperApi.Controllers
 
             #region Validation For User Registration
 
+            #region duplicate Phone Number
+
             string checkPhoneNumberQuery = "SELECT * FROM Tbl_User WHERE PhoneNumber = @PhoneNumber AND DeleteFlag = 0;";
             var phoneExists = _dapperService.QueryFirstOrDefault<int>(checkPhoneNumberQuery, new { PhoneNumber = responseModel.PhoneNumber });
 
+            #endregion
+
+            #region Duplicate Pin
+
+            string pinCheckQuery = "SELECT FROM Tbl_User WHERE Pin = @Pin AND DeleteFlag = 0;";
+            var isPinExists = _dapperService.QueryFirstOrDefault<int>(pinCheckQuery, new { responseModel.Pin });
+
+            #endregion
+
+           
             if (phoneExists > 0)
             {
                 return BadRequest("Phone number already exists. Please use a different phone number.");
@@ -83,6 +95,12 @@ namespace MTKDotNetCore.MiniKpayDapperApi.Controllers
             {
                 return BadRequest("Balance must be at least 10000 Kyats");
             }
+
+            if (isPinExists > 0)
+            {
+                return BadRequest("This Pin is already used by another user. Please choose a different Pin.");
+            }
+
 
             #endregion 
 
