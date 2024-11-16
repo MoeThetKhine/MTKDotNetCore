@@ -35,5 +35,17 @@ namespace MTKDotNetCore.MiniKpayDapperApi
         }
 
         #endregion
+
+        #region Execute
+
+        public int Execute(string query, object? param = null)
+        {
+            using IDbConnection db = new SqlConnection(_connectionString);
+
+            var result = db.Execute(query, param);
+            return result;
+        }
+
+        #endregion
     }
 }
