@@ -7,6 +7,5 @@
         public decimal Balance { get; set; }
         public string Pin { get; set; }
         public string Password { get; set; }
-        public bool DeleteFlag { get; set; }
     }
 }
