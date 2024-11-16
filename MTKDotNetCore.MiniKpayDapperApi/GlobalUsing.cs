@@ -2,3 +2,6 @@
 global using Dapper;
 global using System.Data;
 global using System.Data.SqlClient;
+global using Microsoft.AspNetCore.Mvc;
+global using MTKDotNetCore.MiniKpayDapperApi.Models.User;
+global using MTKDotNetCore.MiniKpayDapperApi.Models.Withdraw;
