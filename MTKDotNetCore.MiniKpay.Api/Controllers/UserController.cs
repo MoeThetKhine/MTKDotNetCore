@@ -30,64 +30,6 @@ namespace MTKDotNetCore.MiniKpay.Api.Controllers
 
         #endregion
 
-        #region Get User By Id
-
-        [HttpGet("{userId}")]
-        public IActionResult GetUser(int userId)
-        {
-            var user = _bL_User.GetUserByUserId(userId);
-            if (user is null)
-            {
-                return NotFound("User not found.");
-            }
-            return Ok(user);
-        }
-
-        #endregion
-
-        #region CreateUser
-
-        [HttpPost]
-        public IActionResult CreateUser(UserResponseModel responseModel)
-        {
-            var result = _bL_User.CreateUser(responseModel);
-            if(result is null)
-            {
-                return BadRequest("Registration Fail.");
-            }
-            return Ok("Registration Successful.");
-        }
-
-        #endregion
-
-        #region UpdateUser
-
-        [HttpPut("{userId}")]
-        public IActionResult UpdateUser(int userId, UserRequestModel user)
-        {
-            var result = _bL_User.UpdateUser(userId, user);
-            if (result is null)
-            {
-                return BadRequest("Updating Fail.");
-            }
-            return Ok("Updating Successful.");
-        }
-
-        #endregion
-
-        #region DeleteUser
-
-        [HttpDelete("{userId}")]
-        public IActionResult DeleteUser(int userId)
-        {
-            var result = _bL_User.DeleteUser(userId);
-            if (result is null)
-            {
-                return BadRequest("Deleting Failed.");
-            }
-            return Ok("Deleting Successful.");
-        }
-
-        #endregion
+       
     }
 }
