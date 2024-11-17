@@ -1,10 +1,15 @@
 using MTKDotNetCore.MiniKpay.Database;
+using MTKDotNetCore.MiniKpay.Database.DataAccess.User;
+using MTKDotNetCore.MiniKpay.Domain.BusinessLogic.User;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("DbConnection");
 
 builder.Services.AddSingleton<DapperService>(sp => new DapperService(connectionString));
+
+builder.Services.AddScoped<DataAccess_User>();
+builder.Services.AddScoped<BusinessLogic_User>();
 
 builder.Services.AddControllers();
 

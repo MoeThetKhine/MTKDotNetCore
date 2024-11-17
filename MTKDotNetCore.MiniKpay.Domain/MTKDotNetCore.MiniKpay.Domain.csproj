@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MTKDotNetCore.MiniKpay.Database\MTKDotNetCore.MiniKpay.Database.csproj" />
+  </ItemGroup>
+
 </Project>
