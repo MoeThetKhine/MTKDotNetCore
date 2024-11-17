@@ -30,6 +30,20 @@ namespace MTKDotNetCore.MiniKpay.Api.Controllers
 
         #endregion
 
-       
+        #region Get User By Id
+
+        [HttpGet("{userId}")]
+        public IActionResult GetUser(int userId)
+        {
+            var user = _bL_User.GetUserByUserId(userId);
+            if (user is null)
+            {
+                return NotFound("User not found.");
+            }
+            return Ok(user);
+        }
+
+        #endregion
+
     }
 }
