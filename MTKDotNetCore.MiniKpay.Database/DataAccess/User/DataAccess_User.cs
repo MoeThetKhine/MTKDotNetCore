@@ -51,6 +51,34 @@ namespace MTKDotNetCore.MiniKpay.Database.DataAccess.User
 
         #endregion
 
+        #region CreateUser
+
+        public int CreateUser(UserResponseModel responseModel)
+        {
+            string query = @"INSERT INTO Tbl_User (FullName, Password, Pin, PhoneNumber, Balance, DeleteFlag) 
+                         VALUES (@FullName, @Password, @Pin, @PhoneNumber, @Balance, 0);";
+            return _dapperService.Execute(query, responseModel);
+        }
+
+        #endregion
+
+        #region UpdateUser
+
+        public int UpdateUser(int userId, UserRequestModel user)
+        {
+            string query = @"UPDATE Tbl_User SET FullName = @FullName, Pin = @Pin, 
+                         PhoneNumber = @PhoneNumber, DeleteFlag = 0 WHERE User_Id = @UserId;";
+            return _dapperService.Execute(query, new
+            {
+                UserId = userId,
+                FullName = user.FullName,
+                Pin = user.Pin,
+                PhoneNumber = user.PhoneNumber
+            });
+        }
+
+        #endregion
+
 
     }
 }
