@@ -30,6 +30,41 @@ namespace MTKDotNetCore.MiniKpay.Domain.BusinessLogic.User
 
         #endregion
 
+        #region CreateUser
+
+        public string CreateUser(UserResponseModel responseModel)
+        {
+            if (_dA_User.CheckPhoneNumberExists(responseModel.PhoneNumber) > 0)
+            {
+                return "Phone number already exists. Please use a different phone number.";
+            }
+
+            if (responseModel.PhoneNumber.Length != 10)
+            {
+                return "Phone number must be exactly 10 digits.";
+            }
+
+            if (responseModel.Pin.Length != 8)
+            {
+                return "Pin must be exactly 8 characters.";
+            }
+
+            if (responseModel.Balance < 10000)
+            {
+                return "Balance must be at least 10000 Kyats.";
+            }
+
+            if (_dA_User.CheckPinExists(responseModel.Pin) > 0)
+            {
+                return "This Pin is already in use by another user.";
+            }
+
+            int result = _dA_User.CreateUser(responseModel);
+            return result == 1 ? "User registration successful." : "User registration failed.";
+        }
+
+        #endregion
+
     }
 }
 
