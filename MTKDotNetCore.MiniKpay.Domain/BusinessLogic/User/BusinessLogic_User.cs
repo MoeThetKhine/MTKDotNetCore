@@ -85,6 +85,21 @@ namespace MTKDotNetCore.MiniKpay.Domain.BusinessLogic.User
 
         #endregion
 
+        #region DeleteUser
+
+        public string DeleteUser(int userId)
+        {
+            if (_dA_User.GetUserByUserId(userId) == null)
+            {
+                return "User not found.";
+            }
+
+            int result = _dA_User.SoftDeleteUser(userId);
+            return result == 1 ? "User deleted successfully." : "Deletion failed.";
+        }
+
+        #endregion
+
     }
 }
 
