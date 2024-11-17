@@ -75,5 +75,21 @@ namespace MTKDotNetCore.MiniKpay.Api.Controllers
 
         #endregion
 
+        #region Soft Delete User
+
+        [HttpDelete("{userId}")]
+        public IActionResult DeleteUser(int userId)
+        {
+            var result = _bL_User.DeleteUser(userId);
+            if (result is null)
+            {
+                return BadRequest("Deleting Failed.");
+            }
+            return Ok("Deleting Successful.");
+        }
+
+        #endregion
+
+
     }
 }
