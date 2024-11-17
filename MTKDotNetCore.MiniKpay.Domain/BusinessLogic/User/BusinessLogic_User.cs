@@ -20,7 +20,16 @@ namespace MTKDotNetCore.MiniKpay.Domain.BusinessLogic.User
         }
 
         #endregion
-       
+
+        #region GetUserByUserId
+
+        public UserModel GetUserByUserId(int userId)
+        {
+            return _dA_User.GetUserByUserId(userId);
+        }
+
+        #endregion
+
     }
 }
 
