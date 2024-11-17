@@ -34,6 +34,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTKDotNetCore.MiniKpay.Api"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTKDotNetCore.MiniKpay.Domain", "MTKDotNetCore.MiniKpay.Domain\MTKDotNetCore.MiniKpay.Domain.csproj", "{1A945FAD-D0A8-4D97-85F9-61BCD7736D8A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTKDotNetCore.MiniKpay.Database", "MTKDotNetCore.MiniKpay.Database\MTKDotNetCore.MiniKpay.Database.csproj", "{5F1C771D-C23F-403C-B27E-6A0501DD1D60}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -92,6 +94,10 @@ Global
 		{1A945FAD-D0A8-4D97-85F9-61BCD7736D8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A945FAD-D0A8-4D97-85F9-61BCD7736D8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A945FAD-D0A8-4D97-85F9-61BCD7736D8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F1C771D-C23F-403C-B27E-6A0501DD1D60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F1C771D-C23F-403C-B27E-6A0501DD1D60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F1C771D-C23F-403C-B27E-6A0501DD1D60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F1C771D-C23F-403C-B27E-6A0501DD1D60}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
