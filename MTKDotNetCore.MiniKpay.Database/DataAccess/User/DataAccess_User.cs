@@ -1,6 +1,4 @@
-﻿using MTKDotNetCore.MiniKpay.Database.Models.User;
-
-namespace MTKDotNetCore.MiniKpay.Database.DataAccess.User
+﻿namespace MTKDotNetCore.MiniKpay.Database.DataAccess.User
 {
     public class DataAccess_User
     {
