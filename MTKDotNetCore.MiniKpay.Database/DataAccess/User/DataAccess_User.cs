@@ -21,5 +21,15 @@ namespace MTKDotNetCore.MiniKpay.Database.DataAccess.User
 
         #endregion
 
+        #region GetUserByUserId
+
+        public UserModel GetUserByUserId(int userId)
+        {
+            string query = "SELECT * FROM Tbl_User WHERE User_Id = @UserId AND DeleteFlag = 0;";
+            return _dapperService.QueryFirstOrDefault<UserModel>(query, new { UserId = userId });
+        }
+
+        #endregion
+
     }
 }
