@@ -31,5 +31,15 @@ namespace MTKDotNetCore.MiniKpay.Database.DataAccess.User
 
         #endregion
 
+        #region CheckPhoneNumberExists
+
+        public int CheckPhoneNumberExists(string phoneNumber)
+        {
+            string query = "SELECT * FROM Tbl_User WHERE PhoneNumber = @PhoneNumber AND DeleteFlag = 0;";
+            return _dapperService.QueryFirstOrDefault<int>(query, new { PhoneNumber = phoneNumber });
+        }
+
+        #endregion
+
     }
 }
