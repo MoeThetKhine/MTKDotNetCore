@@ -41,5 +41,16 @@ namespace MTKDotNetCore.MiniKpay.Database.DataAccess.User
 
         #endregion
 
+        #region CheckPinExists
+
+        public int CheckPinExists(string pin)
+        {
+            string query = "SELECT * FROM Tbl_User WHERE Pin = @Pin AND DeleteFlag = 0;";
+            return _dapperService.QueryFirstOrDefault<int>(query, new { Pin = pin });
+        }
+
+        #endregion
+
+
     }
 }
