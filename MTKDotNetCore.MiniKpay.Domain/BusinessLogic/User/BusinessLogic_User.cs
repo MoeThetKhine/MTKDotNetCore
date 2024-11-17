@@ -1,7 +1,4 @@
-﻿using MTKDotNetCore.MiniKpay.Database.DataAccess.User;
-using MTKDotNetCore.MiniKpay.Database.Models.User;
-
-namespace MTKDotNetCore.MiniKpay.Domain.BusinessLogic.User
+﻿namespace MTKDotNetCore.MiniKpay.Domain.BusinessLogic.User
 {
     public class BusinessLogic_User
     {
