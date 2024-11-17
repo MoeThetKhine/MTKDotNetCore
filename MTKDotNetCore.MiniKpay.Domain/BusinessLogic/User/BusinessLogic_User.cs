@@ -65,6 +65,26 @@ namespace MTKDotNetCore.MiniKpay.Domain.BusinessLogic.User
 
         #endregion
 
+        #region UpdateUser
+
+        public string UpdateUser(int userId, UserRequestModel user)
+        {
+            if (_dA_User.GetUserByUserId(userId) == null)
+            {
+                return "User not found.";
+            }
+
+            if (_dA_User.CheckPhoneNumberExists(user.PhoneNumber) > 0)
+            {
+                return "Phone number is already in use by another user.";
+            }
+
+            int result = _dA_User.UpdateUser(userId, user);
+            return result == 1 ? "Update successful." : "Update failed.";
+        }
+
+        #endregion
+
     }
 }
 
