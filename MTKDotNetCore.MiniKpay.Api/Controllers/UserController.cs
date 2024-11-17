@@ -45,5 +45,20 @@ namespace MTKDotNetCore.MiniKpay.Api.Controllers
 
         #endregion
 
+        #region CreateUser
+
+        [HttpPost]
+        public IActionResult CreateUser(UserResponseModel responseModel)
+        {
+            var result = _bL_User.CreateUser(responseModel);
+            if (result is null)
+            {
+                return BadRequest("Registration Fail.");
+            }
+            return Ok("Registration Successful.");
+        }
+
+        #endregion
+
     }
 }
