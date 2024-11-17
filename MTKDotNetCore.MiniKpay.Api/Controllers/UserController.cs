@@ -60,5 +60,20 @@ namespace MTKDotNetCore.MiniKpay.Api.Controllers
 
         #endregion
 
+        #region UpdateUser
+
+        [HttpPut("{userId}")]
+        public IActionResult UpdateUser(int userId, UserRequestModel user)
+        {
+            var result = _bL_User.UpdateUser(userId, user);
+            if (result is null)
+            {
+                return BadRequest("Updating Fail.");
+            }
+            return Ok("Updating Successful.");
+        }
+
+        #endregion
+
     }
 }
