@@ -1,4 +1,8 @@
-﻿namespace MTKDotNetCore.MiniKpayDapperApi;
+﻿using Dapper;
+using System.Data;
+using System.Data.SqlClient;
+
+namespace MTKDotNetCore.MiniKpay.Database;
 
 public class DapperService
 {
