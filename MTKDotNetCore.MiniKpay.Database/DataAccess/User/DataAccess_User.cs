@@ -1,12 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MTKDotNetCore.MiniKpay.Database.Models.User;
 
 namespace MTKDotNetCore.MiniKpay.Database.DataAccess.User
 {
-    internal class DataAccess_User
+    public class DataAccess_User
     {
+        private readonly DapperService _dapperService;
+
+        public DataAccess_User(DapperService dapperService)
+        {
+            _dapperService = dapperService;
+        }
+
+        #region GetUserList
+
+        public List<UserModel> GetUserList()
+        {
+            string query = "SELECT * FROM Tbl_User WHERE DeleteFlag = 0;";
+            return _dapperService.Query<UserModel>(query).ToList() ;
+        }
+
+        #endregion
+
     }
 }
