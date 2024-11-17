@@ -79,6 +79,16 @@ namespace MTKDotNetCore.MiniKpay.Database.DataAccess.User
 
         #endregion
 
+        #region SoftDeleteUser
+
+        public int SoftDeleteUser(int userId)
+        {
+            string query = "UPDATE Tbl_User SET DeleteFlag = 1 WHERE User_Id = @UserId;";
+            return _dapperService.Execute(query, new { UserId = userId });
+        }
+
+        #endregion
+
 
     }
 }
