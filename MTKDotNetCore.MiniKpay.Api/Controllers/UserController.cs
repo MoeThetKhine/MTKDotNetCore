@@ -10,6 +10,7 @@ public class UserController : ControllerBase
     {
         _bL_User = businessLogic_User;
     }
+
     #region GetUserList
 
     [HttpGet]
