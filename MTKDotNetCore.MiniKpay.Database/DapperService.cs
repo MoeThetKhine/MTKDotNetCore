@@ -1,48 +1,55 @@
-﻿namespace MTKDotNetCore.MiniKpay.Database;
+﻿using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Threading.Tasks;
+using Dapper;
 
-public class DapperService
+namespace MTKDotNetCore.MiniKpay.Database
 {
-    private readonly string _connectionString;
-
-    public DapperService(string conectionString)
+    public class DapperService
     {
-        _connectionString = conectionString;
+        private readonly string _connectionString;
+
+        public DapperService(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
+        #region QueryAsync
+
+        public async Task<List<T>> QueryAsync<T>(string query, object? param = null)
+        {
+            using IDbConnection db = new SqlConnection(_connectionString);
+
+            var lst = (await db.QueryAsync<T>(query, param)).ToList();
+            return lst;
+        }
+
+        #endregion
+
+        #region QueryFirstOrDefaultAsync
+
+        public async Task<T> QueryFirstOrDefaultAsync<T>(string query, object? param = null)
+        {
+            using IDbConnection db = new SqlConnection(_connectionString);
+
+            var item = await db.QueryFirstOrDefaultAsync<T>(query, param);
+            return item;
+        }
+
+        #endregion
+
+        #region ExecuteAsync
+
+        public async Task<int> ExecuteAsync(string query, object? param = null)
+        {
+            using IDbConnection db = new SqlConnection(_connectionString);
+
+            var result = await db.ExecuteAsync(query, param);
+            return result;
+        }
+
+        #endregion
     }
-
-    #region Query
-
-    public List<T> Query<T>(string query, object? param = null)
-    {
-        using IDbConnection db = new SqlConnection(_connectionString);
-
-        var lst = db.Query<T>(query, param).ToList();
-        return lst;
-    }
-
-    #endregion
-
-    #region QueryFirstOrDefault
-
-    public T QueryFirstOrDefault<T>(string query, object? param = null)
-    {
-        using IDbConnection db = new SqlConnection(_connectionString);
-
-        var item = db.QueryFirstOrDefault<T>(query, param);
-        return item;
-    }
-
-    #endregion
-
-    #region Execute
-
-    public int Execute(string query, object? param = null)
-    {
-        using IDbConnection db = new SqlConnection(_connectionString);
-
-        var result = db.Execute(query, param);
-        return result;
-    }
-
-    #endregion
-
 }
