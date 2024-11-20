@@ -11,62 +11,64 @@ public class DataAccess_User
 
     #region GetUserList
 
-    public List<UserModel> GetUserList()
+    public async Task<List<UserModel>> GetUserList()
     {
         string query = "SELECT * FROM Tbl_User WHERE DeleteFlag = 0;";
-        return _dapperService.Query<UserModel>(query).ToList() ;
+        var result = await _dapperService.QueryAsync<UserModel>(query);
+        return result.ToList();
     }
 
     #endregion
 
     #region GetUserByUserId
 
-    public UserModel GetUserByUserId(int userId)
+    public async Task<UserModel> GetUserByUserIdAsync(int userId)
     {
         string query = "SELECT * FROM Tbl_User WHERE User_Id = @UserId AND DeleteFlag = 0;";
-        return _dapperService.QueryFirstOrDefault<UserModel>(query, new { UserId = userId });
+        return await _dapperService.QueryFirstOrDefaultAsync<UserModel>(query, new { UserId = userId });
     }
 
     #endregion
 
     #region CheckPhoneNumberExists
 
-    public int CheckPhoneNumberExists(string phoneNumber)
+    public async Task<int> CheckPhoneNumberExistsAsync(string phoneNumber)
     {
-        string query = "SELECT * FROM Tbl_User WHERE PhoneNumber = @PhoneNumber AND DeleteFlag = 0;";
-        return _dapperService.QueryFirstOrDefault<int>(query, new { PhoneNumber = phoneNumber });
+        string query = "SELECT COUNT(1) FROM Tbl_User WHERE PhoneNumber = @PhoneNumber AND DeleteFlag = 0;";
+        return await _dapperService.QueryFirstOrDefaultAsync<int>(query, new { PhoneNumber = phoneNumber });
     }
 
     #endregion
 
     #region CheckPinExists
 
-    public int CheckPinExists(string pin)
+    public async Task<int> CheckPinExistsAsync(string pin)
     {
-        string query = "SELECT * FROM Tbl_User WHERE Pin = @Pin AND DeleteFlag = 0;";
-        return _dapperService.QueryFirstOrDefault<int>(query, new { Pin = pin });
+        string query = "SELECT COUNT(1) FROM Tbl_User WHERE Pin = @Pin AND DeleteFlag = 0;";
+        return await _dapperService.QueryFirstOrDefaultAsync<int>(query, new { Pin = pin });
     }
 
     #endregion
 
     #region CreateUser
 
-    public int CreateUser(UserResponseModel responseModel)
+    public async Task<int> CreateUserAsync(UserResponseModel responseModel)
     {
         string query = @"INSERT INTO Tbl_User (FullName, Password, Pin, PhoneNumber, Balance, DeleteFlag) 
-                         VALUES (@FullName, @Password, @Pin, @PhoneNumber, @Balance, 0);";
-        return _dapperService.Execute(query, responseModel);
+                             VALUES (@FullName, @Password, @Pin, @PhoneNumber, @Balance, 0);";
+        return await _dapperService.ExecuteAsync(query, responseModel);
     }
 
     #endregion
 
     #region UpdateUser
 
-    public int UpdateUser(int userId, UserRequestModel user)
+    public async Task<int> UpdateUserAsync(int userId, UserRequestModel user)
     {
-        string query = @"UPDATE Tbl_User SET FullName = @FullName, Pin = @Pin, 
-                         PhoneNumber = @PhoneNumber, DeleteFlag = 0 WHERE User_Id = @UserId;";
-        return _dapperService.Execute(query, new
+        string query = @"UPDATE Tbl_User 
+                             SET FullName = @FullName, Pin = @Pin, PhoneNumber = @PhoneNumber 
+                             WHERE User_Id = @UserId AND DeleteFlag = 0;";
+        return await _dapperService.ExecuteAsync(query, new
         {
             UserId = userId,
             FullName = user.FullName,
@@ -79,10 +81,10 @@ public class DataAccess_User
 
     #region SoftDeleteUser
 
-    public int SoftDeleteUser(int userId)
+    public async Task<int> SoftDeleteUserAsync(int userId)
     {
         string query = "UPDATE Tbl_User SET DeleteFlag = 1 WHERE User_Id = @UserId;";
-        return _dapperService.Execute(query, new { UserId = userId });
+        return await _dapperService.ExecuteAsync(query, new { UserId = userId });
     }
 
     #endregion
