@@ -22,5 +22,16 @@ public class DataAccess_Withdraw
 
     #endregion
 
+    #region Get Withdraw By PhoneNumber Async
+
+    public async Task<IEnumerable<WithdrawModel>> GetWithdrawByPhoneNumberAsync(string phoneNumber)
+    {
+        string query = "SELECT * FROM Tbl_Withdraw WHERE PhoneNumber = @PhoneNumber AND DeleteFlag = 0;";
+        return await _dapperService.QueryAsync<WithdrawModel>(query,new {PhoneNumber = phoneNumber});
+    }
+
+    #endregion
+
+
 
 }
