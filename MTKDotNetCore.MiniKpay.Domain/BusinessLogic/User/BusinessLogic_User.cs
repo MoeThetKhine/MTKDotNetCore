@@ -11,27 +11,27 @@ public class BusinessLogic_User
 
     #region GetUserList
 
-    public List<UserModel> GetUserList()
+    public async Task<List<UserModel>> GetUserListAsync()
     {
-        return _dA_User.GetUserList();
+        return await _dA_User.GetUserListAsync();
     }
 
     #endregion
 
     #region GetUserByUserId
 
-    public UserModel GetUserByUserId(int userId)
+    public async Task<UserModel> GetUserByUserIdAsync(int userId)
     {
-        return _dA_User.GetUserByUserId(userId);
+        return await _dA_User.GetUserByUserIdAsync(userId);
     }
 
     #endregion
 
     #region CreateUser
 
-    public string CreateUser(UserResponseModel responseModel)
+    public async Task<string> CreateUserAsync(UserResponseModel responseModel)
     {
-        if (_dA_User.CheckPhoneNumberExists(responseModel.PhoneNumber) > 0)
+        if (await _dA_User.CheckPhoneNumberExistsAsync(responseModel.PhoneNumber) > 0)
         {
             return "Phone number already exists. Please use a different phone number.";
         }
@@ -51,12 +51,12 @@ public class BusinessLogic_User
             return "Balance must be at least 10000 Kyats.";
         }
 
-        if (_dA_User.CheckPinExists(responseModel.Pin) > 0)
+        if (await _dA_User.CheckPinExistsAsync(responseModel.Pin) > 0)
         {
             return "This Pin is already in use by another user.";
         }
 
-        int result = _dA_User.CreateUser(responseModel);
+        int result = await _dA_User.CreateUserAsync(responseModel);
         return result == 1 ? "User registration successful." : "User registration failed.";
     }
 
@@ -64,19 +64,19 @@ public class BusinessLogic_User
 
     #region UpdateUser
 
-    public string UpdateUser(int userId, UserRequestModel user)
+    public async Task<string> UpdateUserAsync(int userId, UserRequestModel user)
     {
-        if (_dA_User.GetUserByUserId(userId) == null)
+        if (await _dA_User.GetUserByUserIdAsync(userId) == null)
         {
             return "User not found.";
         }
 
-        if (_dA_User.CheckPhoneNumberExists(user.PhoneNumber) > 0)
+        if (await _dA_User.CheckPhoneNumberExistsAsync(user.PhoneNumber) > 0)
         {
             return "Phone number is already in use by another user.";
         }
 
-        int result = _dA_User.UpdateUser(userId, user);
+        int result = await _dA_User.UpdateUserAsync(userId, user);
         return result == 1 ? "Update successful." : "Update failed.";
     }
 
@@ -84,18 +84,17 @@ public class BusinessLogic_User
 
     #region DeleteUser
 
-    public string DeleteUser(int userId)
+    public async Task<string> DeleteUserAsync(int userId)
     {
-        if (_dA_User.GetUserByUserId(userId) == null)
+        if (await _dA_User.GetUserByUserIdAsync(userId) == null)
         {
             return "User not found.";
         }
 
-        int result = _dA_User.SoftDeleteUser(userId);
+        int result = await _dA_User.SoftDeleteUserAsync(userId);
         return result == 1 ? "User deleted successfully." : "Deletion failed.";
     }
 
     #endregion
 
 }
-
