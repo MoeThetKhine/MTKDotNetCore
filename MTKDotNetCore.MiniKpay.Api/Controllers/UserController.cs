@@ -14,9 +14,9 @@ public class UserController : ControllerBase
     #region GetUserList
 
     [HttpGet]
-    public IActionResult GetUserList()
+    public async Task<IActionResult> GetUserListAsync()
     {
-        var users = _bL_User.GetUserList();
+        var users = await _bL_User.GetUserListAsync();
         if (users is null)
         {
             return NotFound("No users found.");
@@ -29,9 +29,9 @@ public class UserController : ControllerBase
     #region Get User By Id
 
     [HttpGet("{userId}")]
-    public IActionResult GetUser(int userId)
+    public async Task<IActionResult> GetUser(int userId)
     {
-        var user = _bL_User.GetUserByUserId(userId);
+        var user = await _bL_User.GetUserByUserIdAsync(userId);
         if (user is null)
         {
             return NotFound("User not found.");
@@ -44,14 +44,14 @@ public class UserController : ControllerBase
     #region CreateUser
 
     [HttpPost]
-    public IActionResult CreateUser(UserResponseModel responseModel)
+    public async Task<IActionResult> CreateUser(UserResponseModel responseModel)
     {
-        var result = _bL_User.CreateUser(responseModel);
+        var result = await _bL_User.CreateUserAsync(responseModel);
         if (result is null)
         {
-            return BadRequest("Registration Fail.");
+            return BadRequest("Registration failed.");
         }
-        return Ok("Registration Successful.");
+        return Ok("Registration successful.");
     }
 
     #endregion
@@ -59,14 +59,14 @@ public class UserController : ControllerBase
     #region UpdateUser
 
     [HttpPut("{userId}")]
-    public IActionResult UpdateUser(int userId, UserRequestModel user)
+    public async Task<IActionResult> UpdateUser(int userId, UserRequestModel user)
     {
-        var result = _bL_User.UpdateUser(userId, user);
+        var result = await _bL_User.UpdateUserAsync(userId, user);
         if (result is null)
         {
-            return BadRequest("Updating Fail.");
+            return BadRequest("Updating failed.");
         }
-        return Ok("Updating Successful.");
+        return Ok("Updating successful.");
     }
 
     #endregion
@@ -74,15 +74,16 @@ public class UserController : ControllerBase
     #region Soft Delete User
 
     [HttpDelete("{userId}")]
-    public IActionResult DeleteUser(int userId)
+    public async Task<IActionResult> DeleteUser(int userId)
     {
-        var result = _bL_User.DeleteUser(userId);
+        var result = await _bL_User.DeleteUserAsync(userId);
         if (result is null)
         {
-            return BadRequest("Deleting Failed.");
+            return BadRequest("Deleting failed.");
         }
-        return Ok("Deleting Successful.");
+        return Ok("Deleting successful.");
     }
 
     #endregion
+
 }
