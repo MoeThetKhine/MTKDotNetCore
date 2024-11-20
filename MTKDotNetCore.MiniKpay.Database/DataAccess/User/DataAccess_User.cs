@@ -11,7 +11,7 @@ public class DataAccess_User
 
     #region GetUserList
 
-    public async Task<List<UserModel>> GetUserList()
+    public async Task<List<UserModel>> GetUserListAsync()
     {
         string query = "SELECT * FROM Tbl_User WHERE DeleteFlag = 0;";
         var result = await _dapperService.QueryAsync<UserModel>(query);
