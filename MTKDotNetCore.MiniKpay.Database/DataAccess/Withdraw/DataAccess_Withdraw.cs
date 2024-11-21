@@ -53,6 +53,18 @@ public class DataAccess_Withdraw
 
     #endregion
 
+    #region Create Withdraw
+
+    public async Task<int> CreateWithdrawAsync(WithdrawResponseModel withdraw)
+    {
+        string query = @"
+                INSERT INTO Tbl_Withdraw (PhoneNumber, Balance, DeleteFlag)
+                VALUES (@PhoneNumber, @Balance, 0);";
+        return await _dapperService.ExecuteAsync(query, withdraw);
+    }
+
+    #endregion
+
 
 
 }
