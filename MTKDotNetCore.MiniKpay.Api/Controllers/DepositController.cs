@@ -30,5 +30,21 @@ namespace MTKDotNetCore.MiniKpay.Api.Controllers
         }
 
         #endregion
+
+        #region Get Deposit By PhoneNumber
+
+        [HttpGet("{phoneNumber}")]
+        public async Task<IActionResult> GetDepositByPhoneNumber(string phoneNumber)
+        {
+            var deposits = await _bL_Deposit.GetDepositByPhoneNumberAsync(phoneNumber);
+            if (deposits is null)
+            {
+                return NotFound("No deposits found for phone number.");
+            }
+
+            return Ok(deposits);
+        }
+
+        #endregion
     }
 }
