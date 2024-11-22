@@ -26,5 +26,16 @@ namespace MTKDotNetCore.MiniKpay.Database.DataAccess.Transaction
 
         #endregion
 
+        #region Get Transaction By From Phone Number
+
+        public async Task<List<TransactionModel>> GetTransactionByFromPhoneNumberAsync(string fromPhoneNumber)
+        {
+            string query = "SELECT * FROM Tbl_Transaction WHERE FromPhoneNumber = @FromPhoneNumber AND DeleteFlag = 0;";
+            var result = await _dapperService.QueryAsync<TransactionModel>(query, new { fromPhoneNumber = fromPhoneNumber });
+            return result.ToList();
+        }
+
+        #endregion
+
     }
 }
