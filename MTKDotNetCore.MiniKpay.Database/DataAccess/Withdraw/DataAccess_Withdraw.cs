@@ -64,7 +64,4 @@ public class DataAccess_Withdraw
     }
 
     #endregion
-
-
-
 }
