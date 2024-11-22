@@ -37,5 +37,15 @@ namespace MTKDotNetCore.MiniKpay.Database.DataAccess.Transaction
 
         #endregion
 
+        #region Get User By Phone Number 
+
+        public async Task<UserModel> GetUserByPhoneNumberAsync(string phoneNumber)
+        {
+            string query = "SELECT * FROM Tbl_User WHERE PhoneNumber = @PhoneNumber AND DeleteFlag = 0;";
+            return await _dapperService.QueryFirstOrDefaultAsync<UserModel>(query, new { phoneNumber = phoneNumber });
+        }
+
+        #endregion
+
     }
 }
