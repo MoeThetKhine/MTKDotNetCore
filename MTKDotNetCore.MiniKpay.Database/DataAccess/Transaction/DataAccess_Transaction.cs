@@ -1,11 +1,4 @@
-﻿using MTKDotNetCore.MiniKpay.Database.Models.Transaction;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MTKDotNetCore.MiniKpay.Database.DataAccess.Transaction
+﻿namespace MTKDotNetCore.MiniKpay.Database.DataAccess.Transaction
 {
     public class DataAccess_Transaction
     {
@@ -68,6 +61,5 @@ namespace MTKDotNetCore.MiniKpay.Database.DataAccess.Transaction
         }
 
         #endregion
-
     }
 }
