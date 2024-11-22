@@ -1,6 +1,4 @@
-﻿using MTKDotNetCore.MiniKpay.Database.Models.Withdraw;
-
-namespace MTKDotNetCore.MiniKpay.Database.DataAccess.Withdraw;
+﻿namespace MTKDotNetCore.MiniKpay.Database.DataAccess.Withdraw;
 
 public class DataAccess_Withdraw
 {
