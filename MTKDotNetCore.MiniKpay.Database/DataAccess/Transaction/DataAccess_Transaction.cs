@@ -57,5 +57,17 @@ namespace MTKDotNetCore.MiniKpay.Database.DataAccess.Transaction
 
         #endregion
 
+        #region Create Transaction
+
+        public async Task<int> CreateTransactionAsync(TransactionResponseModel transaction)
+        {
+            string query = @"INSERT INTO Tbl_Transaction 
+                             (FromPhoneNumber, ToPhoneNumber, Amount, Pin, DeleteFlag) 
+                             VALUES (@FromPhoneNumber, @ToPhoneNumber, @Amount, @Pin, 0);";
+            return await _dapperService.ExecuteAsync(query, transaction);
+        }
+
+        #endregion
+
     }
 }
