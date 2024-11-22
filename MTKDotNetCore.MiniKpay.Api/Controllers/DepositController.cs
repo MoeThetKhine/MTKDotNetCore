@@ -1,9 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using MTKDotNetCore.MiniKpay.Database.Models.Deposit;
-using MTKDotNetCore.MiniKpay.Domain.BusinessLogic.Deposit;
-
-namespace MTKDotNetCore.MiniKpay.Api.Controllers
+﻿namespace MTKDotNetCore.MiniKpay.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
