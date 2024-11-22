@@ -25,5 +25,16 @@ namespace MTKDotNetCore.MiniKpay.Domain.BusinessLogic.Transaction
         }
 
         #endregion
+
+        #region Get Transactions by FromPhoneNumber
+
+        public async Task<List<TransactionModel>> GetTransactionByFromPhoneNumberAsync(string fromPhoneNumber)
+        {
+            return await _dA_Transaction.GetTransactionByFromPhoneNumberAsync(fromPhoneNumber);
+        }
+
+        #endregion
+
+
     }
 }
