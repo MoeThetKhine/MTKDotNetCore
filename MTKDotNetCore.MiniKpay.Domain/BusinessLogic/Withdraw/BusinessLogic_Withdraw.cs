@@ -26,5 +26,14 @@ namespace MTKDotNetCore.MiniKpay.Domain.BusinessLogic.Withdraw
 
         #endregion
 
+        #region Get Withdraw By PhoneNumber
+
+        public async Task<List<WithdrawModel>> GetWithdrawByPhoneNumberAsync(string phoneNumber)
+        {
+            return await _dA_Withdraw.GetWithdrawByPhoneNumberAsync(phoneNumber);
+        }
+
+        #endregion
+
     }
 }
