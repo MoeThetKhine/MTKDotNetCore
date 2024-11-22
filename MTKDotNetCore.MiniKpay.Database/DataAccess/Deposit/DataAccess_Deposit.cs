@@ -57,6 +57,16 @@ namespace MTKDotNetCore.MiniKpay.Database.DataAccess.Deposit
         }
 
         #endregion
+
+        #region Create Deposit 
+
+        public async Task<int> CreateDepositAsync(DepositResponseModel deposit)
+        {
+            string query = @"INSERT INTO Tbl_Deposit (PhoneNumber, Balance, DeleteFlag) VALUES (@PhoneNumber, @Balance, 0);";
+            return await _dapperService.ExecuteAsync(query, deposit);
+        }
+
+        #endregion
     }
 }
     
