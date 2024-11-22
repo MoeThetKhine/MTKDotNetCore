@@ -31,5 +31,35 @@ namespace MTKDotNetCore.MiniKpay.Domain.BusinessLogic.Deposit
         }
 
         #endregion
+
+        #region Create Deposit
+
+        public async Task<string> CreateDepositAsync(DepositResponseModel deposit)
+        {
+            var currentUser = await _dA_Deposit.GetUserByPhoneNumberAsync(deposit.PhoneNumber);
+            if (currentUser is null)
+            {
+                return "User with this phone number does not exist.";
+            }
+
+            if (deposit.Balance <= 0)
+            {
+                return "Deposit amount must be greater than 0.";
+            }
+
+            var updatedBalance = currentUser.Balance + deposit.Balance;
+            int updateResult = await _dA_Deposit.UpdateUserBalanceAsync(deposit.PhoneNumber, updatedBalance);
+
+            if (updateResult == 0)
+            {
+                return "Failed to update the user balance.";
+            }
+
+            int insertResult = await _dA_Deposit.CreateDepositAsync(deposit);
+
+            return insertResult > 0 ? "Deposit process completed successfully." : "Deposit process failed.";
+        }
+
+        #endregion
     }
 }
