@@ -29,5 +29,20 @@ namespace MTKDotNetCore.MiniKpay.Api.Controllers
         }
 
         #endregion
+
+        #region Get Transactions by FromPhoneNumber
+
+        [HttpGet("{fromPhoneNumber}")]
+        public async Task<IActionResult> GetTransactionByFromPhoneNumber(string fromPhoneNumber)
+        {
+            var transaction = await _bL_Transaction.GetTransactionByFromPhoneNumberAsync(fromPhoneNumber);
+            if(transaction is null)
+            {
+                return NotFound("No transaction found");
+            }
+            return Ok(transaction);
+        }
+
+        #endregion
     }
 }
