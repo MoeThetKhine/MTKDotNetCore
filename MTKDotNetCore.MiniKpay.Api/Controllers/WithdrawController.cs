@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MTKDotNetCore.MiniKpay.Database.Models.Withdraw;
 using MTKDotNetCore.MiniKpay.Domain.BusinessLogic.Withdraw;
 
 namespace MTKDotNetCore.MiniKpay.Api.Controllers
@@ -45,6 +46,27 @@ namespace MTKDotNetCore.MiniKpay.Api.Controllers
             }
 
             return Ok(withdraws);
+        }
+
+        #endregion
+
+        #region Create Withdraw
+
+        [HttpPost]
+        public async Task<IActionResult> CreateWithdraw([FromBody] WithdrawResponseModel withdraw)
+        {
+            if (withdraw is null)
+            {
+                return BadRequest("Invalid withdrawal request.");
+            }
+
+            var result = await _bL_Withdraw.CreateWithdrawAsync(withdraw);
+
+            if (result is null)
+            {
+                return BadRequest("Withdrawal completed successfully.");
+            }
+            return Ok(result);
         }
 
         #endregion
