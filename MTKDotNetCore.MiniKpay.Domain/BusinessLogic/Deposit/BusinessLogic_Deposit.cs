@@ -21,5 +21,15 @@ namespace MTKDotNetCore.MiniKpay.Domain.BusinessLogic.Deposit
         }
 
         #endregion
+
+        #region Get Deposit By PhoneNumber Async
+
+        public async Task<List<DepositModel>> GetDepositByPhoneNumberAsync(string phoneNumber)
+        {
+            var result = await _dA_Deposit.GetDepositByPhoneNumberAsync(phoneNumber);
+            return result;
+        }
+
+        #endregion
     }
 }
