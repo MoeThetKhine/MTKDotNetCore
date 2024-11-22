@@ -26,5 +26,19 @@ namespace MTKDotNetCore.MiniKpay.Database.DataAccess.Deposit
         }
 
         #endregion
+
+        #region Get Deposit By PhoneNumber Async
+
+        public async Task<List<DepositModel>> GetDepositByPhoneNumberAsync(string phoneNumber)
+        {
+            string query = "SELECT * FROM Tbl_Deposit WHERE PhoneNumber = @PhoneNumber AND DeleteFlag = 0;";
+            var result = await _dapperService.QueryAsync<DepositModel>(query, new { PhoneNumber = phoneNumber });
+            return result.ToList();
+        }
+
+        #endregion
+
+       
     }
 }
+    
