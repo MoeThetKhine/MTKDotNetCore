@@ -31,5 +31,22 @@ namespace MTKDotNetCore.MiniKpay.Api.Controllers
         }
 
         #endregion
+
+        #region Get Withdraw By Phone Number
+
+        [HttpGet("{phoneNumber}")]
+        public async Task<IActionResult> GetWithdrawByPhoneNumber(string phoneNumber)
+        {
+            var withdraws = await _bL_Withdraw.GetWithdrawByPhoneNumberAsync(phoneNumber);
+
+            if (withdraws is null)
+            {
+                return NotFound("No withdrawals found for phone number.");
+            }
+
+            return Ok(withdraws);
+        }
+
+        #endregion
     }
 }
