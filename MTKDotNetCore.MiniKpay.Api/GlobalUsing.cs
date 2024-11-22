@@ -7,3 +7,5 @@ global using MTKDotNetCore.MiniKpay.Database.Models.Withdraw;
 global using MTKDotNetCore.MiniKpay.Domain.BusinessLogic.Withdraw;
 global using MTKDotNetCore.MiniKpay.Database.Models.Deposit;
 global using MTKDotNetCore.MiniKpay.Domain.BusinessLogic.Deposit;
+global using MTKDotNetCore.MiniKpay.Database.Models.Transaction;
+global using MTKDotNetCore.MiniKpay.Domain.BusinessLogic.Transaction;
