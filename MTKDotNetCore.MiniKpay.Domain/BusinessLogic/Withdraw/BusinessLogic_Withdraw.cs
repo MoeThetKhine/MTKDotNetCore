@@ -35,5 +35,39 @@ namespace MTKDotNetCore.MiniKpay.Domain.BusinessLogic.Withdraw
 
         #endregion
 
+        #region Create Withdraw
+
+        public async Task<string> CreateWithdrawAsync(WithdrawResponseModel withdraw)
+        {
+            var currentUser = await _dA_Withdraw.GetUserByPhoneNumberAsync(withdraw.PhoneNumber);
+            if (currentUser is null)
+            {
+                return "User with this phone number does not exist.";
+            }
+
+            if (withdraw.Balance <= 0)
+            {
+                return "Withdrawal amount must be greater than 0.";
+            }
+
+            if (currentUser.Balance < withdraw.Balance)
+            {
+                return "Insufficient balance.";
+            }
+
+            var updatedBalance = currentUser.Balance - withdraw.Balance;
+            var updateResult = await _dA_Withdraw.UpdateUserBalanceAsync(withdraw.PhoneNumber, updatedBalance);
+
+            if (updateResult == 0)
+            {
+                return "Failed to update the user balance.";
+            }
+
+            int result = await _dA_Withdraw.CreateWithdrawAsync(withdraw);
+            return result > 0 ? "Withdrawal completed successfully." : "Withdrawal failed.";
+        }
+
+        #endregion
+
     }
 }
