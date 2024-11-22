@@ -47,5 +47,15 @@ namespace MTKDotNetCore.MiniKpay.Database.DataAccess.Transaction
 
         #endregion
 
+        #region Update User Balance 
+
+        public async Task<int> UpdateUserBalanceAsync(string phoneNumber,decimal updateBalance)
+        {
+            string query = "UPDATE Tbl_User SET Balance = @UpdatedBalance WHERE PhoneNumber = @PhoneNumber AND DeleteFlag = 0;";
+            return await _dapperService.ExecuteAsync(query,new {UpdatedBalance = updateBalance, PhoneNumber = phoneNumber});
+        }
+
+        #endregion
+
     }
 }
