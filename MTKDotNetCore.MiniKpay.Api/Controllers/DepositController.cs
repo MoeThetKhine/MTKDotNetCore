@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MTKDotNetCore.MiniKpay.Database.Models.Deposit;
 using MTKDotNetCore.MiniKpay.Domain.BusinessLogic.Deposit;
 
 namespace MTKDotNetCore.MiniKpay.Api.Controllers
@@ -43,6 +44,27 @@ namespace MTKDotNetCore.MiniKpay.Api.Controllers
             }
 
             return Ok(deposits);
+        }
+
+        #endregion
+
+        #region Create Deposit
+
+        [HttpPost]
+        public async Task<IActionResult> CreateDeposit([FromBody] DepositResponseModel deposit)
+        {
+            if (deposit is null)
+            {
+                return BadRequest("Invalid deposit request.");
+            }
+
+            var result = await _bL_Deposit.CreateDepositAsync(deposit);
+            
+            if(result is null)
+            {
+                return BadRequest("Deposit Failed");
+            }
+            return Ok("Deposit process completed successfully");
         }
 
         #endregion
