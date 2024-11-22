@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MTKDotNetCore.MiniKpay.Database.Models.Transaction;
 using MTKDotNetCore.MiniKpay.Domain.BusinessLogic.Transaction;
 
 namespace MTKDotNetCore.MiniKpay.Api.Controllers
@@ -41,6 +42,26 @@ namespace MTKDotNetCore.MiniKpay.Api.Controllers
                 return NotFound("No transaction found");
             }
             return Ok(transaction);
+        }
+
+        #endregion
+
+        #region Create Transaction
+
+        [HttpPost]
+        public async Task<IActionResult> CreateTransactionAsync([FromBody] TransactionResponseModel transaction)
+        {
+            if(transaction is null)
+            {
+                return BadRequest("Invalid transaction request.");
+            }
+            var result = await _bL_Transaction.CreateTransactionAsync(transaction);
+
+            if(result is null)
+            {
+                return BadRequest("Transaction Failed");
+            }
+            return Ok("Transaction completed successfully");
         }
 
         #endregion
