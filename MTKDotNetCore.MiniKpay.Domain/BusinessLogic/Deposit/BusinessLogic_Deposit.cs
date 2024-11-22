@@ -1,5 +1,4 @@
-﻿using MTKDotNetCore.MiniKpay.Database.DataAccess.Deposit;
-using MTKDotNetCore.MiniKpay.Database.Models.Deposit;
+﻿
 
 namespace MTKDotNetCore.MiniKpay.Domain.BusinessLogic.Deposit
 {
