@@ -1,10 +1,4 @@
-﻿using MTKDotNetCore.MiniKpay.Database.Models.Deposit;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace MTKDotNetCore.MiniKpay.Database.DataAccess.Deposit
 {
     public class DataAccess_Deposit
