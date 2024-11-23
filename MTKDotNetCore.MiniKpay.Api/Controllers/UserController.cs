@@ -2,7 +2,7 @@
 
 [Route("api/[controller]")]
 [ApiController]
-public class UserController : ControllerBase
+public class UserController : BaseController
 {
     private readonly BusinessLogic_User _bL_User;
 

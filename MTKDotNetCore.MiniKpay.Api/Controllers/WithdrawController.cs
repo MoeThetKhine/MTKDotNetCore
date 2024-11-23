@@ -2,7 +2,7 @@
 
 [Route("api/[controller]")]
 [ApiController]
-public class WithdrawController : ControllerBase
+public class WithdrawController : BaseController
 {
     private readonly BusinessLogic_Withdraw _bL_Withdraw;
 

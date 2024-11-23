@@ -2,7 +2,7 @@
 
 [Route("api/[controller]")]
 [ApiController]
-public class TransactionController : ControllerBase
+public class TransactionController : BaseController
 {
     private readonly BusinessLogic_Transaction _bL_Transaction;
 

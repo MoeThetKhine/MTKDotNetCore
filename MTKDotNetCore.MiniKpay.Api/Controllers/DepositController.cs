@@ -2,7 +2,7 @@
 
 [Route("api/[controller]")]
 [ApiController]
-public class DepositController : ControllerBase
+public class DepositController : BaseController
 {
     private readonly BusinessLogic_Deposit _bL_Deposit;
 
