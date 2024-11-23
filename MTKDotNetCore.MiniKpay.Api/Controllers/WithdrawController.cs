@@ -16,14 +16,12 @@ public class WithdrawController : BaseController
     [HttpGet]
     public async Task<IActionResult> GetWithdrawList()
     {
-        var withdrawList = await _bL_Withdraw.GetWithdrawListAsync();
+        var result = await _bL_Withdraw.GetWithdrawListAsync();
 
-        if (withdrawList is null)
-        {
-            return NotFound("No withdrawal records found.");
-        }
+        if (result.IsError)
+            return StatusCode((int)result.Type, result.Message);
 
-        return Ok(withdrawList);
+        return Ok(result.Data);
     }
 
     #endregion
@@ -33,14 +31,12 @@ public class WithdrawController : BaseController
     [HttpGet("{phoneNumber}")]
     public async Task<IActionResult> GetWithdrawByPhoneNumber(string phoneNumber)
     {
-        var withdraws = await _bL_Withdraw.GetWithdrawByPhoneNumberAsync(phoneNumber);
+        var result = await _bL_Withdraw.GetWithdrawByPhoneNumberAsync(phoneNumber);
 
-        if (withdraws is null)
-        {
-            return NotFound("No withdrawals found for phone number.");
-        }
+        if (result.IsError)
+            return StatusCode((int)result.Type, result.Message);
 
-        return Ok(withdraws);
+        return Ok(result.Data);
     }
 
     #endregion
@@ -51,17 +47,14 @@ public class WithdrawController : BaseController
     public async Task<IActionResult> CreateWithdraw([FromBody] WithdrawResponseModel withdraw)
     {
         if (withdraw is null)
-        {
             return BadRequest("Invalid withdrawal request.");
-        }
 
         var result = await _bL_Withdraw.CreateWithdrawAsync(withdraw);
 
-        if (result is null)
-        {
-            return BadRequest("Withdrawal completed successfully.");
-        }
-        return Ok(result);
+        if (result.IsError)
+            return StatusCode((int)result.Type, result.Message);
+
+        return Ok(result.Message);
     }
 
     #endregion
