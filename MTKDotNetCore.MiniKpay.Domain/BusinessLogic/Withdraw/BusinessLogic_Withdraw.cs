@@ -1,10 +1,5 @@
 ﻿using MTKDotNetCore.MiniKpay.Database.DataAccess.Withdraw;
 using MTKDotNetCore.MiniKpay.Database.Models.Withdraw;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MTKDotNetCore.MiniKpay.Domain.BusinessLogic.Withdraw
 {
@@ -19,40 +14,55 @@ namespace MTKDotNetCore.MiniKpay.Domain.BusinessLogic.Withdraw
 
         #region Get Withdraw List
 
-        public async Task<List<WithdrawModel>> GetWithdrawListAsync()
+        public async Task<Result<List<WithdrawModel>>> GetWithdrawListAsync()
         {
-            return await _dA_Withdraw.GetWithdrawListAsync();
+            var withdraws = await _dA_Withdraw.GetWithdrawListAsync();
+
+            if (withdraws is null)
+            {
+                return Result<List<WithdrawModel>>.ValidationError("No withdrawals found.");
+            }
+
+            return Result<List<WithdrawModel>>.Success(withdraws, "Withdrawal list retrieved successfully.");
         }
 
         #endregion
 
         #region Get Withdraw By PhoneNumber
 
-        public async Task<List<WithdrawModel>> GetWithdrawByPhoneNumberAsync(string phoneNumber)
+        public async Task<Result<List<WithdrawModel>>> GetWithdrawByPhoneNumberAsync(string phoneNumber)
         {
-            return await _dA_Withdraw.GetWithdrawByPhoneNumberAsync(phoneNumber);
+            var withdraws = await _dA_Withdraw.GetWithdrawByPhoneNumberAsync(phoneNumber);
+
+            if (withdraws is null)
+            {
+                return Result<List<WithdrawModel>>.ValidationError($"No withdrawals found for phone number {phoneNumber}.");
+            }
+
+            return Result<List<WithdrawModel>>.Success(withdraws, "Withdrawals retrieved successfully.");
         }
 
         #endregion
 
         #region Create Withdraw
 
-        public async Task<string> CreateWithdrawAsync(WithdrawResponseModel withdraw)
+        public async Task<Result<string>> CreateWithdrawAsync(WithdrawResponseModel withdraw)
         {
             var currentUser = await _dA_Withdraw.GetUserByPhoneNumberAsync(withdraw.PhoneNumber);
+
             if (currentUser is null)
             {
-                return "User with this phone number does not exist.";
+                return Result<string>.ValidationError("User with this phone number does not exist.");
             }
 
             if (withdraw.Balance <= 0)
             {
-                return "Withdrawal amount must be greater than 0.";
+                return Result<string>.ValidationError("Withdrawal amount must be greater than 0.");
             }
 
             if (currentUser.Balance < withdraw.Balance)
             {
-                return "Insufficient balance.";
+                return Result<string>.ValidationError("Insufficient balance.");
             }
 
             var updatedBalance = currentUser.Balance - withdraw.Balance;
@@ -60,11 +70,14 @@ namespace MTKDotNetCore.MiniKpay.Domain.BusinessLogic.Withdraw
 
             if (updateResult == 0)
             {
-                return "Failed to update the user balance.";
+                return Result<string>.SystemError(null, "Failed to update the user balance.");
             }
 
             int result = await _dA_Withdraw.CreateWithdrawAsync(withdraw);
-            return result > 0 ? "Withdrawal completed successfully." : "Withdrawal failed.";
+
+            return result > 0
+                ? Result<string>.Success("Withdrawal completed successfully.")
+                : Result<string>.SystemError(null, "Withdrawal failed.");
         }
 
         #endregion
