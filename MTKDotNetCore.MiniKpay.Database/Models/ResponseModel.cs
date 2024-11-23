@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace MTKDotNetCore.MiniKpay.Database.Models;
 
-namespace MTKDotNetCore.MiniKpay.Database.Models
+public class ResponseModel
 {
-    public class ResponseModel
-    {
-        public BaseResponseModel Response { get; set; }
-    }
+    public BaseResponseModel Response { get; set; }
 }
