@@ -1,6 +1,4 @@
-﻿using MTKDotNetCore.MiniKpay.Database.Models;
-
-namespace MTKDotNetCore.MiniKpay.Domain;
+﻿namespace MTKDotNetCore.MiniKpay.Domain;
 
 public class Result<T>
 {
