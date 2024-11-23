@@ -1,63 +1,71 @@
-﻿namespace MTKDotNetCore.MiniKpay.Api.Controllers;
-
-[Route("api/[controller]")]
-[ApiController]
-public class TransactionController : BaseController
+﻿namespace MTKDotNetCore.MiniKpay.Api.Controllers
 {
-    private readonly BusinessLogic_Transaction _bL_Transaction;
-
-    public TransactionController(BusinessLogic_Transaction businessLogicTransaction)
+    [Route("api/[controller]")]
+    [ApiController]
+    public class TransactionController : BaseController
     {
-        _bL_Transaction = businessLogicTransaction;
-    }
+        private readonly BusinessLogic_Transaction _bL_Transaction;
 
-    #region GetTransactions
-
-    [HttpGet]
-    public async Task<IActionResult> GetTransactions()
-    {
-        var transaction = await _bL_Transaction.GetTransactionAsync();
-        if(transaction is null)
+        public TransactionController(BusinessLogic_Transaction businessLogic_Transaction)
         {
-            return NotFound("No transaction found");
+            _bL_Transaction = businessLogic_Transaction;
         }
-        return Ok(transaction);
-    }
 
-    #endregion
+        #region Get Transaction List
 
-    #region Get Transactions by FromPhoneNumber
-
-    [HttpGet("{fromPhoneNumber}")]
-    public async Task<IActionResult> GetTransactionByFromPhoneNumber(string fromPhoneNumber)
-    {
-        var transaction = await _bL_Transaction.GetTransactionByFromPhoneNumberAsync(fromPhoneNumber);
-        if(transaction is null)
+        [HttpGet]
+        public async Task<IActionResult> GetTransactionList()
         {
-            return NotFound("No transaction found");
+            var result = await _bL_Transaction.GetTransactionAsync();
+            if (result.IsError)
+            {
+                if (result.Type == EnumRespType.SystemError)
+                {
+                    return StatusCode(500, result.Message); 
+                }
+                return BadRequest(result.Message); 
+            }
+            return Ok(result.Data);
         }
-        return Ok(transaction);
-    }
 
-    #endregion
+        #endregion
 
-    #region Create Transaction
+        #region Get Transactions by Phone Number
 
-    [HttpPost]
-    public async Task<IActionResult> CreateTransactionAsync([FromBody] TransactionResponseModel transaction)
-    {
-        if(transaction is null)
+        [HttpGet("{fromPhoneNumber}")]
+        public async Task<IActionResult> GetTransactionByFromPhoneNumber(string fromPhoneNumber)
         {
-            return BadRequest("Invalid transaction request.");
+            var result = await _bL_Transaction.GetTransactionByFromPhoneNumberAsync(fromPhoneNumber);
+            if (result.IsError)
+            {
+                if (result.Type == EnumRespType.SystemError)
+                {
+                    return StatusCode(500, result.Message); 
+                }
+                return BadRequest(result.Message); 
+            }
+            return Ok(result.Data);
         }
-        var result = await _bL_Transaction.CreateTransactionAsync(transaction);
 
-        if(result is null)
+        #endregion
+
+        #region Create Transaction
+
+        [HttpPost]
+        public async Task<IActionResult> CreateTransaction([FromBody] TransactionResponseModel transaction)
         {
-            return BadRequest("Transaction Failed");
+            var result = await _bL_Transaction.CreateTransactionAsync(transaction);
+            if (result.IsError)
+            {
+                if (result.Type == EnumRespType.SystemError)
+                {
+                    return StatusCode(500, result.Message); 
+                }
+                return BadRequest(result.Message); 
+            }
+            return Ok(result.Message);
         }
-        return Ok("Transaction completed successfully");
-    }
 
-    #endregion
+        #endregion
+    }
 }
