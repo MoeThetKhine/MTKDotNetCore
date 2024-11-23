@@ -11,17 +11,21 @@ public class UserController : BaseController
         _bL_User = businessLogic_User;
     }
 
-    #region GetUserList
+    #region Get User List
 
     [HttpGet]
     public async Task<IActionResult> GetUserListAsync()
     {
-        var users = await _bL_User.GetUserListAsync();
-        if (users is null)
+        var result = await _bL_User.GetUserListAsync();
+
+        if (result.IsError)
         {
-            return NotFound("No users found.");
+            return result.Type == EnumRespType.ValidationError
+                ? BadRequest(result.Message)
+                : StatusCode(500, result.Message);
         }
-        return Ok(users);
+
+        return Ok(result.Data);
     }
 
     #endregion
@@ -31,42 +35,54 @@ public class UserController : BaseController
     [HttpGet("{userId}")]
     public async Task<IActionResult> GetUser(int userId)
     {
-        var user = await _bL_User.GetUserByUserIdAsync(userId);
-        if (user is null)
+        var result = await _bL_User.GetUserByUserIdAsync(userId);
+
+        if (result.IsError)
         {
-            return NotFound("User not found.");
+            return result.Type == EnumRespType.ValidationError
+                ? NotFound(result.Message)
+                : StatusCode(500, result.Message);
         }
-        return Ok(user);
+
+        return Ok(result.Data);
     }
 
     #endregion
 
-    #region CreateUser
+    #region Create User
 
     [HttpPost]
     public async Task<IActionResult> CreateUser(UserResponseModel responseModel)
     {
         var result = await _bL_User.CreateUserAsync(responseModel);
-        if (result is null)
+
+        if (result.IsError)
         {
-            return BadRequest("Registration failed.");
+            return result.Type == EnumRespType.ValidationError
+                ? BadRequest(result.Message)
+                : StatusCode(500, result.Message);
         }
-        return Ok("Registration successful.");
+
+        return Ok(result.Message);
     }
 
     #endregion
 
-    #region UpdateUser
+    #region Update User
 
     [HttpPut("{userId}")]
     public async Task<IActionResult> UpdateUser(int userId, UserRequestModel user)
     {
         var result = await _bL_User.UpdateUserAsync(userId, user);
-        if (result is null)
+
+        if (result.IsError)
         {
-            return BadRequest("Updating failed.");
+            return result.Type == EnumRespType.ValidationError
+                ? BadRequest(result.Message)
+                : StatusCode(500, result.Message);
         }
-        return Ok("Updating successful.");
+
+        return Ok(result.Message);
     }
 
     #endregion
@@ -77,11 +93,15 @@ public class UserController : BaseController
     public async Task<IActionResult> DeleteUser(int userId)
     {
         var result = await _bL_User.DeleteUserAsync(userId);
-        if (result is null)
+
+        if (result.IsError)
         {
-            return BadRequest("Deleting failed.");
+            return result.Type == EnumRespType.ValidationError
+                ? BadRequest(result.Message)
+                : StatusCode(500, result.Message);
         }
-        return Ok("Deleting successful.");
+
+        return Ok(result.Message);
     }
 
     #endregion
