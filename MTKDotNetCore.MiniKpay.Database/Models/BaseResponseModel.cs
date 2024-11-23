@@ -38,7 +38,20 @@
 
         #endregion
 
-        
+        #region SystemError
+
+        public static BaseResponseModel SystemError(string respCode, string respDesp)
+        {
+            return new BaseResponseModel
+            {
+                IsSuccess = false,
+                RespCode = respCode,
+                RespDesp = respDesp,
+                RespType = EnumRespType.ValidationError,
+            };
+        }
+
+        #endregion
 
     }
 
