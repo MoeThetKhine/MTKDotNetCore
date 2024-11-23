@@ -8,6 +8,21 @@
         public bool IsSuccess { get; set; }
         public bool IsError { get { return !IsSuccess; } }
 
+        #region Success
+
+        public static BaseResponseModel Success(string respCode,string respDesp)
+        {
+            return new BaseResponseModel
+            {
+                IsSuccess = true,
+                RespCode = respCode,
+                RespDesp = respDesp,
+                RespType = EnumRespType.Success,
+            };
+        }
+
+        #endregion
+
     }
 
     #region EnumRespType
