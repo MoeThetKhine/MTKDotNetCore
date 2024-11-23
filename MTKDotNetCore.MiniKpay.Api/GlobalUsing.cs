@@ -9,3 +9,6 @@ global using MTKDotNetCore.MiniKpay.Database.Models.Deposit;
 global using MTKDotNetCore.MiniKpay.Domain.BusinessLogic.Deposit;
 global using MTKDotNetCore.MiniKpay.Database.Models.Transaction;
 global using MTKDotNetCore.MiniKpay.Domain.BusinessLogic.Transaction;
+global using MTKDotNetCore.MiniKpay.Database.Models;
+global using Newtonsoft.Json;
+global using Newtonsoft.Json.Linq;
