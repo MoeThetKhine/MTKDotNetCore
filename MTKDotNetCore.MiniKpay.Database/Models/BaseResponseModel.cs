@@ -23,6 +23,23 @@
 
         #endregion
 
+        #region ValidationError
+
+        public static BaseResponseModel ValidationError(string respCode, string respDesp)
+        {
+            return new BaseResponseModel
+            {
+                IsSuccess = false,
+                RespCode = respCode,
+                RespDesp = respDesp,
+                RespType = EnumRespType.ValidationError,
+            };
+        }
+
+        #endregion
+
+        
+
     }
 
     #region EnumRespType
