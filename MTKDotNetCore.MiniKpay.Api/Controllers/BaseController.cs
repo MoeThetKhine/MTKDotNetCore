@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MTKDotNetCore.MiniKpay.Database.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -14,8 +15,17 @@ namespace MTKDotNetCore.MiniKpay.Api.Controllers
             JObject jObj = JObject.Parse(JsonConvert.SerializeObject(model));
             if(jObj.ContainsKey("Response"))
             {
-                BaseResponseModel baseResponseModel = JsonConvert.DeserializeObject<BaseResponseModel>
+                BaseResponseModel baseResponseModel = JsonConvert.DeserializeObject<BaseResponseModel>(jObj["Response"]!.ToString())!;
+
+                if (baseResponseModel.RespType == EnumRespType.ValidationError)
+                    return BadRequest(model);
+
+                if(baseResponseModel.RespType == EnumRespType.SystemError)
+                    return BadRequest(model);
+
+                return Ok(model);
             }
+            return StatusCode(500, "Invalid Response Model.Please add BaseResponseModel to your ResponseModel.");
         }
     }
 }
