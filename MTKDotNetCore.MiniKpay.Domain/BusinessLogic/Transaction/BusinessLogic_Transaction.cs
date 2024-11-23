@@ -17,7 +17,7 @@
             {
                 var transactions = await _dA_Transaction.GetTransactionListAsync();
 
-                if (transactions == null || transactions.Count == 0)
+                if (transactions is null)
                 {
                     return Result<List<TransactionModel>>.ValidationError("No transactions found.");
                 }
@@ -40,7 +40,7 @@
             {
                 var transactions = await _dA_Transaction.GetTransactionByFromPhoneNumberAsync(fromPhoneNumber);
 
-                if (transactions == null || transactions.Count == 0)
+                if (transactions is null)
                 {
                     return Result<List<TransactionModel>>.ValidationError("No transactions found for this phone number.");
                 }
@@ -82,7 +82,7 @@
             }
 
             var receiver = await _dA_Transaction.GetUserByPhoneNumberAsync(transaction.ToPhoneNumber);
-            if (receiver == null)
+            if (receiver is null)
             {
                 return Result<string>.ValidationError("Receiver phone number does not exist.");
             }
