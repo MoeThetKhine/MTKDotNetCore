@@ -26,5 +26,20 @@ namespace MTKDotNetCore.ConsoleApp3
         }
 
         #endregion
+
+        #region Read
+
+        public async Task Read()
+        {
+            var response = await _client.GetAsync(_postEndpoint);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string jsonStr = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(jsonStr);
+            }
+        }
+
+        #endregion 
     }
 }
