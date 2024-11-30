@@ -62,5 +62,27 @@ namespace MTKDotNetCore.ConsoleApp3
         }
 
         #endregion
+
+        #region Create
+
+        public async Task Create(string title, string body, int userId)
+        {
+            PostModel requestModel = new PostModel()
+            {
+                body = body,
+                title = title,
+                userId = userId
+            };
+
+            var jsonRequest = JsonConvert.SerializeObject(requestModel);
+            var content = new StringContent(jsonRequest, Encoding.UTF8, Application.Json);
+            var response = await _client.PostAsync(_postEndpoint, content);
+            if (response.IsSuccessStatusCode)
+            {
+                Console.WriteLine(await response.Content.ReadAsStringAsync());
+            }
+        }
+
+        #endregion
     }
 }
