@@ -107,5 +107,26 @@ namespace MTKDotNetCore.ConsoleApp3
         }
 
         #endregion
+
+        #region Delete
+
+        public async Task Delete(int id)
+        {
+            var response = await _client.DeleteAsync($"{_postEndpoint}/{id}");
+            if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                Console.WriteLine("No data found.");
+                return;
+            }
+
+            if (response.IsSuccessStatusCode)
+            {
+                string jsonStr = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(jsonStr);
+            }
+        }
+
+        #endregion  
+
     }
 }
