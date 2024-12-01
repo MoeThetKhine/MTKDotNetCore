@@ -12,7 +12,22 @@ namespace MTKDotNetCore.ConsoleApp3
             _client = client;
         }
 
-       
+        #region Read
+
+        public async Task Read()
+        {
+            RestRequest request = new RestRequest(_postEndpoint,Method.Get);
+            var response = await _client.ExecuteAsync(request);
+
+            if(response.IsSuccessStatusCode)
+            {
+                string jsonStr = response.Content!;
+                Console.WriteLine(jsonStr);
+            }
+        }
+
+        #endregion
+
 
     }
 
