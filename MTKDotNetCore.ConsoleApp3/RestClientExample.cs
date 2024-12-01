@@ -72,6 +72,27 @@ namespace MTKDotNetCore.ConsoleApp3
 
         #endregion
 
+        #region Update
+
+        public async Task Update(int id, string title, string body,int userId)
+        {
+            PostModel resquestModel = new PostModel
+            {
+                body = body,
+                title = title,
+                userId = userId
+            };
+            RestRequest request = new RestRequest(_postEndpoint,Method.Patch);
+            request.AddJsonBody(resquestModel);
+            var response = await _client.ExecuteAsync(request);
+            if (response.IsSuccessStatusCode)
+            {
+                Console.WriteLine(response.Content!);
+            }
+        }
+
+        #endregion
+
        
 
     }
