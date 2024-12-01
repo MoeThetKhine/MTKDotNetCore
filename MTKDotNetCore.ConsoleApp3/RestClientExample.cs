@@ -28,6 +28,29 @@ namespace MTKDotNetCore.ConsoleApp3
 
         #endregion
 
+        #region Edit
+
+        public async Task Edit(int id)
+        {
+            RestRequest request = new RestRequest($"{_postEndpoint}/{id}", Method.Get);
+            var response = await _client.ExecuteAsync(request);
+            
+            if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                Console.WriteLine("No data found.");
+                return;
+            }
+
+            if (response.IsSuccessStatusCode)
+            {
+                string jsonStr = response.Content!;
+                Console.WriteLine(jsonStr);
+            }
+        }
+
+        #endregion
+
+      
 
     }
 
