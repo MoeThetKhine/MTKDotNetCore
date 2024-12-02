@@ -1,6 +1,4 @@
-﻿using Refit;
-
-namespace MTKDotNetCore.ConsoleApp3
+﻿namespace MTKDotNetCore.ConsoleApp3
 {
     public interface IBlogApi
     {

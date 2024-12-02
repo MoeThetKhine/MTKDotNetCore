@@ -2,3 +2,4 @@
 global using System.Text;
 global using static System.Net.Mime.MediaTypeNames;
 global using RestSharp;
+global using Refit;
