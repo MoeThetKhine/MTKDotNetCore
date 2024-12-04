@@ -36,5 +36,27 @@
         }
 
         #endregion
+
+        #region EditAsync
+
+        public async Task EditAsync(int id)
+        {
+            var response = await _client.GetAsync($"{_postEndpoint}/{id}");
+
+            if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                Console.WriteLine("No Data Found");
+                return;
+            }
+
+            if (response.IsSuccessStatusCode)
+            {
+                string jsonStr = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(jsonStr);
+            }
+        }
+
+        #endregion
+
     }
 }

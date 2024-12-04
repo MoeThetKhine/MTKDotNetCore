@@ -4,4 +4,7 @@ using MTKDotNetCore.ConsoleApp3;
 Console.WriteLine("Hello, World!");
 
 HttpClientExample client = new HttpClientExample();
-await client.ReadAsync();
+//await client.ReadAsync();
+await client.EditAsync(2);
+await client.EditAsync(200);
+
