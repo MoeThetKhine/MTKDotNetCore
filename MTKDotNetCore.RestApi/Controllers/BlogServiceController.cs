@@ -6,7 +6,7 @@ public class BlogServiceController : ControllerBase
 {
     private readonly IBlogService _service;
 
-    public BlogServiceController(BlogService service)
+    public BlogServiceController(IBlogService service)
     {
         _service = service;
     }
