@@ -1,4 +1,6 @@
-﻿namespace MTKDotNetCore.MinimalApi.Endpoints.Blog;
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace MTKDotNetCore.MinimalApi.Endpoints.Blog;
 
 public static class BlogEndpoint
 {
@@ -7,9 +9,8 @@ public static class BlogEndpoint
 
         #region GetBlog 
 
-        app.MapGet("/blogs", () =>
+        app.MapGet("/blogs", ([FromServices]AppDbContext db) =>
         {
-            AppDbContext db = new AppDbContext();
             var model = db.TblBlogs.AsNoTracking().ToList();
             return Results.Ok(model);
 
@@ -20,9 +21,8 @@ public static class BlogEndpoint
 
         #region CreateBlog
 
-        app.MapPost("/blogs", (TblBlog blog) =>
+        app.MapPost("/blogs", ([FromServices] AppDbContext db, TblBlog blog) =>
         {
-            AppDbContext db = new AppDbContext();
             db.TblBlogs.Add(blog);
             db.SaveChanges();
             return Results.Ok(blog);
@@ -34,9 +34,8 @@ public static class BlogEndpoint
 
         #region UpdateBlog
 
-        app.MapPut("/blogs/{id}", (int id ,TblBlog blog) =>
+        app.MapPut("/blogs/{id}", ([FromServices] AppDbContext db, int id ,TblBlog blog) =>
         {
-            AppDbContext db = new AppDbContext();
            var item = db.TblBlogs.AsNoTracking()
                                  .FirstOrDefault(x => x.BlogId == id);
 
@@ -60,9 +59,8 @@ public static class BlogEndpoint
 
         #region DeleteBlog
 
-        app.MapDelete("/blogs/{id}", (int id) =>
+        app.MapDelete("/blogs/{id}", ([FromServices] AppDbContext db, int id) =>
         {
-            AppDbContext db = new AppDbContext();
             var item = db.TblBlogs.AsNoTracking()
                                   .FirstOrDefault(x => x.BlogId == id);
 
@@ -79,9 +77,8 @@ public static class BlogEndpoint
 
         #region EditBlog 
 
-        app.MapGet("/blogs/{id}", (int id) =>
+        app.MapGet("/blogs/{id}", ([FromServices]AppDbContext db, int id) =>
         {
-            AppDbContext db = new AppDbContext();
             var item = db.TblBlogs
                 .AsNoTracking()
                 .FirstOrDefault(x => x.BlogId == id);
@@ -99,9 +96,8 @@ public static class BlogEndpoint
 
         #region PatchBlog
 
-        app.MapPatch("/blogs/{id}", (int id, TblBlog blog) =>
+        app.MapPatch("/blogs/{id}", ([FromServices] AppDbContext db, int id, TblBlog blog) =>
         {
-            AppDbContext db = new AppDbContext();
             var item = db.TblBlogs.AsNoTracking()
                                   .FirstOrDefault(x => x.BlogId == id);
             if(item is null)
