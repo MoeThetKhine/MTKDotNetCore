@@ -1,5 +1,4 @@
-﻿
-Console.WriteLine("Hello, World!");
+﻿Console.WriteLine("Hello, World!");
 
 HttpClientExample client = new HttpClientExample();
 //await client.ReadAsync();
