@@ -8,3 +8,7 @@
 //await client.UpdateAsync(1, "ddd", "ddd", 1);
 //await client.DeleteAsync(2);
 
+RestClientExample client = new RestClientExample();
+await client.ReadAsync();
+
+
