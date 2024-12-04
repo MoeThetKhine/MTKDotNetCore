@@ -8,11 +8,19 @@
 //await client.UpdateAsync(1, "ddd", "ddd", 1);
 //await client.DeleteAsync(2);
 
-RestClientExample client = new RestClientExample();
+//RestClientExample client = new RestClientExample();
 //await client.ReadAsync();
 //await client.EditAsync(1);
 //await client.EditAsync(200);
 //await client.CreateAsync("test title", "test body", 3);
 //await client.UpdateAsync(1, "ddd", "ddd", 1);
+
+Console.WriteLine("Waiting for api..");
+Console.ReadLine();
+
+RefitExample client = new RefitExample();
+await client.Run();
+
+Console.ReadLine();
 
 
