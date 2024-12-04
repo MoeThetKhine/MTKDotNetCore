@@ -12,7 +12,7 @@ namespace MTKDotNetCore.ConsoleApp3
             _client = new RestClient();
         }
 
-        #region ReadAync
+        #region Read Async
 
         public async Task ReadAsync()
         {
@@ -28,7 +28,7 @@ namespace MTKDotNetCore.ConsoleApp3
 
         #endregion
 
-        #region EditAsync
+        #region Edit Async
 
         public async Task EditAsync(int id)
         {
@@ -48,6 +48,8 @@ namespace MTKDotNetCore.ConsoleApp3
         }
 
         #endregion
+
+
 
 
     }
