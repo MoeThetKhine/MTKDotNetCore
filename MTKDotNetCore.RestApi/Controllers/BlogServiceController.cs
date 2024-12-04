@@ -4,7 +4,7 @@
 [ApiController]
 public class BlogServiceController : ControllerBase
 {
-    private readonly BlogService _service;
+    private readonly IBlogService _service;
 
     public BlogServiceController(BlogService service)
     {
