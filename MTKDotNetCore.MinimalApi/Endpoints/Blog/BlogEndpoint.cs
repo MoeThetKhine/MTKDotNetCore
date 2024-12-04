@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace MTKDotNetCore.MinimalApi.Endpoints.Blog;
+﻿namespace MTKDotNetCore.MinimalApi.Endpoints.Blog;
 
 public static class BlogEndpoint
 {
