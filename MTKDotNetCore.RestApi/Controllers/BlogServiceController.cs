@@ -11,8 +11,6 @@ public class BlogServiceController : ControllerBase
         _service = service;
     }
 
-
-
     #region GetBlogs
 
     [HttpGet]
