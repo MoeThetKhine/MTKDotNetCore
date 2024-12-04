@@ -6,8 +6,9 @@ public interface IBlogApi
     Task<List<BlogModel>> GetBlogs();
 
     [Get("/api/blogs/{id}")]
-    Task<List<BlogModel>> GetBlog();
+    Task<List<BlogModel>> GetBlog(int id);
 
     [Get("/api/blogs")]
     Task<BlogModel> CreateBlog(BlogModel blog);
+    
 }
