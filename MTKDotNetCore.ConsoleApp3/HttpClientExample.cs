@@ -5,9 +5,9 @@
         private readonly HttpClient _client;
         private readonly string _postEndpoint = "https://jsonplaceholder.typicode.com/posts";
 
-        public HttpClientExample(HttpClient client)
+        public HttpClientExample()
         {
-            _client = client;
+            _client = new HttpClient();
         }
 
         #region PostModel
@@ -19,6 +19,20 @@
             public string title { get; set; }
             public string body { get; set; }
 
+        }
+
+        #endregion
+
+        #region ReadAsync
+
+        public async Task ReadAsync()
+        {
+            var response = await _client.GetAsync(_postEndpoint);
+            if(response.IsSuccessStatusCode)
+            {
+                string jsonStr = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(jsonStr);
+            }
         }
 
         #endregion
