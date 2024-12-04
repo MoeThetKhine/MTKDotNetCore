@@ -12,6 +12,7 @@ RestClientExample client = new RestClientExample();
 //await client.ReadAsync();
 //await client.EditAsync(1);
 //await client.EditAsync(200);
-await client.CreateAsync("test title", "test body", 3);
+//await client.CreateAsync("test title", "test body", 3);
+//await client.UpdateAsync(1, "ddd", "ddd", 1);
 
 
