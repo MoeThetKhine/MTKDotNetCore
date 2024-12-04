@@ -85,5 +85,28 @@ namespace MTKDotNetCore.ConsoleApp3
 
         #endregion
 
+        #region UpdateAsync
+
+        public async Task UpdateAsync(int id, string title,string body, int userId)
+        {
+            PostModel requestModel = new PostModel()
+            {
+                id = id,
+                body = body,
+                title = title,
+                userId = userId
+            };
+            var jsonRequest = JsonConvert.SerializeObject(requestModel);
+            var content = new StringContent(jsonRequest,Encoding.UTF8,Application.Json);
+            var response = await _client.PatchAsync($"{_postEndpoint}/{id}", content);
+            if (response.IsSuccessStatusCode)
+            { 
+                var result = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(result);  
+            }
+        }
+
+        #endregion
+
     }
 }
