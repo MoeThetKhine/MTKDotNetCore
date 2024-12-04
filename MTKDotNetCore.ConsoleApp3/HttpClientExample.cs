@@ -1,4 +1,8 @@
-﻿namespace MTKDotNetCore.ConsoleApp3
+﻿using Newtonsoft.Json;
+using System.Text;
+using static System.Net.Mime.MediaTypeNames;
+
+namespace MTKDotNetCore.ConsoleApp3
 {
     public class HttpClientExample
     {
@@ -53,6 +57,29 @@
             {
                 string jsonStr = await response.Content.ReadAsStringAsync();
                 Console.WriteLine(jsonStr);
+            }
+        }
+
+        #endregion
+
+        #region CreateAsync
+
+        public async Task CreateAsync(string title,  string body, int userId)
+        {
+            PostModel requestModel = new PostModel()
+            {
+                body = body,
+                title = title,
+                userId = userId
+            };
+
+            var jsonRequest = JsonConvert.SerializeObject(requestModel);
+            var content = new StringContent(jsonRequest, Encoding.UTF8,Application.Json);
+            var response = await _client.PostAsync(_postEndpoint, content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                Console.WriteLine(await response.Content.ReadAsStringAsync());  
             }
         }
 
