@@ -3,10 +3,12 @@
 public class BlogV2Service : IBlogService
 {
     private readonly AppDbContext _db;
+    private readonly BlogService _blogService;
 
-    public BlogV2Service(AppDbContext db)
+    public BlogV2Service(AppDbContext db, BlogService blogService)
     {
         _db = db;
+        _blogService = blogService;
     }
 
     #region GetBlog
