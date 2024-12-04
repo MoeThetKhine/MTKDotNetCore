@@ -1,6 +1,6 @@
 ﻿namespace MTKDotNetCore.Domain.Features.Blog;
 
-public class BlogService 
+public class BlogService : IBlogService
 {
     private readonly AppDbContext _db;
 
