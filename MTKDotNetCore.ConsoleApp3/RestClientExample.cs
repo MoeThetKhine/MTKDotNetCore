@@ -10,19 +10,6 @@ public class RestClientExample
         _client = new RestClient();
     }
 
-    #region PostModel
-
-    public class PostModel
-    {
-        public int userId { get; set; }
-        public int id { get; set; }
-        public string title { get; set; }
-        public string body { get; set; }
-
-    }
-
-    #endregion
-
     #region Read Async
 
     public async Task ReadAsync()
