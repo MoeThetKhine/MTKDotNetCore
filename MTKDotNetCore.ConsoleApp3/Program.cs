@@ -9,6 +9,8 @@
 //await client.DeleteAsync(2);
 
 RestClientExample client = new RestClientExample();
-await client.ReadAsync();
+//await client.ReadAsync();
+await client.EditAsync(1);
+await client.EditAsync(200);
 
 
