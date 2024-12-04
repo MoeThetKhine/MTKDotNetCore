@@ -1,7 +1,4 @@
-﻿using RestSharp;
-using System.Reflection.PortableExecutable;
-
-namespace MTKDotNetCore.ConsoleApp3
+﻿namespace MTKDotNetCore.ConsoleApp3
 {
     public class RestClientExample
     {
