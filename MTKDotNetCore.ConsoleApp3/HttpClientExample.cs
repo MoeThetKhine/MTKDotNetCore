@@ -1,8 +1,4 @@
-﻿using Newtonsoft.Json;
-using System.Text;
-using static System.Net.Mime.MediaTypeNames;
-
-namespace MTKDotNetCore.ConsoleApp3
+﻿namespace MTKDotNetCore.ConsoleApp3
 {
     public class HttpClientExample
     {
