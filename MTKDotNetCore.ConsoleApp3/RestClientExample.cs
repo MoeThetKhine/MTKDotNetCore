@@ -24,6 +24,8 @@ namespace MTKDotNetCore.ConsoleApp3
 
         }
 
+        #endregion
+
         #region Read Async
 
         public async Task ReadAsync()
@@ -65,7 +67,21 @@ namespace MTKDotNetCore.ConsoleApp3
 
         public async Task CreateAsync(string title, string body, int userId)
         {
-            PostMdoel request = new
+            PostModel requestModel = new PostModel
+            {
+                body = body,
+                title = title,
+                userId = userId
+            };
+
+            RestRequest request = new RestRequest(_postEndpoint, Method.Post);
+            request.AddJsonBody(requestModel);
+            var response = await _client.ExecuteAsync(request);
+
+            if (response.IsSuccessStatusCode)
+            {
+                Console.WriteLine(response.Content!);
+            }
         }
 
         #endregion
