@@ -72,12 +72,15 @@ app.MapGet("/snakes", async ([FromServices] ISnakeApi snakeApi) =>
 app.Run();
 
 
+#region ISnakeApi
 
 public interface ISnakeApi
 {
     [Get("/snakes")]
     Task<List<SnakeModel>> GetSnakes();
 }
+
+#endregion
 
 
 public class SnakeModel
