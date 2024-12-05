@@ -1,6 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
-using RestSharp;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
@@ -52,6 +49,8 @@ app.MapGet("/pick-a-pile", async ([FromServices] RestClient restClient) =>
 });
 
 #endregion
+
+
 
 app.Run();
 
