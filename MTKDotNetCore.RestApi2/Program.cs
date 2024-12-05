@@ -42,12 +42,16 @@ app.MapGet("/birds", async ([FromServices] HttpClient httpClient) =>
 
 #endregion
 
+#region Pick a Pile
+
 app.MapGet("/pick-a-pile", async ([FromServices] RestClient restClient) =>
 {
     RestRequest request = new RestRequest("pick-a-pile", Method.Get);
     var response = await restClient.GetAsync(request);
     return response.Content;
 });
+
+#endregion
 
 app.Run();
 
