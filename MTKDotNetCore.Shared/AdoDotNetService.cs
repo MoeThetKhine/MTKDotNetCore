@@ -11,7 +11,6 @@ public class AdoDotNetService
 
     #region DataTable Query
 
-    //Read & GetById(Edit)
     public DataTable Query(string query,params SqlParameterModel[] sqlParameters)
     {
         SqlConnection connection = new SqlConnection(_connectionString);
