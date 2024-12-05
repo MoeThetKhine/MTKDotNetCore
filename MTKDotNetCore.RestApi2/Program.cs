@@ -82,6 +82,7 @@ public interface ISnakeApi
 
 #endregion
 
+#region SnakeModel
 
 public class SnakeModel
 {
@@ -93,4 +94,6 @@ public class SnakeModel
     public string IsPoison { get; set; }
     public string IsDanger { get; set; }
 }
+
+#endregion
 
