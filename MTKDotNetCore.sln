@@ -36,7 +36,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MTKDotNetCore.MiniKpay.Doma
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MTKDotNetCore.MiniKpay.Database", "MTKDotNetCore.MiniKpay.Database\MTKDotNetCore.MiniKpay.Database.csproj", "{5F1C771D-C23F-403C-B27E-6A0501DD1D60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTKDotNetCore.ConsoleApp3", "MTKDotNetCore.ConsoleApp3\MTKDotNetCore.ConsoleApp3.csproj", "{7F5114E1-5B6E-454A-AF8F-8C72F484504F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MTKDotNetCore.ConsoleApp3", "MTKDotNetCore.ConsoleApp3\MTKDotNetCore.ConsoleApp3.csproj", "{7F5114E1-5B6E-454A-AF8F-8C72F484504F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTKDotNetCore.RestApi2", "MTKDotNetCore.RestApi2\MTKDotNetCore.RestApi2.csproj", "{2DF3EB20-390A-4459-A01E-6678344BD11A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -104,6 +106,10 @@ Global
 		{7F5114E1-5B6E-454A-AF8F-8C72F484504F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F5114E1-5B6E-454A-AF8F-8C72F484504F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F5114E1-5B6E-454A-AF8F-8C72F484504F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DF3EB20-390A-4459-A01E-6678344BD11A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DF3EB20-390A-4459-A01E-6678344BD11A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DF3EB20-390A-4459-A01E-6678344BD11A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DF3EB20-390A-4459-A01E-6678344BD11A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

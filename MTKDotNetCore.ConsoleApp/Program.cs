@@ -99,7 +99,7 @@
 
 #region EFCore
 
-EFCoreExample eFCoreExample = new EFCoreExample();
+//EFCoreExample eFCoreExample = new EFCoreExample();
 //eFCoreExample.Read();
 //eFCoreExample.Create("title2", "author2", "content2");
 //eFCoreExample.Edit(20);
@@ -114,7 +114,7 @@ EFCoreExample eFCoreExample = new EFCoreExample();
 
 #region AdoDotNetExample2
 
-AdoDotNetExampe2 adoDotNetExampe2 = new AdoDotNetExampe2();
+//AdoDotNetExampe2 adoDotNetExampe2 = new AdoDotNetExampe2();
 //adoDotNetExampe2.Read();
 //adoDotNetExampe2.Edit();
 //adoDotNetExampe2.Delete();
@@ -132,6 +132,17 @@ AdoDotNetExampe2 adoDotNetExampe2 = new AdoDotNetExampe2();
 //dapperExample2.Update(18, "title2", "author2", "content2");
 //dapperExample2.Delete(30);
 
+
+#endregion
+
+#region DI
+
+//using Microsoft.Extensions.DependencyInjection;
+//using Microsoft.Extensions.DependencyInjection.Extensions;
+
+//var services = new ServiceCollection().AddSingleton<AdoDotNetExample>().BuildServiceProvider();
+//var adoDotNetExample = services.GetRequiredService<AdoDotNetExample>();
+//adoDotNetExample.Read();
 
 #endregion
 
