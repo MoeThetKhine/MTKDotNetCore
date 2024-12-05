@@ -59,11 +59,15 @@ app.MapGet("/pick-a-pile", async ([FromServices] RestClient restClient) =>
 
 #endregion
 
+#region Snake
+
 app.MapGet("/snakes", async ([FromServices] ISnakeApi snakeApi) =>
 {
     var response = await snakeApi.GetSnakes();
     return response;
 });
+
+#endregion
 
 app.Run();
 
