@@ -1,3 +1,4 @@
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
@@ -16,6 +17,14 @@ builder.Services.AddSingleton(n => new HttpClient()
 
 builder.Services.AddSingleton(n =>
 new RestClient(builder.Configuration.GetSection("ApiDomainUrl").Value!));
+
+#endregion
+
+#region Dependency Injection for RefitClient
+
+builder.Services
+    .AddRefitClient<ISnakeApi>()
+    .ConfigureHttpClient(c => c.BaseAddress = new Uri(builder.Configuration.GetSection("ApiDomainUrl").Value!));
 
 #endregion
 
@@ -50,11 +59,31 @@ app.MapGet("/pick-a-pile", async ([FromServices] RestClient restClient) =>
 
 #endregion
 
-
+app.MapGet("/snakes", async ([FromServices] ISnakeApi snakeApi) =>
+{
+    var response = await snakeApi.GetSnakes();
+    return response;
+});
 
 app.Run();
 
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+
+
+public interface ISnakeApi
 {
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    [Get("/snakes")]
+    Task<List<SnakeModel>> GetSnakes();
 }
+
+
+public class SnakeModel
+{
+    public int Id { get; set; }
+    public string ImageUrl { get; set; }
+    public string MMName { get; set; }
+    public string EngName { get; set; }
+    public string Detail { get; set; }
+    public string IsPoison { get; set; }
+    public string IsDanger { get; set; }
+}
+
