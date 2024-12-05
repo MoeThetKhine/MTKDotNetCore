@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-#region Dependncy Injection for HttpClient
+#region Dependency Injection for HttpClient
 
 builder.Services.AddSingleton(n => new HttpClient()
 {
@@ -15,9 +15,12 @@ builder.Services.AddSingleton(n => new HttpClient()
 
 #endregion
 
+#region Dependency Injection for HttpRestClient
+
 builder.Services.AddSingleton(n =>
 new RestClient(builder.Configuration.GetSection("ApiDomainUrl").Value!));
 
+#endregion
 
 var app = builder.Build();
 
