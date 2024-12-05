@@ -39,6 +39,28 @@ namespace MTKDotNetCore.ConsoleApp4.AdoDotNet
 
         #endregion
 
+        #region Execute
+
+        public int Execute(string query, params SqlParameterModel[]sqlParameters)
+        {
+            using var connection = new SqlConnection(_connectionString);
+            connection.Open();
+
+            using var cmd = new SqlCommand(query, connection);
+            if (sqlParameters is not null)
+            {
+                foreach(var sqlParameter in sqlParameters)
+                {
+                    cmd.Parameters.AddWithValue(sqlParameter.Name, sqlParameter.Value);
+                }
+            }
+            var result = cmd.ExecuteNonQuery();
+            connection.Close();
+            return result;
+        }
+
+        #endregion
+
         #region SqlParameterModel
 
         public class SqlParameterModel
