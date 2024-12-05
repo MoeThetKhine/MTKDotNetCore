@@ -1,15 +1,19 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
 using RestSharp;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+#region Dependncy Injection for HttpClient
+
 builder.Services.AddSingleton(n => new HttpClient()
 {
     BaseAddress = new Uri(builder.Configuration.GetSection("ApiDomainUrl").Value!)
 });
+
+#endregion
 
 builder.Services.AddSingleton(n =>
 new RestClient(builder.Configuration.GetSection("ApiDomainUrl").Value!));
