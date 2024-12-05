@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Data.SqlClient;
 
 namespace MTKDotNetCore.ConsoleApp4.AdoDotNet
 {
@@ -14,6 +15,27 @@ namespace MTKDotNetCore.ConsoleApp4.AdoDotNet
         #region DataTable Query
 
         public DataTable Query(string query, params SqlParameterModel[] sqlParameters)
+        {
+            using var connection = new SqlConnection(_connectionString);
+            connection.Open();
+
+            using var cmd = new SqlCommand(query, connection);
+
+            if(sqlParameters is not null)
+            {
+                foreach(var sqlParameter in sqlParameters)
+                {
+                    cmd.Parameters.AddWithValue(sqlParameter.Name, sqlParameter.Value); 
+                }
+            }
+            using var adapter = new SqlDataAdapter(cmd);
+            var dt = new DataTable();
+            adapter.Fill(dt);
+
+            connection.Close();
+
+            return dt;
+        }
 
         #endregion
 
