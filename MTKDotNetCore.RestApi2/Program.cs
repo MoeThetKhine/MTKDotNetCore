@@ -11,7 +11,8 @@ builder.Services.AddSingleton(n => new HttpClient()
     BaseAddress = new Uri(builder.Configuration.GetSection("ApiDomainUrl").Value!)
 });
 
-
+builder.Services.AddSingleton(n =>
+new RestClient(builder.Configuration.GetSection("ApiDomainUrl").Value!));
 
 
 var app = builder.Build();
@@ -28,6 +29,13 @@ app.MapGet("/birds", async ([FromServices] HttpClient httpClient) =>
 {
     var response = await httpClient.GetAsync("birds");
     return await response.Content.ReadAsStringAsync();
+});
+
+app.MapGet("/pick-a-pile", async ([FromServices] RestClient restClient) =>
+{
+    RestRequest request = new RestRequest("pick-a-pile", Method.Get);
+    var response = await restClient.GetAsync(request);
+    return response.Content;
 });
 
 app.Run();
