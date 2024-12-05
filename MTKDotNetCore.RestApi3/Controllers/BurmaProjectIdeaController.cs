@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using RestSharp;
-
-namespace MTKDotNetCore.RestApi3.Controllers
+﻿namespace MTKDotNetCore.RestApi3.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -18,6 +15,8 @@ namespace MTKDotNetCore.RestApi3.Controllers
             _snakeApi = snakeApi;
         }
 
+        #region BirdAsync
+
         [HttpGet("birds")]
         public async Task<IActionResult> BirdAsync()
         {
@@ -25,6 +24,10 @@ namespace MTKDotNetCore.RestApi3.Controllers
             string str = await response.Content.ReadAsStringAsync();
             return Ok(str);
         }
+
+        #endregion
+
+        #region PickAPileAsync
 
         [HttpGet("pick-a-pile")]
         public async Task<IActionResult> PickAPileAsync()
@@ -34,11 +37,18 @@ namespace MTKDotNetCore.RestApi3.Controllers
             return Ok(response.Content);
         }
 
+        #endregion
+
+        #region Snakes
+
         [HttpGet("snakes")]
         public async Task<IActionResult> Snakes()
         {
             var response = await _snakeApi.GetSnakes();
             return Ok(response);
         }
+
+        #endregion
+
     }
 }
