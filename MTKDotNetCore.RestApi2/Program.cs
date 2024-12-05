@@ -32,11 +32,15 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+#region Birds Get
+
 app.MapGet("/birds", async ([FromServices] HttpClient httpClient) =>
 {
     var response = await httpClient.GetAsync("birds");
     return await response.Content.ReadAsStringAsync();
 });
+
+#endregion
 
 app.MapGet("/pick-a-pile", async ([FromServices] RestClient restClient) =>
 {
