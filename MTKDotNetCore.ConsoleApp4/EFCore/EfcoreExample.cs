@@ -101,7 +101,25 @@ namespace MTKDotNetCore.ConsoleApp4.EFCore
 
         #endregion
 
-       
+        #region SoftDelete
+
+        public void SoftDelete(int id)
+        {
+            var item = _db.TblBlogs.FirstOrDefault(x => x.BlogId == id);
+            if (item is null)
+            {
+                Console.WriteLine("No Data Found");
+                return;
+            }
+
+            item.DeleteFlag = true;
+            _db.Entry(item).State = EntityState.Modified;
+            var result = _db.SaveChanges();
+            Console.WriteLine(result == 1 ? "Soft Deleting Successful." : "Soft Deleting Failed.");
+        }
+
+        #endregion
+
 
     }
 
