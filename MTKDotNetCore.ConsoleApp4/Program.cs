@@ -1,5 +1,7 @@
 ﻿#region DI In AdoDotNetExample
 
+#region DI
+
 var services = new ServiceCollection()
             .AddSingleton<AdoDotNetService>(provider =>
             new AdoDotNetService("Data Source=.;Initial Catalog=DotNetTrainingBatch5;User ID=sa;Password=sasa@123;"))
@@ -7,6 +9,8 @@ var services = new ServiceCollection()
             .BuildServiceProvider();
 
 var adoDotNetExample = services.GetRequiredService<AdoDotNetExample>();
+
+#endregion
 
 Console.WriteLine("Read");
 adoDotNetExample.Read();
