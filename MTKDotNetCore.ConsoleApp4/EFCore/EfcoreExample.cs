@@ -5,18 +5,18 @@ namespace MTKDotNetCore.ConsoleApp4.EFCore
 {
     public class EfcoreExample
     {
-        private readonly AppDbContext _appDbContext;
+        private readonly AppDbContext _db;
 
-        public EfcoreExample(AppDbContext appDbContext)
+        public EfcoreExample(AppDbContext db)
         {
-            _appDbContext = appDbContext;
+            _db = db;
         }
 
         #region Read
 
         public void Read()
         {
-            var lst = _appDbContext.TblBlogs.Where(x => x.DeleteFlag == false)
+            var lst = _db.TblBlogs.Where(x => x.DeleteFlag == false)
                 .AsNoTracking()
                 .ToList();
             foreach(var item in lst)
@@ -29,5 +29,10 @@ namespace MTKDotNetCore.ConsoleApp4.EFCore
         }
 
         #endregion
+
+
+
     }
+
+
 }
