@@ -15,7 +15,8 @@
 
         public void Read()
         {
-            var lst = _dapperService.Query<BlogDataDapperModel>(_dapperQueries.GetReadQuery()).ToList();
+            var lst = _dapperService.Query<BlogDataDapperModel>
+                (_dapperQueries.GetReadQuery()).ToList();
             foreach (var item in lst)
             {
                 Console.WriteLine(item.BlogId);
@@ -23,6 +24,23 @@
                 Console.WriteLine(item.BlogAuthor);
                 Console.WriteLine(item.BlogContent);
             }
+        }
+
+        #endregion
+
+        #region Create 
+
+        public void Create(string title, string author, string  content)
+        {
+            int result = _dapperService.Execute
+                (_dapperQueries.GetCreateQuery(), new BlogDataDapperModel
+                {
+                    BlogTitle = title,
+                    BlogAuthor = author,
+                    BlogContent = content
+                });
+            string message = result == 1 ? "Saving Successful." : "Saving Failed.";
+            Console.WriteLine(message);
         }
 
         #endregion
