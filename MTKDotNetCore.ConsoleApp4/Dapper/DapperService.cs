@@ -1,45 +1,44 @@
 ﻿using Dapper;
 
-namespace MTKDotNetCore.ConsoleApp4.Dapper
+namespace MTKDotNetCore.ConsoleApp4.Dapper;
+
+public class DapperService
 {
-    public class DapperService
+    private readonly string _connectionString;
+
+    public DapperService(string connectionString)
     {
-        private readonly string _connectionString;
-
-        public DapperService(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
-
-        #region Query
-
-        public List<T> Query<T>(string query, object? param = null)
-        {
-            using IDbConnection db = new SqlConnection(_connectionString);
-            return db.Query<T>(query, param).ToList();
-        }
-
-        #endregion
-
-        #region QueryFirstOrDefault
-
-        public T QueryFirstOrDefault<T>(string query, object? param = null)
-        {
-            using IDbConnection db = new SqlConnection(_connectionString);
-            return db.QueryFirstOrDefault<T>(query, param)!;
-        }
-
-        #endregion
-
-        #region Execute
-
-        public int Execute(string query, object? param = null)
-        {
-            using IDbConnection db = new SqlConnection(_connectionString);
-            return db.Execute(query, param);
-        }
-
-        #endregion
-
+        _connectionString = connectionString;
     }
+
+    #region Query
+
+    public List<T> Query<T>(string query, object? param = null)
+    {
+        using IDbConnection db = new SqlConnection(_connectionString);
+        return db.Query<T>(query, param).ToList();
+    }
+
+    #endregion
+
+    #region QueryFirstOrDefault
+
+    public T QueryFirstOrDefault<T>(string query, object? param = null)
+    {
+        using IDbConnection db = new SqlConnection(_connectionString);
+        return db.QueryFirstOrDefault<T>(query, param)!;
+    }
+
+    #endregion
+
+    #region Execute
+
+    public int Execute(string query, object? param = null)
+    {
+        using IDbConnection db = new SqlConnection(_connectionString);
+        return db.Execute(query, param);
+    }
+
+    #endregion
+
 }
