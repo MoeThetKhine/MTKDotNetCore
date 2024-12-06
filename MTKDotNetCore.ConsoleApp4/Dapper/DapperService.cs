@@ -31,5 +31,15 @@ namespace MTKDotNetCore.ConsoleApp4.Dapper
 
         #endregion
 
+        #region Execute
+
+        public int Execute(string query, object? param = null)
+        {
+            using IDbConnection db = new SqlConnection(_connectionString);
+            return db.Execute(query, param);
+        }
+
+        #endregion
+
     }
 }
