@@ -44,5 +44,28 @@
         }
 
         #endregion
+
+        #region Edit
+
+        public void Edit(int id)
+        {
+            var item = _dapperService.QueryFirstOrDefault<BlogDataDapperModel>(_dapperQueries.GetEditQuery(),
+                new { BlogId = id });
+
+            if(item is null)
+            {
+                Console.WriteLine("No Data Found");
+                return;
+            }
+            Console.WriteLine(item.BlogId);
+            Console.WriteLine(item.BlogTitle);
+            Console.WriteLine(item.BlogAuthor);
+            Console.WriteLine(item.BlogContent);
+        }
+
+        #endregion
+
+       
+
     }
 }
