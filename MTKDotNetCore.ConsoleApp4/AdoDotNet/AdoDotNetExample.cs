@@ -1,7 +1,4 @@
-﻿using System.Data;
-using static MTKDotNetCore.ConsoleApp4.AdoDotNet.AdoDotNetService;
-
-namespace MTKDotNetCore.ConsoleApp4.AdoDotNet
+﻿namespace MTKDotNetCore.ConsoleApp4.AdoDotNet
 {
     public class AdoDotNetExample
     {
