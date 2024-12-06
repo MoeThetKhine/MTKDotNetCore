@@ -16,7 +16,7 @@ public class EfcoreExample
         var lst = _db.TblBlogs.Where(x => x.DeleteFlag == false)
             .AsNoTracking()
             .ToList();
-        foreach(var item in lst)
+        foreach (var item in lst)
         {
             Console.WriteLine(item.BlogId);
             Console.WriteLine(item.BlogTitle);
@@ -31,7 +31,7 @@ public class EfcoreExample
 
     public void Create(string title, string author, string content)
     {
-        var blog = new TblBlog()
+        var blog = new Tbl_Blog()
         {
             BlogTitle = title,
             BlogAuthor = author,
