@@ -92,5 +92,39 @@ namespace MTKDotNetCore.ConsoleApp4.AdoDotNet
         }
 
         #endregion
+
+        #region Update
+
+        public void Update()
+        {
+            Console.WriteLine("Blog Id:");
+            string id = Console.ReadLine();
+
+            Console.WriteLine("Blog Title:");
+            string title = Console.ReadLine();
+
+            Console.WriteLine("Blog Author:");
+            string author = Console.ReadLine();
+
+            Console.WriteLine("Blog Content:");
+            string content = Console.ReadLine();
+
+            string query = @"UPDATE [dbo].[Tbl_Blog]
+                     SET [BlogTitle] = @BlogTitle,
+                         [BlogAuthor] = @BlogAuthor,
+                         [BlogContent] = @BlogContent,
+                         [DeleteFlag] = 0
+                     WHERE BlogId = @BlogId";
+
+            int result = _adoDotNetService.Execute(query,
+                new SqlParameterModel("@BlogId", id),
+                new SqlParameterModel("@BlogTitle", title),
+                new SqlParameterModel("@BlogAuthor", author),
+                new SqlParameterModel("@BlogContent", content));
+
+            Console.WriteLine(result == 1 ? "Updating Successful." : "Updating Failed.");
+        }
+
+        #endregion
     }
 }
