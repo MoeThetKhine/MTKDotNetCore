@@ -49,6 +49,27 @@ namespace MTKDotNetCore.ConsoleApp4.EFCore
 
         #endregion
 
+        #region Edit
+
+        public void Edit(int id)
+        {
+            var item = _db.TblBlogs
+                .AsNoTracking()
+                .FirstOrDefault(x => x.BlogId == id);
+            if (item is null)
+            {
+                Console.WriteLine("No Data Found");
+                return;
+            }
+
+            Console.WriteLine("Blog Id: " + item.BlogId);
+            Console.WriteLine("Blog Title: " + item.BlogTitle);
+            Console.WriteLine("Blog Author: " + item.BlogAuthor);
+            Console.WriteLine("Blog Content: " + item.BlogContent);
+        }
+
+        #endregion
+
 
     }
 
