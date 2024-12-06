@@ -1,4 +1,6 @@
-﻿var services = new ServiceCollection()
+﻿#region DI In AdoDotNetExample
+
+var services = new ServiceCollection()
             .AddSingleton<AdoDotNetService>(provider =>
             new AdoDotNetService("Data Source=.;Initial Catalog=DotNetTrainingBatch5;User ID=sa;Password=sasa@123;"))
             .AddSingleton<AdoDotNetExample>()
@@ -20,3 +22,5 @@ adoDotNetExample.Delete();
 
 Console.WriteLine("Update");
 adoDotNetExample.Update();
+
+#endregion
