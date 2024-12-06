@@ -26,7 +26,7 @@ namespace MTKDotNetCore.ConsoleApp4.Dapper
         public T QueryFirstOrDefault<T>(string query, object? param = null)
         {
             using IDbConnection db = new SqlConnection(_connectionString);
-            return db.QueryFirstOrDefault<T>(query, param);
+            return db.QueryFirstOrDefault<T>(query, param)!;
         }
 
         #endregion
