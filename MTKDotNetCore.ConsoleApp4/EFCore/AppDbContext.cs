@@ -7,6 +7,9 @@ public partial class AppDbContext : DbContext
     }
 
     public virtual DbSet<TblBlog> TblBlogs { get; set; }
+
+    #region OnModelCreating
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<TblBlog>(entity =>
@@ -21,6 +24,8 @@ public partial class AppDbContext : DbContext
 
         OnModelCreatingPartial(modelBuilder);
     }
+
+    #endregion
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
