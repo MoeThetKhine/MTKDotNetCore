@@ -65,7 +65,23 @@
 
         #endregion
 
-       
+        #region Update
+
+        public void Update(int id, string title, string author, string content)
+        {
+            int result = _dapperService.Execute(_dapperQueries.GetUpdateQuery(),
+                new
+                {
+                    BlogId = id,
+                    BlogTitle = title,
+                    BlogAuthor = author,
+                    BlogContent = content
+                });
+            string message = result == 1 ? "Updating Successful." : "Updating Failed.";
+            Console.WriteLine(message);
+        }
+
+        #endregion
 
     }
 }
