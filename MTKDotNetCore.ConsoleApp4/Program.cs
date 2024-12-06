@@ -1,5 +1,4 @@
-﻿
-#region DI In AdoDotNetExample
+﻿#region DI In AdoDotNetExample
 
 #region DI
 
