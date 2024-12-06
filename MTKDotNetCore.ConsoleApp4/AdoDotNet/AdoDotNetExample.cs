@@ -56,7 +56,40 @@ namespace MTKDotNetCore.ConsoleApp4.AdoDotNet
             Console.WriteLine(dr["BlogAuthor"]);
             Console.WriteLine(dr["BlogContent"]);
         }
-    
+
+        #endregion
+
+        #region Create
+
+        public void Create()
+        {
+            Console.WriteLine("Blog Title: ");
+            string title = Console.ReadLine();
+
+            Console.WriteLine("Blog Author: ");
+            string author = Console.ReadLine();
+
+            Console.WriteLine("Blog Content: ");
+            string content = Console.ReadLine();
+
+            string query = @"INSERT INTO [dbo].[Tbl_Blog]
+          ([BlogTitle]
+          ,[BlogAuthor]
+          ,[BlogContent]
+          ,[DeleteFlag])
+    VALUES
+          (@BlogTitle
+          ,@BlogAuthor
+          ,@BlogContent
+          ,0)";
+
+            int result = _adoDotNetService.Execute(query,
+            new SqlParameterModel("@BlogTitle", title),
+            new SqlParameterModel("@BlogAuthor", author),
+            new SqlParameterModel("@BlogContent", content));
+
+            Console.WriteLine(result == 1 ? "Creating Successful." : "Creating Failed.");
+        }
 
         #endregion
     }
