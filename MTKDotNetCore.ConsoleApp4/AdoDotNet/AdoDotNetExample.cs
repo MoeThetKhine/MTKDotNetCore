@@ -1,5 +1,5 @@
-﻿using MTKDotNetCore.Shared;
-using System.Data;
+﻿using System.Data;
+using static MTKDotNetCore.ConsoleApp4.AdoDotNet.AdoDotNetService;
 
 namespace MTKDotNetCore.ConsoleApp4.AdoDotNet
 {
@@ -31,6 +31,32 @@ namespace MTKDotNetCore.ConsoleApp4.AdoDotNet
                 Console.WriteLine(dr["BlogContent"]);
             }
         }
+
+        #endregion
+
+        #region Edit
+
+        public void Edit()
+        {
+            Console.Write("Blog Id: ");
+            string id = Console.ReadLine();
+
+            string query = @"SELECT [BlogId]
+      ,[BlogTitle]
+      ,[BlogAuthor]
+      ,[BlogContent]
+      ,[DeleteFlag]
+  FROM [dbo].[Tbl_Blog] WHERE BlogId = @BlogId";
+            var dt = _adoDotNetService.Query(query,
+                new SqlParameterModel("@BlogId", id));
+
+            DataRow dr = dt.Rows[0];
+            Console.WriteLine(dr["BlogId"]);
+            Console.WriteLine(dr["BlogTitle"]);
+            Console.WriteLine(dr["BlogAuthor"]);
+            Console.WriteLine(dr["BlogContent"]);
+        }
+    
 
         #endregion
     }
