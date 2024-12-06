@@ -1,9 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using MTKDotNetCore.ConsoleApp4.AdoDotNet;
-
-Console.WriteLine("Hello, World!");
-
-var services = new ServiceCollection()
+﻿var services = new ServiceCollection()
             .AddSingleton<AdoDotNetService>(provider =>
             new AdoDotNetService("Data Source=.;Initial Catalog=DotNetTrainingBatch5;User ID=sa;Password=sasa@123;"))
             .AddSingleton<AdoDotNetExample>()
