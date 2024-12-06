@@ -30,6 +30,24 @@ namespace MTKDotNetCore.ConsoleApp4.EFCore
 
         #endregion
 
+        #region Create 
+
+        public void Create(string title, string author, string content)
+        {
+            var blog = new TblBlog()
+            {
+                BlogTitle = title,
+                BlogAuthor = author,
+                BlogContent = content,
+                DeleteFlag = false 
+            };
+
+            _db.TblBlogs.Add(blog);
+            var result = _db.SaveChanges();
+            Console.WriteLine(result == 1 ? "Saving Successful." : "Saving Failed.");
+        }
+
+        #endregion
 
 
     }
