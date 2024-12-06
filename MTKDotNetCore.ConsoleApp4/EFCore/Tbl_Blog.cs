@@ -1,5 +1,7 @@
 ﻿namespace MTKDotNetCore.ConsoleApp4.EFCore;
 
+#region Tbl_Blog
+
 public class Tbl_Blog
 {
     [Key]
@@ -13,3 +15,5 @@ public class Tbl_Blog
 
     public bool DeleteFlag { get; set; }
 }
+
+#endregion
