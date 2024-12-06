@@ -20,5 +20,16 @@ namespace MTKDotNetCore.ConsoleApp4.Dapper
         }
 
         #endregion
+
+        #region QueryFirstOrDefault
+
+        public T QueryFirstOrDefault<T>(string query, object? param = null)
+        {
+            using IDbConnection db = new SqlConnection(_connectionString);
+            return db.QueryFirstOrDefault<T>(query, param);
+        }
+
+        #endregion
+
     }
 }
