@@ -5,4 +5,4 @@ global using System.Data.SqlClient;
 global using Dapper;
 global using System.ComponentModel.DataAnnotations;
 global using Microsoft.EntityFrameworkCore;
-global using MTKDotNetCore.Database.Models;
+global using MTKDotNetCore.ConsoleApp4.EFCore;

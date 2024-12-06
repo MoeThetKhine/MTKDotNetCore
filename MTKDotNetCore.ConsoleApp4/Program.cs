@@ -51,14 +51,17 @@
 
 #endregion
 
-using Microsoft.EntityFrameworkCore;
-using MTKDotNetCore.ConsoleApp4.EFCore;
+#region DI In Efcore
+
+#region DI
 
 var services = new ServiceCollection()
            .AddDbContext<AppDbContext>(options =>
                options.UseSqlServer("Data Source=.;Initial Catalog=DotNetTrainingBatch5;User ID=sa;Password=sasa@123;TrustServerCertificate=True;"))
            .AddSingleton<EfcoreExample>()
            .BuildServiceProvider();
+
+#endregion
 
 var efCoreExample = services.GetRequiredService<EfcoreExample>();
 
@@ -68,3 +71,5 @@ efCoreExample.Edit(1);
 efCoreExample.Update(2, "Updated Blog", "Updated Author", "Updated Content");
 efCoreExample.SoftDelete(6);
 efCoreExample.HardDelete(6);
+
+#endregion
