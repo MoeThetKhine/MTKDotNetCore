@@ -6,7 +6,7 @@ public partial class AppDbContext : DbContext
     {
     }
 
-    public virtual DbSet<TblBlog> TblBlogs { get; set; }
+    public virtual DbSet<Tbl_Blog> TblBlogs { get; set; }
 
     #region OnModelCreating
 
