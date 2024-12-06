@@ -1,6 +1,4 @@
-﻿using Dapper;
-
-namespace MTKDotNetCore.ConsoleApp4.Dapper;
+﻿namespace MTKDotNetCore.ConsoleApp4.Dapper;
 
 public class DapperService
 {
