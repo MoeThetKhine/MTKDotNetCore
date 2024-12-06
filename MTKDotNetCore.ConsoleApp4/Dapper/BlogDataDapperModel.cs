@@ -1,16 +1,14 @@
-﻿namespace MTKDotNetCore.ConsoleApp4.Dapper
+﻿namespace MTKDotNetCore.ConsoleApp4.Dapper;
+
+#region BlogDataDapperModel
+
+public class BlogDataDapperModel
 {
-    #region BlogDataDapperModel
-
-    public class BlogDataDapperModel
-    {
-        public int BlogId { get; set; }
-        public string BlogTitle { get; set; }
-        public string BlogAuthor { get; set; }
-        public string BlogContent { get; set; }
-        public int DeleteFlag { get; set; }
-    }
-
-    #endregion
-
+    public int BlogId { get; set; }
+    public string BlogTitle { get; set; }
+    public string BlogAuthor { get; set; }
+    public string BlogContent { get; set; }
+    public int DeleteFlag { get; set; }
 }
+
+#endregion
