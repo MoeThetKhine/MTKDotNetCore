@@ -70,6 +70,38 @@ namespace MTKDotNetCore.ConsoleApp4.EFCore
 
         #endregion
 
+        #region Update
+
+        public void Update(int id, string title, string author, string content)
+        {
+            var item = _db.TblBlogs.FirstOrDefault(x => x.BlogId == id);
+            if (item is null)
+            {
+                Console.WriteLine("No Data Found");
+                return;
+            }
+
+            if (!string.IsNullOrEmpty(title))
+            {
+                item.BlogTitle = title;
+            }
+            if (!string.IsNullOrEmpty(author))
+            {
+                item.BlogAuthor = author;
+            }
+            if (!string.IsNullOrEmpty(content))
+            {
+                item.BlogContent = content;
+            }
+
+            _db.Entry(item).State = EntityState.Modified;
+            var result = _db.SaveChanges();
+            Console.WriteLine(result == 1 ? "Updating Successful." : "Updating Failed.");
+        }
+
+        #endregion
+
+       
 
     }
 
