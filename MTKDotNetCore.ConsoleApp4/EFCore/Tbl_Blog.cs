@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace MTKDotNetCore.ConsoleApp4.EFCore
+﻿namespace MTKDotNetCore.ConsoleApp4.EFCore
 {
     public class Tbl_Blog
     {
