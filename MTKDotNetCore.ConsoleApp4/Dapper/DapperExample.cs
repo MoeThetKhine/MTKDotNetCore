@@ -83,5 +83,17 @@
 
         #endregion
 
+        #region Delete
+
+        public void Delete(int id)
+        {
+            int result = _dapperService.Execute(_dapperQueries.GetDeleteQuery(),
+                new { BlogId = id });
+            string message = result == 1 ? "Deleting Successful." : "Deleteing Failed.";
+            Console.WriteLine(message);
+        }
+
+        #endregion
+
     }
 }
