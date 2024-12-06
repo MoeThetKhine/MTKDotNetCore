@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MTKDotNetCore.Database.Models;
-
-namespace MTKDotNetCore.ConsoleApp4.EFCore
+﻿namespace MTKDotNetCore.ConsoleApp4.EFCore
 {
     public class EfcoreExample
     {
