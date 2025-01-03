@@ -1,5 +1,7 @@
 ﻿namespace MTKDotNetCore.MvcApp.Models;
 
+#region BlogRequestModel
+
 public class BlogRequestModel
 {
     public int Id { get; set; }
@@ -7,3 +9,5 @@ public class BlogRequestModel
     public string Author { get; set; }
     public string Content { get; set; } 
 }
+
+#endregion
