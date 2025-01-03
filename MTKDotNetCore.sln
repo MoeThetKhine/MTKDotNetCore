@@ -38,11 +38,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MTKDotNetCore.MiniKpay.Data
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MTKDotNetCore.ConsoleApp3", "MTKDotNetCore.ConsoleApp3\MTKDotNetCore.ConsoleApp3.csproj", "{7F5114E1-5B6E-454A-AF8F-8C72F484504F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTKDotNetCore.RestApi2", "MTKDotNetCore.RestApi2\MTKDotNetCore.RestApi2.csproj", "{2DF3EB20-390A-4459-A01E-6678344BD11A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MTKDotNetCore.RestApi2", "MTKDotNetCore.RestApi2\MTKDotNetCore.RestApi2.csproj", "{2DF3EB20-390A-4459-A01E-6678344BD11A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTKDotNetCore.RestApi3", "MTKDotNetCore.RestApi3\MTKDotNetCore.RestApi3.csproj", "{654B4EF1-93C8-43FA-8DC2-B0AFA59F8CCA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MTKDotNetCore.RestApi3", "MTKDotNetCore.RestApi3\MTKDotNetCore.RestApi3.csproj", "{654B4EF1-93C8-43FA-8DC2-B0AFA59F8CCA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTKDotNetCore.ConsoleApp4", "MTKDotNetCore.ConsoleApp4\MTKDotNetCore.ConsoleApp4.csproj", "{0E593694-FC1A-4649-A9B6-8080D19454C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MTKDotNetCore.ConsoleApp4", "MTKDotNetCore.ConsoleApp4\MTKDotNetCore.ConsoleApp4.csproj", "{0E593694-FC1A-4649-A9B6-8080D19454C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTKDotNetCore.MvcApp", "MTKDotNetCore.MvcApp\MTKDotNetCore.MvcApp.csproj", "{212231C5-1538-4D80-9DA3-07C248AF7EF0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -122,6 +124,10 @@ Global
 		{0E593694-FC1A-4649-A9B6-8080D19454C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E593694-FC1A-4649-A9B6-8080D19454C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E593694-FC1A-4649-A9B6-8080D19454C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{212231C5-1538-4D80-9DA3-07C248AF7EF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{212231C5-1538-4D80-9DA3-07C248AF7EF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{212231C5-1538-4D80-9DA3-07C248AF7EF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{212231C5-1538-4D80-9DA3-07C248AF7EF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
