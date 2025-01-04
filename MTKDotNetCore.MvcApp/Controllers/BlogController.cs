@@ -70,6 +70,8 @@ public class BlogController : Controller
 
     #endregion
 
+    #region BlogEdit
+
     [ActionName("Edit")]
     public IActionResult BlogEdit(int id)
     {
@@ -83,6 +85,8 @@ public class BlogController : Controller
         };
         return View("BlogEdit", blogRequestModel);
     }
+
+    #endregion
 
     [HttpPost]
     [ActionName("Update")]
