@@ -49,9 +49,13 @@ namespace MTKDotNetCore.MvcApp.Controllers
 
         #endregion
 
+        #region Index2
+
         public IActionResult Index2()
         {
             return View();
         }
+
+        #endregion
     }
 }
