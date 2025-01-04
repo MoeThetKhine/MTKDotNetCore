@@ -88,6 +88,8 @@ public class BlogController : Controller
 
     #endregion
 
+    #region BlogUpdate
+
     [HttpPost]
     [ActionName("Update")]
     public IActionResult BlogUpdate(int id, BlogRequestModel requestModel)
@@ -112,6 +114,9 @@ public class BlogController : Controller
 
         return RedirectToAction("Index");
     }
+
+    #endregion
+
 }
 
 
