@@ -1,12 +1,9 @@
-namespace MTKDotNetCore.MvcApp.Models;
-
-#region ErrorViewModel
-
-public class ErrorViewModel
+namespace MTKDotNetCore.MvcApp.Models
 {
-    public string? RequestId { get; set; }
+    public class ErrorViewModel
+    {
+        public string? RequestId { get; set; }
 
-    public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+        public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+    }
 }
-
-#endregion
