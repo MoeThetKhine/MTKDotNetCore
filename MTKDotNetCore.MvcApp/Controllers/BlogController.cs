@@ -19,11 +19,17 @@ public class BlogController : Controller
 
     #endregion
 
+    #region BlogCreate
+
     [ActionName("Create")]
     public IActionResult BlogCreate()
     {
         return View("BlogCreate");
     }
+
+    #endregion
+
+
     [HttpPost]
     [ActionName("Save")]
     public IActionResult BlogSave(BlogRequestModel requestModel)
