@@ -1,5 +1,58 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model List<TblBlog>
+
 @{
+    bool isShowMessage = TempData["IsShowMessage"] != null;
+    bool isSuccess = false;
+    string message = "";
+
+    if(isShowMessage)
+    {
+        isSuccess = Convert.ToBoolean(TempData["IsSuccess"]);
+        message = Convert.ToString(TempData["Message"]);
+    }
 }
+
+@if(isShowMessage)
+{
+    if(isSuccess)
+    {
+        <div class="alert alert-success" role="alert">
+            @message
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+            @message
+        </div>
+    }
+}
+
+<a href ="/Blog/Create" class="btn btn-outline-success">Create New Blog</a>
+
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th></th>
+            <th>No.</th>
+            <th>Blog Title</th>
+            <th>Blog Author</th>
+            <th>Blog Content</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(int i = 0; i < Model.Count; i++)
+        {
+            <tr>
+                <td>
+                    <a href="/Blog/Edit/@Model[i].BlogId" class="btn btn-outline-primary">Edit</a>
+                    <a href="/Blog/Delete/@Model[i].BlogId" class="btn btn-outline-danger">Delete</a>
+                </td>
+                <td>@(i + 1)</td>
+                <td>@Model[i].BlogTitle</td>
+                <td>@Model[i].BlogAuthor</td>
+                <td>@Model[i].BlogContent</td>
+            </tr>
+        }
+    </tbody>
+</table>
