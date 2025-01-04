@@ -9,11 +9,15 @@ public class BlogController : Controller
         _blogService = blogService;
     }
 
+    #region Index
+
     public IActionResult Index()
     {
         var lst = _blogService.GetBlogs();
         return View();
     }
+
+    #endregion
 
     [ActionName("Create")]
     public IActionResult BlogCreate()
