@@ -7,15 +7,15 @@
 
     <div class="form-group">
         <label for="BlogTitle">Blog Title</label>
-        <input type="text" class="form-control" id="BlogTitle" name="BlogTitle" value="@Model.BlogTitle">
+        <input type="text" class="form-control" id="BlogTitle" name="BlogTitle" value="@Model.Title">
     </div>
     <div class="form-group">
         <label for="BlogAuthor">Blog Author</label>
-        <input type="text" class="form-control" id="BlogAuthor" name="BlogAuthor" value="@Model.BlogAuthor">
+        <input type="text" class="form-control" id="BlogAuthor" name="BlogAuthor" value="@Model.Author">
     </div>
     <div class="form-group">
         <label for="BlogContent">Blog Content</label>
-        <textarea class="form-control" id="BlogContent" name="BlogContent">@Model.BlogContent</textarea>
+        <textarea class="form-control" id="BlogContent" name="BlogContent">@Model.Content</textarea>
     </div>
     <button type="submit" class="btn btn-primary">Update</button>
     <a href="/Blog/Index" class="btn btn-outline-secondary">Back</a>
