@@ -1,5 +1,23 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model BlogRequestModel
 @{
+    ViewData["Title"] = "Edit Blog";
 }
+
+<from method ="post" action="/Blog/Update/@Model.Id">
+
+    <div class="form-group">
+        <label for="BlogTitle">Blog Title</label>
+        <input type="text" class="form-control" id="BlogTitle" name="BlogTitle" value="@Model.BlogTitle">
+    </div>
+    <div class="form-group">
+        <label for="BlogAuthor">Blog Author</label>
+        <input type="text" class="form-control" id="BlogAuthor" name="BlogAuthor" value="@Model.BlogAuthor">
+    </div>
+    <div class="form-group">
+        <label for="BlogContent">Blog Content</label>
+        <textarea class="form-control" id="BlogContent" name="BlogContent">@Model.BlogContent</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a href="/Blog/Index" class="btn btn-outline-secondary">Back</a>
+
+</from>
