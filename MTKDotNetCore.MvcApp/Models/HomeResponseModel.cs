@@ -1,7 +1,6 @@
-﻿namespace MTKDotNetCore.MvcApp.Models
+﻿namespace MTKDotNetCore.MvcApp.Models;
+
+public class HomeResponseModel
 {
-    public class HomeResponseModel
-    {
-        public string AlertMessage { get; set; }
-    }
+    public string AlertMessage { get; set; }
 }
