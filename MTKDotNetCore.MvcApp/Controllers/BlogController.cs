@@ -29,6 +29,7 @@ public class BlogController : Controller
 
     #endregion
 
+    #region BlogSave
 
     [HttpPost]
     [ActionName("Save")]
@@ -43,26 +44,20 @@ public class BlogController : Controller
                 BlogTitle = requestModel.Title
             });
 
-            //ViewBag.IsSuccess = true;
-            //ViewBag.Message = "Blog Created Successfully";
-
             TempData["IsSuccess"] = true;
             TempData["Message"] = "Blog Created Successfully";
         }
         catch (Exception ex)
         {
-            //ViewBag.IsSuccess = false;
-            //ViewBag.Message = ex.ToString();
 
             TempData["IsSuccess"] = false;
             TempData["Message"] = ex.ToString();
         }
 
         return RedirectToAction("Index");
-
-        //var lst = _blogService.GetBlogs();
-        //return View("Index", lst);
     }
+
+    #endregion
 
     [ActionName("Delete")]
     public IActionResult BlogDelete(int id)
