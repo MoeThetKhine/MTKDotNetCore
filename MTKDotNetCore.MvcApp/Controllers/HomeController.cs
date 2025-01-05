@@ -33,13 +33,15 @@ public class HomeController : Controller
 
     #endregion
 
-
+    #region Error
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
+
+    #endregion
 
     public IActionResult Index2()
     {
