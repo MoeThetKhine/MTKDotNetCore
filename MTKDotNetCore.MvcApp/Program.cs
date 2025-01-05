@@ -4,12 +4,16 @@ using MTKDotNetCore.Domain.Features.Blog;
 
 var builder = WebApplication.CreateBuilder(args);
 
+#region DI
+
 builder.Services.AddDbContext<AppDbContext>(opt =>
 {
     opt.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection"));
 });
 
 builder.Services.AddScoped<IBlogService, BlogService>();
+
+#endregion
 
 builder.Services.AddControllersWithViews();
 
