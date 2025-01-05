@@ -70,12 +70,16 @@ namespace MTKDotNetCore.MvcApp.Controllers
 
         #endregion
 
+        #region BlogDelete
+
         [ActionName("Delete")]
         public IActionResult BlogDelete(int id)
         {
             _blogService.DelteBlog(id);
             return RedirectToAction("Index");
         }
+
+        #endregion
 
         [ActionName("Edit")]
         public IActionResult BlogEdit(int id)
