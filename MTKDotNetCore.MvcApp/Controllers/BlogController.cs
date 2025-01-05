@@ -32,6 +32,7 @@ namespace MTKDotNetCore.MvcApp.Controllers
 
         #endregion
 
+        #region BlogSave
 
         [HttpPost]
         [ActionName("Save")]
@@ -67,6 +68,7 @@ namespace MTKDotNetCore.MvcApp.Controllers
             //return View("Index", lst);
         }
 
+        #endregion
 
         [ActionName("Delete")]
         public IActionResult BlogDelete(int id)
