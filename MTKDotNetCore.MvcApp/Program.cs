@@ -1,6 +1,4 @@
-using Microsoft.EntityFrameworkCore;
-using MTKDotNetCore.Database.Models;
-using MTKDotNetCore.Domain.Features.Blog;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
