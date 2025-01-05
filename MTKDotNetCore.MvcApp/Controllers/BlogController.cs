@@ -81,6 +81,8 @@ namespace MTKDotNetCore.MvcApp.Controllers
 
         #endregion
 
+        #region BlogEdit
+
         [ActionName("Edit")]
         public IActionResult BlogEdit(int id)
         {
@@ -94,6 +96,8 @@ namespace MTKDotNetCore.MvcApp.Controllers
             };
             return View("BlogEdit", blogRequestModel);
         }
+
+        #endregion
 
 
         [HttpPost]
