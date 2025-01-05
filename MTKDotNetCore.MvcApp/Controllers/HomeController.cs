@@ -24,10 +24,16 @@ public class HomeController : Controller
 
     #endregion
 
+    #region Privacy
+
     public IActionResult Privacy()
     {
         return View();
     }
+
+    #endregion
+
+
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
