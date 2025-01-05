@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MTKDotNetCore.MvcApp.Models;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace MTKDotNetCore.MvcApp.Controllers
 {
