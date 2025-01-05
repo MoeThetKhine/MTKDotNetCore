@@ -82,5 +82,30 @@ namespace MTKDotNetCore.MvcApp.Controllers
             return View("BlogEdit", blogRequestModel);
         }
 
+
+        [HttpPost]
+        [ActionName("Update")]
+        public IActionResult BlogUpdate(int id, BlogRequestModel requestModel)
+        {
+            try
+            {
+                _blogService.UpdateBlog(id, new TblBlog
+                {
+                    BlogAuthor = requestModel.Author,
+                    BlogContent = requestModel.Content,
+                    BlogTitle = requestModel.Title
+                });
+
+                TempData["IsSuccess"] = true;
+                TempData["Message"] = "Blog Updated Successfully";
+            }
+            catch (Exception ex)
+            {
+                TempData["IsSuccess"] = false;
+                TempData["Message"] = ex.ToString();
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }
