@@ -1,4 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using MTKDotNetCore.Database.Models;
+using MTKDotNetCore.Domain.Features.Blog;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<AppDbContext>(opt =>
+{
+    opt.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection"));
+});
+
+builder.Services.AddScoped<IBlogService, BlogService>();
 
 builder.Services.AddControllersWithViews();
 
