@@ -22,12 +22,15 @@ namespace MTKDotNetCore.MvcApp.Controllers
 
         #endregion
 
+        #region BlogCreate
+
         [ActionName("Create")]
         public IActionResult BlogCreate()
         {
             return View("BlogCreate");
         }
 
+        #endregion
 
 
         [HttpPost]
