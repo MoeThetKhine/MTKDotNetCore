@@ -68,5 +68,19 @@ namespace MTKDotNetCore.MvcApp.Controllers
             return RedirectToAction("Index");
         }
 
+        [ActionName("Edit")]
+        public IActionResult BlogEdit(int id)
+        {
+            var blog = _blogService.GetBlog(id);
+            BlogRequestModel blogRequestModel = new BlogRequestModel
+            {
+                Id = blog.BlogId,
+                Author = blog.BlogAuthor,
+                Content = blog.BlogContent,
+                Title = blog.BlogTitle
+            };
+            return View("BlogEdit", blogRequestModel);
+        }
+
     }
 }
