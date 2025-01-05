@@ -12,11 +12,15 @@ namespace MTKDotNetCore.MvcApp.Controllers
 			_blogService = blogService;
 		}
 
-		public IActionResult Index()
+        #region Index
+
+        public IActionResult Index()
 		{
 			var lst = _blogService.GetBlogs();
 			return View(lst);
 		}
+
+        #endregion
 
         [ActionName("Create")]
         public IActionResult BlogCreate()
