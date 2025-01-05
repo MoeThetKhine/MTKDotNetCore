@@ -61,5 +61,12 @@ namespace MTKDotNetCore.MvcApp.Controllers
         }
 
 
+        [ActionName("Delete")]
+        public IActionResult BlogDelete(int id)
+        {
+            _blogService.DelteBlog(id);
+            return RedirectToAction("Index");
+        }
+
     }
 }
