@@ -9,16 +9,21 @@ public class HomeController : Controller
         _logger = logger;
     }
 
-		public IActionResult Index()
-		{
-			ViewBag.Message = "Hello from Viewbag";
-			ViewData["Message2"] = "Hello from ViewData";
+    #region Index
 
-			HomeResponseModel model = new HomeResponseModel();
-			model.AlertMessage = "Hello from Model";
+    public IActionResult Index()
+	{
+		ViewBag.Message = "Hello from Viewbag";
+		ViewData["Message2"] = "Hello from ViewData";
 
-			return View(model);
-		}
+		HomeResponseModel model = new HomeResponseModel();
+		model.AlertMessage = "Hello from Model";
+
+		return View(model);
+	}
+
+    #endregion
+
     public IActionResult Privacy()
     {
         return View();
