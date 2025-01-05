@@ -9,19 +9,28 @@ public class BlogController : Controller
 			_blogService = blogService;
 		}
 
-    #region Index
+	#region Index
 
-    public IActionResult Index()
-		{
-			var lst = _blogService.GetBlogs();
-			return View(lst);
-		}
+	//  public IActionResult Index()
+	//{
+	//	var lst = _blogService.GetBlogs();
+	//	return View(lst);
+	//}
 
-    #endregion
+	public IActionResult Index(int pageIndex = 1, int pageSize = 10)
+	{
+		var blogs = _blogService.GetBlogs().AsQueryable();
 
-    #region BlogCreate
+		// Create a paginated list
+		var paginatedBlogs = PaginatedList<TblBlog>.Create(blogs, pageIndex, pageSize);
 
-    [ActionName("Create")]
+		return View(paginatedBlogs);
+	}
+	#endregion
+
+	#region BlogCreate
+
+	[ActionName("Create")]
     public IActionResult BlogCreate()
     {
         return View("BlogCreate");
