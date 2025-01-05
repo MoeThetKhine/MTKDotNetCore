@@ -13,8 +13,6 @@ namespace MTKDotNetCore.MvcApp.Controllers
             _logger = logger;
         }
 
-
-
 		public IActionResult Index()
 		{
 			ViewBag.Message = "Hello from Viewbag";
@@ -25,7 +23,12 @@ namespace MTKDotNetCore.MvcApp.Controllers
 
 			return View(model);
 		}
+        public IActionResult Privacy()
+        {
+            return View();
+        }
 
-		
-	}
+       
+
+    }
 }
