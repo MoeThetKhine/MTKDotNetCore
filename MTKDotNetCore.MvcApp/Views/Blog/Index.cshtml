@@ -45,15 +45,16 @@
 		{
 			var blog = Model[i];
 			<tr>
+				
+				<td>@(i + 1)</td>
+				<td>@blog.BlogTitle</td>
+				<td>@blog.BlogAuthor</td>
+				<td>@blog.BlogContent</td>
 				<td>
 					<a href="/Blog/Edit/@(blog.BlogId)" class="btn btn-warning">Edit</a>
 					<a href="/Blog/Delete/@(blog.BlogId)" class="btn btn-danger">Delete</a>
 					@* <a href="/Blog/Delete?blogId=@(blog.BlogId)" class="btn btn-danger">Delete</a> *@
 				</td>
-				<td>@(i + 1)</td>
-				<td>@blog.BlogTitle</td>
-				<td>@blog.BlogAuthor</td>
-				<td>@blog.BlogContent</td>
 			</tr>
 		}
 	</tbody>
