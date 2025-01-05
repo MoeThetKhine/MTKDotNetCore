@@ -18,6 +18,11 @@ namespace MTKDotNetCore.MvcApp.Controllers
 			return View(lst);
 		}
 
-		
-	}
+        [ActionName("Create")]
+        public IActionResult BlogCreate()
+        {
+            return View("BlogCreate");
+        }
+
+    }
 }
