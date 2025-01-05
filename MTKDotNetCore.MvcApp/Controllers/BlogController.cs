@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MTKDotNetCore.MvcApp.Models;
-
-namespace MTKDotNetCore.MvcApp.Controllers;
+﻿namespace MTKDotNetCore.MvcApp.Controllers;
 
 public class BlogController : Controller
 {
