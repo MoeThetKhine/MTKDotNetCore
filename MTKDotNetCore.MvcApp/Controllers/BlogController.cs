@@ -99,6 +99,7 @@ namespace MTKDotNetCore.MvcApp.Controllers
 
         #endregion
 
+        #region BlogUpdate
 
         [HttpPost]
         [ActionName("Update")]
@@ -124,5 +125,8 @@ namespace MTKDotNetCore.MvcApp.Controllers
 
             return RedirectToAction("Index");
         }
+
+        #endregion
+
     }
 }
