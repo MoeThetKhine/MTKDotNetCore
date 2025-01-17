@@ -11,7 +11,10 @@ builder.Services.AddScoped<IBlogService, BlogService>();
 
 #endregion
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddJsonOptions(opt =>
+{
+	opt.JsonSerializerOptions.PropertyNamingPolicy = null;
+});
 
 var app = builder.Build();
 
