@@ -98,7 +98,7 @@ public class BlogV2Service : IBlogService
 
     #region DeleteBlog
 
-    public bool? DelteBlog(int id)
+    public bool? DeleteBlog(int id)
     {
         var item = _db.TblBlogs
             .AsNoTracking()
