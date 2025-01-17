@@ -81,7 +81,7 @@ public class BlogController : Controller
     [ActionName("Delete")]
     public IActionResult BlogDelete(int id)
     {
-        _blogService.DelteBlog(id);
+        _blogService.DeleteBlog(id);
         return RedirectToAction("Index");
     }
 
@@ -95,7 +95,7 @@ public class BlogController : Controller
         var blog = _blogService.GetBlog(id);
         BlogRequestModel blogRequestModel = new BlogRequestModel
         {
-            Id = blog.BlogId,
+            Id = (int)blog.BlogId,
             Author = blog.BlogAuthor,
             Content = blog.BlogContent,
             Title = blog.BlogTitle
