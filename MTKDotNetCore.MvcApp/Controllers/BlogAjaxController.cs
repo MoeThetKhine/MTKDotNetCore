@@ -94,6 +94,8 @@ public IActionResult BlogSave(BlogRequestModel requestModel)
 
 	#endregion
 
+	#region BlogDelete
+
 	[HttpPost]
 [ActionName("Delete")]
 public IActionResult BlogDelete(BlogRequestModel requestModel)
@@ -115,7 +117,9 @@ public IActionResult BlogDelete(BlogRequestModel requestModel)
 	return Json(model);
 }
 
-[ActionName("Edit")]
+	#endregion
+
+	[ActionName("Edit")]
 public IActionResult BlogEdit(int id)
 {
 	var blog = _blogService.GetBlog(id);
