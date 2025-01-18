@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace MTKDotNetCore.MvcApp.Controllers
+﻿namespace MTKDotNetCore.MvcApp.Controllers
 {
     public class BlogAjaxController : Controller
     {
@@ -103,7 +101,7 @@ namespace MTKDotNetCore.MvcApp.Controllers
 			var blog = _blogService.GetBlog(id);
 			BlogRequestModel blogRequestModel = new BlogRequestModel
 			{
-				Id = (int)blog.BlogId,
+				Id = blog.BlogId,
 				Author = blog.BlogAuthor,
 				Content = blog.BlogContent,
 				Title = blog.BlogTitle
