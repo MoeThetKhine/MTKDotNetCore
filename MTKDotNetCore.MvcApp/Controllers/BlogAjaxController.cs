@@ -137,33 +137,37 @@ public IActionResult BlogEdit(int id)
 
 	#endregion
 
+	#region BlogUpdate
+
 	[HttpPost]
-[ActionName("Update")]
-public IActionResult BlogUpdate(int id, BlogRequestModel requestModel)
-{
-	MessageModel model;
-	try
+	[ActionName("Update")]
+	public IActionResult BlogUpdate(int id, BlogRequestModel requestModel)
 	{
-		_blogService.UpdateBlog(id, new TblBlog
+		MessageModel model;
+		try
 		{
-			BlogAuthor = requestModel.Author,
-			BlogContent = requestModel.Content,
-			BlogTitle = requestModel.Title
-		});
+			_blogService.UpdateBlog(id, new TblBlog
+			{
+				BlogAuthor = requestModel.Author,
+				BlogContent = requestModel.Content,
+				BlogTitle = requestModel.Title
+			});
 
-		TempData["IsSuccess"] = true;
-		TempData["Message"] = "Blog Updated Successfully";
+			TempData["IsSuccess"] = true;
+			TempData["Message"] = "Blog Updated Successfully";
 
-		model = new MessageModel(true, "Blog Updated Successfully");
+			model = new MessageModel(true, "Blog Updated Successfully");
+		}
+		catch (Exception ex)
+		{
+			TempData["IsSuccess"] = false;
+			TempData["Message"] = ex.ToString();
+
+			model = new MessageModel(false, ex.ToString());
+		}
+		return Json(model);
+
 	}
-	catch (Exception ex)
-	{
-		TempData["IsSuccess"] = false;
-		TempData["Message"] = ex.ToString();
-
-		model = new MessageModel(false, ex.ToString());
-	}
-
-	return Json(model);
-}
+		#endregion
+	
 }
