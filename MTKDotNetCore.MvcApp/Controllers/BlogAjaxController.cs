@@ -101,7 +101,7 @@
 			var blog = _blogService.GetBlog(id);
 			BlogRequestModel blogRequestModel = new BlogRequestModel
 			{
-				Id = blog.BlogId,
+				Id = (int)blog.BlogId,
 				Author = blog.BlogAuthor,
 				Content = blog.BlogContent,
 				Title = blog.BlogTitle
