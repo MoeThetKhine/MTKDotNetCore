@@ -31,13 +31,17 @@ public IActionResult BlogListAjax()
 
 	#endregion
 
+	#region BlogCreate
+
 	[ActionName("Create")]
 public IActionResult BlogCreate()
 {
 	return View("BlogCreate");
 }
 
-[HttpPost]
+	#endregion
+
+	[HttpPost]
 [ActionName("Save")]
 public IActionResult BlogSave(BlogRequestModel requestModel)
 {
