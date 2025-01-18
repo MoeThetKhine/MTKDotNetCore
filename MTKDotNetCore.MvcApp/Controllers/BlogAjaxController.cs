@@ -20,6 +20,8 @@ public IActionResult BlogList()
 
 	#endregion
 
+	#region BlogListAjax
+
 	[ActionName("List")]
 public IActionResult BlogListAjax()
 {
@@ -27,7 +29,9 @@ public IActionResult BlogListAjax()
 	return Json(lst);
 }
 
-[ActionName("Create")]
+	#endregion
+
+	[ActionName("Create")]
 public IActionResult BlogCreate()
 {
 	return View("BlogCreate");
