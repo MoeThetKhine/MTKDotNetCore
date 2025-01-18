@@ -119,6 +119,8 @@ public IActionResult BlogDelete(BlogRequestModel requestModel)
 
 	#endregion
 
+	#region BlogEdit
+
 	[ActionName("Edit")]
 public IActionResult BlogEdit(int id)
 {
@@ -133,7 +135,9 @@ public IActionResult BlogEdit(int id)
 	return View("BlogEdit", blogRequestModel);
 }
 
-[HttpPost]
+	#endregion
+
+	[HttpPost]
 [ActionName("Update")]
 public IActionResult BlogUpdate(int id, BlogRequestModel requestModel)
 {
