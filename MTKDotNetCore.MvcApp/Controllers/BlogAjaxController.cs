@@ -41,6 +41,8 @@ public IActionResult BlogCreate()
 
 	#endregion
 
+	#region BlogSave
+
 	[HttpPost]
 [ActionName("Save")]
 public IActionResult BlogSave(BlogRequestModel requestModel)
@@ -71,7 +73,9 @@ public IActionResult BlogSave(BlogRequestModel requestModel)
 	return Json(model);
 }
 
-public class MessageModel
+	#endregion
+
+	public class MessageModel
 {
 	public MessageModel()
 	{
