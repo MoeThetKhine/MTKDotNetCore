@@ -75,6 +75,8 @@ public IActionResult BlogSave(BlogRequestModel requestModel)
 
 	#endregion
 
+	#region MessageModel
+
 	public class MessageModel
 {
 	public MessageModel()
@@ -90,7 +92,9 @@ public IActionResult BlogSave(BlogRequestModel requestModel)
 	public string Message { get; set; }
 }
 
-[HttpPost]
+	#endregion
+
+	[HttpPost]
 [ActionName("Delete")]
 public IActionResult BlogDelete(BlogRequestModel requestModel)
 {
