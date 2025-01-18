@@ -9,15 +9,18 @@ public BlogAjaxController(IBlogService blogService)
 	_blogService = blogService;
 }
 
+	#region BlogList
 
-[ActionName("Index")]
+	[ActionName("Index")]
 public IActionResult BlogList()
 {
 	var lst = _blogService.GetBlogs();
 	return View("BlogList", lst);
 }
 
-[ActionName("List")]
+	#endregion
+
+	[ActionName("List")]
 public IActionResult BlogListAjax()
 {
 	var lst = _blogService.GetBlogs();
