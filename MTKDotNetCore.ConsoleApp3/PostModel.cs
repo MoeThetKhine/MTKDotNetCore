@@ -1,5 +1,5 @@
-﻿namespace MTKDotNetCore.ConsoleApp3
-{
+﻿namespace MTKDotNetCore.ConsoleApp3;
+
 
     #region PostModel
 
@@ -12,4 +12,3 @@
     }
 
     #endregion
-}
