@@ -15,6 +15,8 @@ public class ApexChartController : Controller
 
 	#endregion
 
+	#region MixedChart
+
 	public IActionResult MixedChart()
 	{
 		var model = new ApexChartMixedChartModel
@@ -45,4 +47,7 @@ public class ApexChartController : Controller
 
 		return View(model);
 	}
+
+	#endregion
+
 }
