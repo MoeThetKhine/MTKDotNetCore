@@ -2,6 +2,9 @@
 
 public class ApexChartController : Controller
 {
+
+	#region PieChart
+
 	public IActionResult PieChart()
 	{
 		ApexChartPieChartModel model = new ApexChartPieChartModel();
@@ -9,6 +12,8 @@ public class ApexChartController : Controller
 		model.Labels = new string[] { "Team A", "Team B", "Team C", "Team D", "Team E" };
 		return View(model);
 	}
+
+	#endregion
 
 	public IActionResult MixedChart()
 	{
