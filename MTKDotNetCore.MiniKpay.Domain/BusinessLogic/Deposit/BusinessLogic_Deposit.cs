@@ -1,15 +1,15 @@
-﻿namespace MTKDotNetCore.MiniKpay.Domain.BusinessLogic.Deposit
+﻿namespace MTKDotNetCore.MiniKpay.Domain.BusinessLogic.Deposit;
+
+public class BusinessLogic_Deposit
 {
-    public class BusinessLogic_Deposit
+    private readonly DataAccess_Deposit _dA_Deposit;
+
+    public BusinessLogic_Deposit(DataAccess_Deposit dA_Deposit)
     {
-        private readonly DataAccess_Deposit _dA_Deposit;
+        _dA_Deposit = dA_Deposit;
+    }
 
-        public BusinessLogic_Deposit(DataAccess_Deposit dA_Deposit)
-        {
-            _dA_Deposit = dA_Deposit;
-        }
-
-        #region Get Deposit List Async
+    #region Get Deposit List Async
 
         public async Task<Result<List<DepositModel>>> GetDepositListAsync()
         {
@@ -31,7 +31,7 @@
 
         #endregion
 
-        #region Get Deposit By PhoneNumber Async
+    #region Get Deposit By PhoneNumber Async
 
         public async Task<Result<List<DepositModel>>> GetDepositByPhoneNumberAsync(string phoneNumber)
         {
@@ -54,7 +54,7 @@
 
         #endregion
 
-        #region Create Deposit
+    #region Create Deposit
 
         public async Task<Result<string>> CreateDepositAsync(DepositResponseModel deposit)
         {
@@ -94,5 +94,4 @@
         }
 
         #endregion
-    }
 }
