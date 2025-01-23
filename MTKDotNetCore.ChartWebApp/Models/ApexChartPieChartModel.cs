@@ -78,3 +78,9 @@ public class AreaChartModel
 }
 
 #endregion
+
+public class RangeBarChartModel
+{
+	public string Department { get; set; } // Department name
+	public int[] PayRange { get; set; }    // Pay range as [min, max]
+}
