@@ -165,6 +165,8 @@ public class ApexChartController : Controller
 
 	#endregion
 
+	#region RangeBarChart
+
 	public IActionResult RangeBarChart()
 	{
 		var chartData = new List<RangeBarChartModel>
@@ -181,6 +183,7 @@ public class ApexChartController : Controller
 		return View(chartData);
 	}
 
+	#endregion
 
 
 }
