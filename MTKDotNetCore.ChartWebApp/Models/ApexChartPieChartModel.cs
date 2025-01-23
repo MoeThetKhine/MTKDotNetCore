@@ -70,7 +70,11 @@ public class PolarAreaChartModel
 
 #endregion
 
+#region AreaChartModel
+
 public class AreaChartModel
 {
 	public List<object[]> Dates { get; set; } 
 }
+
+#endregion
