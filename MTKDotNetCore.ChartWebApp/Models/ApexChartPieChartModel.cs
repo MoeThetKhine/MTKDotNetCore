@@ -30,3 +30,9 @@ public class SeriesData
 }
 
 #endregion
+
+public class PyramidChartModel
+{
+	public string[] Categories { get; set; }
+	public int[] Data { get; set; }
+}
