@@ -1,5 +1,7 @@
 ﻿namespace MTKDotNetCore.MiniKpay.Database.Models.User;
 
+#region User Response Model
+
 public class UserResponseModel
 {
     public string FullName { get; set; }
@@ -8,3 +10,5 @@ public class UserResponseModel
     public string Pin { get; set; }
     public string Password { get; set; }
 }
+
+#endregion
