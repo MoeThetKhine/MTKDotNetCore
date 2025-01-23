@@ -185,4 +185,15 @@ public class ApexChartController : Controller
 
 	#endregion
 
+	public IActionResult RadialBarChart()
+	{
+		// Example: Set the percentage dynamically
+		var model = new RadialBarChartModel
+		{
+			Percentage = 75 // Example percentage value
+		};
+
+		return View(model);
+	}
+
 }
