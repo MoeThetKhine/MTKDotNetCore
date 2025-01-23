@@ -1,5 +1,7 @@
 ﻿namespace MTKDotNetCore.RestApi.DataModels;
 
+#region BlogDataModel
+
 public class BlogDataModel
 {
     public int BlogId { get; set; }
@@ -8,3 +10,5 @@ public class BlogDataModel
     public string BlogContent { get; set; }
     public bool DeleteFlag { get; set; }
 }
+
+#endregion
