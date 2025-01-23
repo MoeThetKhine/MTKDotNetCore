@@ -89,7 +89,11 @@ public class RangeBarChartModel
 
 #endregion
 
+#region RadialBarChartModel
+
 public class RadialBarChartModel
 {
 	public int Percentage { get; set; } 
 }
+
+#endregion
