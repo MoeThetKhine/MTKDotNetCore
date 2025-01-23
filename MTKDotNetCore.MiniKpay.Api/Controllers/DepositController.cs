@@ -1,17 +1,17 @@
-﻿namespace MTKDotNetCore.MiniKpay.Api.Controllers
+﻿namespace MTKDotNetCore.MiniKpay.Api.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class DepositController : BaseController
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class DepositController : BaseController
+    private readonly BusinessLogic_Deposit _bL_Deposit;
+
+    public DepositController(BusinessLogic_Deposit businessLogic_Deposit)
     {
-        private readonly BusinessLogic_Deposit _bL_Deposit;
+        _bL_Deposit = businessLogic_Deposit;
+    }
 
-        public DepositController(BusinessLogic_Deposit businessLogic_Deposit)
-        {
-            _bL_Deposit = businessLogic_Deposit;
-        }
-
-        #region Get Deposit List
+    #region Get Deposit List
 
         [HttpGet]
         public async Task<IActionResult> GetDeposits()
@@ -33,7 +33,7 @@
 
         #endregion
 
-        #region Get Deposit By PhoneNumber
+    #region Get Deposit By PhoneNumber
 
         [HttpGet("{phoneNumber}")]
         public async Task<IActionResult> GetDepositByPhoneNumber(string phoneNumber)
@@ -55,7 +55,7 @@
 
         #endregion
 
-        #region Create Deposit
+    #region Create Deposit
 
         [HttpPost]
         public async Task<IActionResult> CreateDeposit([FromBody] DepositResponseModel deposit)
@@ -81,5 +81,4 @@
         }
 
         #endregion
-    }
 }
