@@ -87,6 +87,42 @@ public class ApexChartController : Controller
 
 	#endregion
 
+	public IActionResult ScatterChart()
+	{
+		var seriesData = new List<ScatterChartModel>
+		{
+			new ScatterChartModel
+			{
+				Name = "SAMPLE A",
+				Data = new List<List<double>>
+				{
+					new List<double> { 16.4, 5.4 },
+					new List<double> { 21.7, 2 },
+					new List<double> { 25.4, 3 },
+				}
+			},
+			new ScatterChartModel
+			{
+				Name = "SAMPLE B",
+				Data = new List<List<double>>
+				{
+					new List<double> { 36.4, 13.4 },
+					new List<double> { 1.7, 11 },
+					new List<double> { 5.4, 8 },
+				}
+			},
+			new ScatterChartModel
+			{
+				Name = "SAMPLE C",
+				Data = new List<List<double>>
+				{
+					new List<double> { 21.7, 3 },
+					new List<double> { 23.6, 3.5 },
+					new List<double> { 24.6, 3 },
+				}
+			}
+		};
 
-
+		return View(seriesData);
+	}
 }
