@@ -79,8 +79,12 @@ public class AreaChartModel
 
 #endregion
 
+#region RangeBarChartModel
+
 public class RangeBarChartModel
 {
 	public string Department { get; set; } 
 	public int[] PayRange { get; set; }    
 }
+
+#endregion
