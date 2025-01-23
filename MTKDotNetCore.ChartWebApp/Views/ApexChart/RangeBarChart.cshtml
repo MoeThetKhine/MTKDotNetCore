@@ -9,7 +9,6 @@
     <div id="chart"></div>
 
     <script>
-        // Convert Model data to JavaScript format
         var data = @Html.Raw(Json.Serialize(Model.Select(m => new { x = m.Department, y = m.PayRange })));
 
         var options = {
