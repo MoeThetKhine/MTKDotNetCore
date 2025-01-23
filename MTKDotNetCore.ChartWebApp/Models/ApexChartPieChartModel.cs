@@ -61,7 +61,11 @@ public class ScatterChartModel
 
 #endregion
 
+#region PolarAreaChartModel
+
 public class PolarAreaChartModel
 {
 	public List<int> Series { get; set; }
 }
+
+#endregion
