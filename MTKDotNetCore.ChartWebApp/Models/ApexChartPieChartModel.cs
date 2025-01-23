@@ -20,7 +20,7 @@ public class ApexChartMixedChartModel
 
 #endregion
 
-
+#region SeriesData
 
 public class SeriesData
 {
@@ -28,3 +28,5 @@ public class SeriesData
 	public string Type { get; set; }
 	public int[] Data { get; set; }
 }
+
+#endregion
