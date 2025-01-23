@@ -2,7 +2,10 @@
 
 public class RefitExample
 {
-    public async Task Run()
+
+	#region Run
+
+	public async Task Run()
     {
         var blogApi = RestService.For<IBlogApi>("https://localhost:7085");
         var lst = await blogApi.GetBlogs();
@@ -31,4 +34,7 @@ public class RefitExample
             BlogContent = "test",
         });
     }
+
+	#endregion
+
 }
