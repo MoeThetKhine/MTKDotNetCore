@@ -51,8 +51,12 @@ public class BarChartModel
 
 #endregion
 
+#region ScatterChartModel
+
 public class ScatterChartModel
 {
 	public string Name { get; set; } 
 	public List<List<double>> Data { get; set; } 
 }
+
+#endregion
