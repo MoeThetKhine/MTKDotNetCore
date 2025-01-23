@@ -1,5 +1,7 @@
 ﻿namespace MTKDotNetCore.Domain.Features.Blog;
 
+#region IBlogService
+
 public interface IBlogService
 {
     TblBlog CreateBlog(TblBlog blog);
@@ -9,3 +11,5 @@ public interface IBlogService
     TblBlog PatchBlog(int id, TblBlog blog);
     TblBlog UpdateBlog(int id, TblBlog blog);
 }
+
+#endregion
