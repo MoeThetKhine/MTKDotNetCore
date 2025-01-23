@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MTKDotNetCore.ChartWebApp.Models;
-
-namespace MTKDotNetCore.ChartWebApp.Controllers
+﻿namespace MTKDotNetCore.ChartWebApp.Controllers
 {
 	public class ApexChartController : Controller
 	{
