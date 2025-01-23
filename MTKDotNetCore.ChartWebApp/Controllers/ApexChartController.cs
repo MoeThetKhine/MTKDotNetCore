@@ -144,4 +144,22 @@ public class ApexChartController : Controller
 
 	#endregion
 
+	public IActionResult AreaChart()
+	{
+		// Example: Provide dynamic data
+		var model = new AreaChartModel
+		{
+			Dates = new List<object[]>
+			{
+				new object[] { "2023-01-01", 1000000 },
+				new object[] { "2023-01-02", 2000000 },
+				new object[] { "2023-01-03", 1500000 },
+				new object[] { "2023-01-04", 3000000 },
+				new object[] { "2023-01-05", 2500000 }
+			}
+		};
+
+		return View(model);
+	}
+
 }
