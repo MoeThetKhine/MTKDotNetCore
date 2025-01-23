@@ -1,5 +1,7 @@
 ﻿namespace MTKDotNetCore.MiniKpay.Database.Models.User;
 
+#region User Model
+
 public class UserModel
 {
     public int User_Id { get; set; }
@@ -10,3 +12,5 @@ public class UserModel
     public string Password { get; set; }
     public bool DeleteFlag { get; set; }
 }
+
+#endregion
