@@ -1,5 +1,7 @@
 ﻿namespace MTKDotNetCore.ToDoListRestApi.ViewModels;
 
+#region To Do List View Model
+
 public class ToDoListViewModel
 {
     public string TaskTitle { get; set; }
@@ -10,3 +12,5 @@ public class ToDoListViewModel
     public DateTime? DueDate { get; set; }
     public DateTime? CompletedDate { get; set; }
 }
+
+#endregion
