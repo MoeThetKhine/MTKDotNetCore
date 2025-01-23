@@ -50,4 +50,20 @@ public class ApexChartController : Controller
 
 	#endregion
 
+
+	public ActionResult PyramidChart()
+	{
+		var model = new PyramidChartModel
+		{
+			Categories = new[]
+			{
+				"Sweets", "Processed Foods", "Healthy Fats", "Meat",
+				"Beans & Legumes", "Dairy", "Fruits & Vegetables", "Grains"
+			},
+			Data = new[] { 200, 330, 548, 740, 880, 990, 1100, 1380 }
+		};
+		return View(model);
+	}
+
+
 }
