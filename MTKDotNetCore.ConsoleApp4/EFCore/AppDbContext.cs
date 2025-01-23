@@ -12,7 +12,9 @@ public partial class AppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<TblBlog>(entity =>
+		#region TblBlog
+
+		modelBuilder.Entity<TblBlog>(entity =>
         {
             entity.HasKey(e => e.BlogId);
 
@@ -22,7 +24,9 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.BlogTitle).HasMaxLength(50);
         });
 
-        OnModelCreatingPartial(modelBuilder);
+		#endregion
+
+		OnModelCreatingPartial(modelBuilder);
     }
 
     #endregion
