@@ -132,7 +132,6 @@ public class ApexChartController : Controller
 
 	public IActionResult PolarAreaChart()
 	{
-		// Example: Provide dynamic data
 		var model = new PolarAreaChartModel
 		{
 			Series = new List<int> { 14, 23, 21, 17, 15, 10, 12, 17, 21 }
