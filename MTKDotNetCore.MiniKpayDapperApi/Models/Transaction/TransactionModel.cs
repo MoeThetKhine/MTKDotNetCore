@@ -1,5 +1,7 @@
 ﻿namespace MTKDotNetCore.MiniKpayDapperApi.Models.Transaction;
 
+#region TransactionModel
+
 public class TransactionModel
 {
     public int Transaction_Id {  get; set; }
@@ -8,5 +10,6 @@ public class TransactionModel
     public decimal Amount { get; set; }
     public string Pin { get; set; }
     public bool DeleteFlag {  get; set; }
-
 }
+
+#endregion
