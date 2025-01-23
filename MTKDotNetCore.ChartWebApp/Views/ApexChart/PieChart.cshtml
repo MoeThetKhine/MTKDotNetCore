@@ -1,7 +1,9 @@
 ﻿@using Newtonsoft.Json
+@model ApexChartPieChartModel
+
 @{
-    int[] _series = new int[] { 44, 55, 13, 43, 22 };
-    string[] _labels = new string[] { "Team A", "Team B", "Team C", "Team D", "Team E" };
+    int[] _series = Model.Series;
+    string[] _labels = Model.Labels;
 }
 
 <div id="chart"></div>
