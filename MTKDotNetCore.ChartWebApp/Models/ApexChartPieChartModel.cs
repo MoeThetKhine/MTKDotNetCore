@@ -41,8 +41,12 @@ public class PyramidChartModel
 
 #endregion
 
+#region BarChartModel
+
 public class BarChartModel
 {
 	public int[] Data { get; set; }
 	public string[] Categories { get; set; }
 }
+
+#endregion
