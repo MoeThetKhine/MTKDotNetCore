@@ -69,3 +69,8 @@ public class PolarAreaChartModel
 }
 
 #endregion
+
+public class AreaChartModel
+{
+	public List<object[]> Dates { get; set; } // List of [datetime, value] pairs
+}
