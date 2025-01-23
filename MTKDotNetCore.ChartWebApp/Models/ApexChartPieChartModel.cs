@@ -81,6 +81,6 @@ public class AreaChartModel
 
 public class RangeBarChartModel
 {
-	public string Department { get; set; } // Department name
-	public int[] PayRange { get; set; }    // Pay range as [min, max]
+	public string Department { get; set; } 
+	public int[] PayRange { get; set; }    
 }
