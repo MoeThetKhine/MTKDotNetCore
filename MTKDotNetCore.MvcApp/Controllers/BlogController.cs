@@ -21,7 +21,6 @@ public class BlogController : Controller
 	{
 		var blogs = _blogService.GetBlogs().AsQueryable();
 
-		// Create a paginated list
 		var paginatedBlogs = PaginatedList<TblBlog>.Create(blogs, pageIndex, pageSize);
 
 		return View(paginatedBlogs);
