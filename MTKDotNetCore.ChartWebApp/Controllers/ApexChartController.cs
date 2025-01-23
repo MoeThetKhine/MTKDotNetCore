@@ -87,6 +87,8 @@ public class ApexChartController : Controller
 
 	#endregion
 
+	#region ScatterChart
+
 	public IActionResult ScatterChart()
 	{
 		var seriesData = new List<ScatterChartModel>
@@ -125,4 +127,7 @@ public class ApexChartController : Controller
 
 		return View(seriesData);
 	}
+
+	#endregion
+
 }
