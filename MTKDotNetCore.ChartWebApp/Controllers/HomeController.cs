@@ -9,10 +9,14 @@ public class HomeController : Controller
 		_logger = logger;
 	}
 
+	#region Index
+
 	public IActionResult Index()
 	{
 		return View();
 	}
+
+	#endregion
 
 	public IActionResult Privacy()
 	{
