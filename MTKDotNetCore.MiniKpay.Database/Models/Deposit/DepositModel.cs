@@ -1,5 +1,7 @@
 ﻿namespace MTKDotNetCore.MiniKpay.Database.Models.Deposit;
 
+#region Deposit Model
+
 public class DepositModel
 {
     public int Deposit_Id { get; set; }
@@ -7,3 +9,5 @@ public class DepositModel
     public decimal Balance { get; set; }
     public bool DeleteFlag { get; set; }
 }
+
+#endregion
