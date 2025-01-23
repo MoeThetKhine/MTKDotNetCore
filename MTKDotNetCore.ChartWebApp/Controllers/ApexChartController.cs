@@ -68,4 +68,23 @@ public class ApexChartController : Controller
 
 	#endregion
 
+	#region HorizontalBarChart
+
+	public IActionResult HorizontalBarChart()
+	{
+		var model = new BarChartModel
+		{
+			Data = new[] { 400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380 },
+			Categories = new[]
+			{
+					"South Korea", "Canada", "United Kingdom", "Netherlands", "Italy",
+					"France", "Japan", "United States", "China", "Germany"
+				}
+		};
+
+		return View(model);
+	}
+
+	#endregion
+
 }
