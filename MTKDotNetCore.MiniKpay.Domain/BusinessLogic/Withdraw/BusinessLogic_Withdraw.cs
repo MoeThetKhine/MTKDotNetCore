@@ -1,18 +1,18 @@
 ﻿using MTKDotNetCore.MiniKpay.Database.DataAccess.Withdraw;
 using MTKDotNetCore.MiniKpay.Database.Models.Withdraw;
 
-namespace MTKDotNetCore.MiniKpay.Domain.BusinessLogic.Withdraw
+namespace MTKDotNetCore.MiniKpay.Domain.BusinessLogic.Withdraw;
+
+public class BusinessLogic_Withdraw
 {
-    public class BusinessLogic_Withdraw
+    private readonly DataAccess_Withdraw _dA_Withdraw;
+
+    public BusinessLogic_Withdraw(DataAccess_Withdraw dA_Withdraw)
     {
-        private readonly DataAccess_Withdraw _dA_Withdraw;
+        _dA_Withdraw = dA_Withdraw;
+    }
 
-        public BusinessLogic_Withdraw(DataAccess_Withdraw dA_Withdraw)
-        {
-            _dA_Withdraw = dA_Withdraw;
-        }
-
-        #region Get Withdraw List
+    #region Get Withdraw List
 
         public async Task<Result<List<WithdrawModel>>> GetWithdrawListAsync()
         {
@@ -28,7 +28,7 @@ namespace MTKDotNetCore.MiniKpay.Domain.BusinessLogic.Withdraw
 
         #endregion
 
-        #region Get Withdraw By PhoneNumber
+    #region Get Withdraw By PhoneNumber
 
         public async Task<Result<List<WithdrawModel>>> GetWithdrawByPhoneNumberAsync(string phoneNumber)
         {
@@ -44,7 +44,7 @@ namespace MTKDotNetCore.MiniKpay.Domain.BusinessLogic.Withdraw
 
         #endregion
 
-        #region Create Withdraw
+    #region Create Withdraw
 
         public async Task<Result<string>> CreateWithdrawAsync(WithdrawResponseModel withdraw)
         {
@@ -82,5 +82,4 @@ namespace MTKDotNetCore.MiniKpay.Domain.BusinessLogic.Withdraw
 
         #endregion
 
-    }
 }
