@@ -146,7 +146,6 @@ public class ApexChartController : Controller
 
 	public IActionResult AreaChart()
 	{
-		// Example: Provide dynamic data
 		var model = new AreaChartModel
 		{
 			Dates = new List<object[]>
