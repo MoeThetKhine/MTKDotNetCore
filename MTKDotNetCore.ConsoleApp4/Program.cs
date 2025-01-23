@@ -56,7 +56,7 @@
 #region DI
 
 var services = new ServiceCollection()
-           .AddDbContext<AppDbContext>(options =>
+           .AddDbContext<MTKDotNetCore.ConsoleApp4.EFCore.AppDbContext>(options =>
                options.UseSqlServer("Data Source=.;Initial Catalog=DotNetTrainingBatch5;User ID=sa;Password=sasa@123;TrustServerCertificate=True;"))
            .AddSingleton<EfcoreExample>()
            .BuildServiceProvider();
