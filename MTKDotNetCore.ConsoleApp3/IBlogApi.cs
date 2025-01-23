@@ -1,5 +1,7 @@
 ﻿namespace MTKDotNetCore.ConsoleApp3;
 
+#region IBlogApi
+
 public interface IBlogApi
 {
     [Get("/api/blogs")]
@@ -12,3 +14,5 @@ public interface IBlogApi
     Task<BlogModel> CreateBlog(BlogModel blog);
     
 }
+
+#endregion
