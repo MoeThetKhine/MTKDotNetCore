@@ -4,7 +4,10 @@
 [ApiController]
 public class BaseController : ControllerBase
 {
-    public IActionResult Execute(object model)
+
+	#region Execute
+
+	public IActionResult Execute(object model)
     {
         JObject jObj = JObject.Parse(JsonConvert.SerializeObject(model));
         if(jObj.ContainsKey("Response"))
@@ -21,4 +24,7 @@ public class BaseController : ControllerBase
         }
         return StatusCode(500, "Invalid Response Model.Please add BaseResponseModel to your ResponseModel.");
     }
+
+    #endregion
+
 }
