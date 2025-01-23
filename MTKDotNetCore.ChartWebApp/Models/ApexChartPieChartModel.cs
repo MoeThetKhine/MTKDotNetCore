@@ -10,11 +10,17 @@ public class ApexChartPieChartModel
 
 #endregion
 
+#region ApexChartMixedChartModel
+
 public class ApexChartMixedChartModel
 {
 	public List<SeriesData> Series { get; set; }
 	public string[] Labels { get; set; }
 }
+
+#endregion
+
+
 
 public class SeriesData
 {
