@@ -1,7 +1,4 @@
-﻿using MTKDotNetCore.MiniKpay.Database.DataAccess.Withdraw;
-using MTKDotNetCore.MiniKpay.Database.Models.Withdraw;
-
-namespace MTKDotNetCore.MiniKpay.Domain.BusinessLogic.Withdraw;
+﻿namespace MTKDotNetCore.MiniKpay.Domain.BusinessLogic.Withdraw;
 
 public class BusinessLogic_Withdraw
 {

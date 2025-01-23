@@ -5,3 +5,5 @@ global using MTKDotNetCore.MiniKpay.Database.Models.Deposit;
 global using MTKDotNetCore.MiniKpay.Database.DataAccess.Transaction;
 global using MTKDotNetCore.MiniKpay.Database.Models.Transaction;
 global using MTKDotNetCore.MiniKpay.Database.Models;
+global using MTKDotNetCore.MiniKpay.Database.DataAccess.Withdraw;
+global using MTKDotNetCore.MiniKpay.Database.Models.Withdraw;
