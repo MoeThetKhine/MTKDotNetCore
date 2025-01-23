@@ -60,3 +60,9 @@ public class ScatterChartModel
 }
 
 #endregion
+
+// Models/PolarAreaChartModel.cs
+public class PolarAreaChartModel
+{
+	public List<int> Series { get; set; }
+}
