@@ -1,17 +1,17 @@
-﻿namespace MTKDotNetCore.MiniKpay.Api.Controllers
+﻿namespace MTKDotNetCore.MiniKpay.Api.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class TransactionController : BaseController
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class TransactionController : BaseController
+    private readonly BusinessLogic_Transaction _bL_Transaction;
+
+    public TransactionController(BusinessLogic_Transaction businessLogic_Transaction)
     {
-        private readonly BusinessLogic_Transaction _bL_Transaction;
+        _bL_Transaction = businessLogic_Transaction;
+    }
 
-        public TransactionController(BusinessLogic_Transaction businessLogic_Transaction)
-        {
-            _bL_Transaction = businessLogic_Transaction;
-        }
-
-        #region Get Transaction List
+    #region Get Transaction List
 
         [HttpGet]
         public async Task<IActionResult> GetTransactionList()
@@ -30,7 +30,7 @@
 
         #endregion
 
-        #region Get Transactions by Phone Number
+    #region Get Transactions by Phone Number
 
         [HttpGet("{fromPhoneNumber}")]
         public async Task<IActionResult> GetTransactionByFromPhoneNumber(string fromPhoneNumber)
@@ -49,7 +49,7 @@
 
         #endregion
 
-        #region Create Transaction
+    #region Create Transaction
 
         [HttpPost]
         public async Task<IActionResult> CreateTransaction([FromBody] TransactionResponseModel transaction)
@@ -67,5 +67,4 @@
         }
 
         #endregion
-    }
 }
