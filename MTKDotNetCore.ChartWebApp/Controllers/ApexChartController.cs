@@ -167,7 +167,6 @@ public class ApexChartController : Controller
 
 	public IActionResult RangeBarChart()
 	{
-		// Example: Provide dynamic data
 		var chartData = new List<RangeBarChartModel>
 		{
 			new RangeBarChartModel { Department = "Operations", PayRange = new[] { 2800, 4500 } },
