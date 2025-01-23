@@ -91,5 +91,5 @@ public class RangeBarChartModel
 
 public class RadialBarChartModel
 {
-	public int Percentage { get; set; } // The percentage value for the chart
+	public int Percentage { get; set; } 
 }
