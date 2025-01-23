@@ -57,3 +57,7 @@ public class ScatterChartSeries
 	public double[][] Data { get; set; }
 }
 
+public class ScatterChartModel
+{
+	public List<ScatterChartSeries> Series { get; set; }
+}
