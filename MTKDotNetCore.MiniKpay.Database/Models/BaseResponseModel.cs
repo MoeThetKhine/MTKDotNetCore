@@ -1,5 +1,7 @@
 ﻿namespace MTKDotNetCore.MiniKpay.Database.Models;
 
+#region BaseResponseModel
+
 public class BaseResponseModel
 {
     public string RespCode { get; set; }
@@ -54,6 +56,8 @@ public class BaseResponseModel
     #endregion
 
 }
+
+#endregion
 
 #region EnumRespType
 
