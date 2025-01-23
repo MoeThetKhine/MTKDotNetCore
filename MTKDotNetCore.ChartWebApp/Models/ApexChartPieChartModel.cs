@@ -50,3 +50,10 @@ public class BarChartModel
 }
 
 #endregion
+
+public class ScatterChartSeries
+{
+	public string Name { get; set; }
+	public double[][] Data { get; set; }
+}
+
