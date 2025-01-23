@@ -9,11 +9,10 @@
     <div id="chart"></div>
 
     <script>
-        // Pass the percentage value from the model to JavaScript
         var percentage = @Html.Raw(Model.Percentage);
 
         var options = {
-            series: [percentage], // Set the series value dynamically
+            series: [percentage], 
             chart: {
                 height: 350,
                 type: 'radialBar',
@@ -44,7 +43,7 @@
                     track: {
                         background: '#fff',
                         strokeWidth: '67%',
-                        margin: 0, // margin is in pixels
+                        margin: 0, 
                         dropShadow: {
                             enabled: true,
                             top: -3,
