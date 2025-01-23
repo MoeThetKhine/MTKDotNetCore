@@ -144,6 +144,8 @@ public class ApexChartController : Controller
 
 	#endregion
 
+	#region AreaChart
+
 	public IActionResult AreaChart()
 	{
 		var model = new AreaChartModel
@@ -160,5 +162,7 @@ public class ApexChartController : Controller
 
 		return View(model);
 	}
+
+	#endregion
 
 }
