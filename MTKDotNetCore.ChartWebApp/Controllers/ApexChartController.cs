@@ -165,4 +165,23 @@ public class ApexChartController : Controller
 
 	#endregion
 
+	public IActionResult RangeBarChart()
+	{
+		// Example: Provide dynamic data
+		var chartData = new List<RangeBarChartModel>
+		{
+			new RangeBarChartModel { Department = "Operations", PayRange = new[] { 2800, 4500 } },
+			new RangeBarChartModel { Department = "Customer Success", PayRange = new[] { 3200, 4100 } },
+			new RangeBarChartModel { Department = "Engineering", PayRange = new[] { 2950, 7800 } },
+			new RangeBarChartModel { Department = "Marketing", PayRange = new[] { 3000, 4600 } },
+			new RangeBarChartModel { Department = "Product", PayRange = new[] { 3500, 4100 } },
+			new RangeBarChartModel { Department = "Data Science", PayRange = new[] { 4500, 6500 } },
+			new RangeBarChartModel { Department = "Sales", PayRange = new[] { 4100, 5600 } }
+		};
+
+		return View(chartData);
+	}
+
+
+
 }
