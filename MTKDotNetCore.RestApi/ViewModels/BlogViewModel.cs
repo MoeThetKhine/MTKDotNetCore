@@ -1,5 +1,7 @@
 ﻿namespace MTKDotNetCore.RestApi.ViewModels;
 
+#region BlogViewModel
+
 public class BlogViewModel
 {
     public int BlogId { get; set; }
@@ -8,3 +10,5 @@ public class BlogViewModel
     public string? BlogContent { get; set; }
     public bool DeleteFlag { get; set; }
 }
+
+#endregion
