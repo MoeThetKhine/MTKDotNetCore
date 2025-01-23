@@ -1,4 +1,4 @@
-﻿@model ScatterChartModel
+﻿@model List<ScatterChartModel>
 
 <!DOCTYPE html>
 <html>
@@ -11,58 +11,25 @@
 
     <script>
         var options = {
-            series: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Series)),
+            series: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model)),
             chart: {
                 height: 350,
                 type: 'scatter',
-                animations: {
-                    enabled: false,
-                },
                 zoom: {
-                    enabled: false,
-                },
-                toolbar: {
-                    show: false
+                    enabled: true,
+                    type: 'xy'
                 }
             },
-            colors: ['#056BF6', '#D2376A'],
             xaxis: {
                 tickAmount: 10,
-                min: 0,
-                max: 40
+                labels: {
+                    formatter: function (val) {
+                        return parseFloat(val).toFixed(1);
+                    }
+                }
             },
             yaxis: {
                 tickAmount: 7
-            },
-            markers: {
-                size: 20
-            },
-            fill: {
-                type: 'image',
-                opacity: 1,
-                image: {
-                    src: [
-                        '../../assets/images/ico-messenger.png',
-                        '../../assets/images/ico-instagram.png'
-                    ],
-                    width: 40,
-                    height: 40
-                }
-            },
-            legend: {
-                labels: {
-                    useSeriesColors: true
-                },
-                markers: {
-                    customHTML: [
-                        function () {
-                            return '<span><i class="fab fa-facebook"></i></span>';
-                        },
-                        function () {
-                            return '<span><i class="fab fa-instagram"></i></span>';
-                        }
-                    ]
-                }
             }
         };
 
