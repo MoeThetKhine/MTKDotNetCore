@@ -1,5 +1,7 @@
 ﻿namespace MTKDotNetCore.BirdMiniApi.Models;
 
+#region Bird Model
+
 public class BirdModel
 {
     public int Id { get; set; }
@@ -8,3 +10,5 @@ public class BirdModel
     public string Description { get; set; }
     public string ImagePath { get; set; }
 }
+
+#endregion
