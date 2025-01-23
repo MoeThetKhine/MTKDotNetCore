@@ -1,4 +1,5 @@
-﻿@{
+﻿@using Newtonsoft.Json
+@{
     int[] _series = new int[] { 44, 55, 13, 43, 22 };
     string[] _labels = new string[] { "Team A", "Team B", "Team C", "Team D", "Team E" };
 }
@@ -9,8 +10,8 @@
 
     <script>
 
-        const _series = @_series
-        const _labels = @_labels
+        const _series = @Html.Raw(JsonConvert.SerializeObject(_series))
+        const _labels = @Html.Raw(JsonConvert.SerializeObject(_labels))
 
         var options = {
           series: _series,
