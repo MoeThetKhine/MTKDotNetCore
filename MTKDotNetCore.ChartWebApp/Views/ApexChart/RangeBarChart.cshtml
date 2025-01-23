@@ -1,0 +1,72 @@
+﻿@model List<MTKDotNetCore.ChartWebApp.Models.RangeBarChartModel>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Range Bar Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+<body>
+    <div id="chart"></div>
+
+    <script>
+        // Convert Model data to JavaScript format
+        var data = @Html.Raw(Json.Serialize(Model.Select(m => new { x = m.Department, y = m.PayRange })));
+
+        var options = {
+            series: [
+                {
+                    data: data
+                }
+            ],
+            chart: {
+                height: 390,
+                type: 'rangeBar',
+                zoom: {
+                    enabled: false
+                }
+            },
+            colors: ['#EC7D31', '#36BDCB'],
+            plotOptions: {
+                bar: {
+                    horizontal: true,
+                    isDumbbell: true,
+                    dumbbellColors: [['#EC7D31', '#36BDCB']]
+                }
+            },
+            title: {
+                text: 'Paygap Disparity'
+            },
+            legend: {
+                show: true,
+                showForSingleSeries: true,
+                position: 'top',
+                horizontalAlign: 'left',
+                customLegendItems: ['Female', 'Male']
+            },
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    gradientToColors: ['#36BDCB'],
+                    inverseColors: false,
+                    stops: [0, 100]
+                }
+            },
+            grid: {
+                xaxis: {
+                    lines: {
+                        show: true
+                    }
+                },
+                yaxis: {
+                    lines: {
+                        show: false
+                    }
+                }
+            }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+    </script>
+</body>
+</html>
