@@ -1,7 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
-using MTKDotNetCore.ChartWebApp.Models;
-using System.Diagnostics;
-
 namespace MTKDotNetCore.ChartWebApp.Controllers
 {
 	public class HomeController : Controller
