@@ -50,6 +50,7 @@ public class ApexChartController : Controller
 
 	#endregion
 
+	#region PyramidChart
 
 	public ActionResult PyramidChart()
 	{
@@ -65,5 +66,6 @@ public class ApexChartController : Controller
 		return View(model);
 	}
 
+	#endregion
 
 }
