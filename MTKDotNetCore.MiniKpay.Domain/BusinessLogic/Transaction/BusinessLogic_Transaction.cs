@@ -1,15 +1,15 @@
-﻿namespace MTKDotNetCore.MiniKpay.Domain.BusinessLogic.Transaction
+﻿namespace MTKDotNetCore.MiniKpay.Domain.BusinessLogic.Transaction;
+
+public class BusinessLogic_Transaction
 {
-    public class BusinessLogic_Transaction
+    private readonly DataAccess_Transaction _dA_Transaction;
+
+    public BusinessLogic_Transaction(DataAccess_Transaction dataAccessTransaction)
     {
-        private readonly DataAccess_Transaction _dA_Transaction;
+        _dA_Transaction = dataAccessTransaction;
+    }
 
-        public BusinessLogic_Transaction(DataAccess_Transaction dataAccessTransaction)
-        {
-            _dA_Transaction = dataAccessTransaction;
-        }
-
-        #region Get Transactions
+    #region Get Transactions
 
         public async Task<Result<List<TransactionModel>>> GetTransactionAsync()
         {
@@ -32,7 +32,7 @@
 
         #endregion
 
-        #region Get Transactions by FromPhoneNumber
+    #region Get Transactions by FromPhoneNumber
 
         public async Task<Result<List<TransactionModel>>> GetTransactionByFromPhoneNumberAsync(string fromPhoneNumber)
         {
@@ -55,8 +55,7 @@
 
         #endregion
 
-
-        #region Create Transaction
+    #region Create Transaction
 
         public async Task<Result<string>> CreateTransactionAsync(TransactionResponseModel transaction)
         {
@@ -117,5 +116,4 @@
         }
 
         #endregion
-    }
 }
