@@ -1,5 +1,7 @@
 ﻿namespace MTKDotNetCore.ConsoleApp4.Dapper;
 
+#region Dapper Queries
+
 public class DapperQueries
 {
     public string GetReadQuery() =>
@@ -23,3 +25,5 @@ public class DapperQueries
                              [DeleteFlag] = 0
                          WHERE BlogId = @BlogId;";
 }
+
+#endregion
