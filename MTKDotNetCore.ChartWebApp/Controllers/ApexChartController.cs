@@ -130,6 +130,8 @@ public class ApexChartController : Controller
 
 	#endregion
 
+	#region PolarAreaChart
+
 	public IActionResult PolarAreaChart()
 	{
 		var model = new PolarAreaChartModel
@@ -139,5 +141,7 @@ public class ApexChartController : Controller
 
 		return View(model);
 	}
+
+	#endregion
 
 }
