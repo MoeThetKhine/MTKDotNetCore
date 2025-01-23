@@ -31,8 +31,12 @@ public class SeriesData
 
 #endregion
 
+#region PyramidChartModel
+
 public class PyramidChartModel
 {
 	public string[] Categories { get; set; }
 	public int[] Data { get; set; }
 }
+
+#endregion
