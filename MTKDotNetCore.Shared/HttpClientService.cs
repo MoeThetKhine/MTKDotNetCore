@@ -8,6 +8,7 @@ namespace MTKDotNetCore.Shared
 {
 	public class HttpClientService
 	{
+
 	}
 
 	public enum EnumHttpMethod
