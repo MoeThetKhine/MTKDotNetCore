@@ -9,4 +9,13 @@ namespace MTKDotNetCore.Shared
 	public class HttpClientService
 	{
 	}
+
+	public enum EnumHttpMethod
+	{
+		Get,
+		Post,
+		Put, 
+		Patch,
+		Delete
+	}
 }
